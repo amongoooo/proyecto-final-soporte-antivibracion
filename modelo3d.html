@@ -52,6 +52,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 #detail p{margin:0}
 .fine{margin:0;font-size:13px;color:var(--muted)}
 #nogl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+.embed .stage h1,.embed .stage .sub{display:none}.nopanel .panel{display:none}.nopanel .app{grid-template-columns:minmax(0,1fr)}
 @media (max-width:860px){
 html,body{height:auto}
 .app{display:block;height:auto}
@@ -63,6 +64,7 @@ html,body{height:auto}
 .panel{border-left:0;border-top:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 }
 </style>
+<script>try{if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
 <div class="app">
 <main class="stage">
 <div id="view" aria-label="Modelo 3D del soporte. Arrastra para girar y usa la rueda o dos dedos para acercar."></div>
