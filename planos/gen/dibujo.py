@@ -75,7 +75,7 @@ class Sheet:
 
     def badge(self, x, y, fab):
         col = {"IMPRESA": "#d4691f", "COMPRAR": "#2a6fb0", "PROPUESTA": "#b38a12", "REFERENCIA": "#6b7480"}
-        key = fab.split()[0].upper()
+        key = fab.upper().replace("POR IMPRIMIR", "IMPRESA").replace("POR COMPRAR", "COMPRAR").split()[0]
         c = col.get(key, "#6b7480")
         w = 14 + 8.0 * len(fab)
         self.add('<rect x="%.1f" y="%.1f" width="%.1f" height="19" rx="9.5" fill="%s"/>' % (x, y - 14, w, c))

@@ -414,7 +414,7 @@ nums($('nMec'),[['33°','Inclinación, modelo completo (tope)','warn'],['0.64 Hz
 else{texv('vMec',['k_{\\theta2}&=475\\,(0.050)^2+30='+fx(C.kt,1)+'\\ \\text{N·m/rad}','\\theta_2&\\approx\\frac{'+fx(C.m2*.5*g*C.h,3)+'}{'+fx(C.ke,1)+'}='+fx(C.th,2)+'^\\circ','k_{\\theta1}&=k_1\\,b^2=7464\\,(0.0233)^2='+fx(MEC.kt1,2)+'\\ \\text{N·m/rad}','\\theta_1&\\approx'+fx(MEC.thb,1)+'^\\circ\\ \\text{estático},\\ 4.9^\\circ\\ \\text{dinámico}']);
 nums($('nMec'),[['4.9°','Inclinación, modelo completo','good'],['3.3 Hz','Frecuencia de mecido','good'],['21 mm','Movimiento arriba del celular','good'],['0.38','TR a 11.7 Hz (antes 0.36)','']])}draw(0,true)}
 function drawMec(){var A=setup($('cvMec')),c=A.c,cw=A.w/2,sc=Math.max(1,Math.min(A.h/380,cw/320));
-[['B · cables a 60 mm',33,'--warn','Sin guía: se ladea y llega al tope'],['C · con guía de láminas',4.9,'--accent','Con guía: se queda firme']].forEach(function(D,k){var cx=cw*k+cw/2,base=A.h-80*sc,L=Math.min(A.h*.56,170*sc),th=D[1]*Math.PI/180,on=k===S.mec,bw=48*sc;
+[['B · cables a 60 mm',33,'--warn','Sin guía: se ladea y llega al tope'],['C · con guía de láminas',4.9,'--accent','Con guía: se queda firme']].forEach(function(D,k){var cx=cw*k+cw/2,base=A.h-80*sc,L=Math.min(base-(70+70*sc),cw*.85),th=D[1]*Math.PI/180,on=k===S.mec,bw=L*.28;
 if(on){c.fillStyle=css('--chip');c.beginPath();c.roundRect?c.roundRect(cw*k+10,8,cw-20,A.h-48,14):c.rect(cw*k+10,8,cw-20,A.h-48);c.fill();c.strokeStyle=css(D[2]);c.lineWidth=3;c.stroke()}
 c.globalAlpha=on?1:.4;
 c.strokeStyle=css('--line');c.lineWidth=2*sc;c.setLineDash([6*sc,6*sc]);c.beginPath();c.moveTo(cx,base);c.lineTo(cx,base-L);c.stroke();c.setLineDash([]);

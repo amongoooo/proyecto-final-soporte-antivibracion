@@ -6,31 +6,31 @@ PHONE_H, PHONE_W, PHONE_T = 170, 84, 11  # Galaxy S26 Ultra con funda (referenci
 TILT = math.radians(15)
 
 BOM = [
-    ("1", "Placa base 132 × 120 × 8", "1", "Impresa", "PETG", "2"),
-    ("2", "Bloque en V 40 × 44 × 22", "1", "Impresa", "PETG", "2"),
-    ("3", "Abrazadera en U M5 + nyloc", "1", "Comprar", "Acero zincado", "3"),
-    ("4", "Buje Ø16 × Ø5 × 20", "4", "Comprar", "Neopreno esponjoso", "3"),
-    ("5", "Tornillo M4 × 50 + arandela + nyloc", "4", "Comprar", "Inox A2", "3"),
-    ("6", "Caja de m₁ con 2 postes", "1", "Impresa", "PETG", "4"),
-    ("7", "Lastre: solera 1½\" × ¼\" × 96", "1", "Comprar", "Acero 1018", "4"),
-    ("8", "Tope central Ø16 + goma", "1", "Impresa", "PETG + hule", "4"),
-    ("9", "Barra inferior 10 × 10 × 114", "2", "Impresa", "PETG", "5"),
-    ("10", "Cable 7×7 1/32\", 850 mm", "2", "Comprar", "Inox 304", "5"),
-    ("11", "Barra superior 10 × 10 × 102", "2", "Impresa", "PETG", "5"),
-    ("12", "Placa superior con 2 postes", "1", "Impresa", "PETG", "7"),
-    ("13", "Lámina de fleje 14 × 50 × 0.6", "4", "Comprar", "Acero resorte", "6"),
-    ("14", "Escuadra de 15°", "1", "Impresa", "PETG", "7"),
-    ("15", "Respaldo 84 × 120 × 4", "1", "Impresa", "PETG", "7"),
-    ("16", "Repisa con hueco USB", "1", "Impresa", "PETG", "7"),
-    ("17", "Mordaza con perilla M4", "2", "Impresa", "PETG + M4", "7"),
-    ("18", "Cojín 16 × 16 × 4 y banda", "4 + 1", "Comprar", "EVA / silicón", "7"),
-    ("19", "Cordón de seguridad Ø1.5", "1", "Comprar", "Poliéster", "1"),
-    ("20", "Tornillería M3 × 10 (8), M4 × 12 (8)", "—", "Comprar", "Inox A2", "—"),
+    ("1", "Placa base 132 × 120 × 8", "1", "Por imprimir", "PETG", "2"),
+    ("2", "Bloque en V 40 × 44 × 22", "1", "Por imprimir", "PETG", "2"),
+    ("3", "Abrazadera en U M5 + nyloc", "1", "Por comprar", "Acero zincado", "3"),
+    ("4", "Buje Ø16 × Ø5 × 20", "4", "Por comprar", "Neopreno esponjoso", "3"),
+    ("5", "Tornillo M4 × 50 + arandela + nyloc", "4", "Por comprar", "Inox A2", "3"),
+    ("6", "Caja de m₁ con 2 postes", "1", "Por imprimir", "PETG", "4"),
+    ("7", "Lastre: solera 1½\" × ¼\" × 96", "1", "Por comprar", "Acero 1018", "4"),
+    ("8", "Tope central Ø16 + goma", "1", "Por imprimir", "PETG + hule", "4"),
+    ("9", "Barra inferior 10 × 10 × 114", "2", "Por imprimir", "PETG", "5"),
+    ("10", "Cable 7×7 1/32\", 850 mm", "2", "Por comprar", "Inox 304", "5"),
+    ("11", "Barra superior 10 × 10 × 102", "2", "Por imprimir", "PETG", "5"),
+    ("12", "Placa superior con 2 postes", "1", "Por imprimir", "PETG", "7"),
+    ("13", "Lámina de fleje 14 × 50 × 0.6", "4", "Por comprar", "Acero resorte", "6"),
+    ("14", "Escuadra de 15°", "1", "Por imprimir", "PETG", "7"),
+    ("15", "Respaldo 84 × 120 × 4", "1", "Por imprimir", "PETG", "7"),
+    ("16", "Repisa con hueco USB", "1", "Por imprimir", "PETG", "7"),
+    ("17", "Mordaza con perilla M4", "2", "Por imprimir", "PETG + M4", "7"),
+    ("18", "Cojín 16 × 16 × 4 y banda", "4 + 1", "Por comprar", "EVA / silicón", "7"),
+    ("19", "Cordón de seguridad Ø1.5", "1", "Por comprar", "Poliéster", "1"),
+    ("20", "Tornillería M3 × 10 (8), M4 × 12 (8)", "—", "Por comprar", "Inox A2", "—"),
 ]
 
 
 def tabla(sh, x, y):
-    cols = [(0, "#"), (30, "PIEZA"), (262, "CANT."), (308, "FABRICACIÓN"), (398, "MATERIAL"), (520, "HOJA")]
+    cols = [(0, "#"), (30, "PIEZA"), (252, "CANT."), (294, "FABRICACIÓN"), (402, "MATERIAL"), (524, "HOJA")]
     w, rh = 556, 22
     sh.add('<rect x="%.1f" y="%.1f" width="%d" height="%d" fill="#eef1f4" stroke="%s" stroke-width="1.2"/>' % (x, y, w, rh, INK))
     for cx, t in cols:
@@ -39,8 +39,8 @@ def tabla(sh, x, y):
         yy = y + rh * (i + 1)
         sh.add('<rect x="%.1f" y="%.1f" width="%d" height="%d" fill="#fff" stroke="%s" stroke-width="0.6"/>' % (x, yy, w, rh, INK))
         for (cx, _), v in zip(cols, r):
-            if v in ("Impresa", "Comprar"):
-                c = "#d4691f" if v == "Impresa" else "#2a6fb0"
+            if v in ("Por imprimir", "Por comprar"):
+                c = "#d4691f" if v == "Por imprimir" else "#2a6fb0"
                 sh.add('<text x="%.1f" y="%.1f" style="font-size:12px;font-weight:700;fill:%s">%s</text>' % (x + cx + 6, yy + 15.5, c, v.upper()))
             else:
                 sh.text(x + cx + 6, yy + 15.5, v, "nt")
