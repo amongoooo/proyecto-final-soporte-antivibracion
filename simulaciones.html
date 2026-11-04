@@ -140,6 +140,20 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 </div>
 </section>
 
+<!-- L8 topes -->
+<section class="panel" role="tabpanel" id="p-topes" data-name="Oscilación máxima y topes" data-l="L8" hidden>
+<div class="viz"><h2>¿Cuánto oscila cada etapa y cuándo topa?</h2><p class="lead">Cada etapa tiene un espacio limitado: si la oscilación lo rebasa, choca contra el tope y la vibración pasa directa.</p>
+<div class="duo"><div class="fig"><h4>Espacio usado en cada caso</h4><canvas id="cvTopBar" height="430" aria-label="Porcentaje del espacio usado por cada etapa en cada caso"></canvas>
+<div class="key"><span><i style="background:var(--c2)"></i>Etapa 1, bujes</span><span><i style="background:var(--accent)"></i>Etapa 2, cables</span><span><i style="background:var(--warn)"></i>Topa</span></div></div>
+<div class="fig"><h4>Simulación con topes (cámara lenta)</h4><canvas id="cvTope" height="430" aria-label="El soporte oscilando con sus topes y el rastro de cada etapa"></canvas></div></div></div>
+<div class="side">
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ U_1=|X_1-Y|\qquad U_2=|X_2-X_1| \]</div><div class="tex">\[ U_2=\left|\frac{X_2-X_1}{Y}\right|_{\omega}\,Y\;<\;\text{espacio}_2 \]</div><div class="vals mj" id="vTope"></div></div>
+<div class="card"><h3>Controles</h3><label class="range" for="tf"><span>Frecuencia</span><input id="tf" type="range" min="1" max="30" step="0.1" value="5.6"><output id="tfv"></output></label>
+<label class="range" for="ty"><span>Amplitud Y</span><input id="ty" type="range" min="0.1" max="5" step="0.05" value="3"><output id="tyv"></output></label>
+<div class="ctl"><span>Caso</span><div class="chips" id="tChips"></div></div><div class="nums" id="nTope"></div></div>
+</div>
+</section>
+
 <!-- L13-14 -->
 <section class="panel" role="tabpanel" id="p-mecido" data-name="Mecido al frenar" data-l="L13–14" hidden>
 <div class="viz"><h2>El mecido al frenar a 0.5 g</h2><p class="lead">Al frenar, la inercia empuja el celular hacia adelante y lo hace girar. La guía de láminas sube mucho la rigidez al giro del piso 2.</p>
@@ -423,15 +437,65 @@ var xs=R.r+10,xe=A.w-10,win=3*Td/sl+hold,pps=(xe-xs)/win;
 traceGrid(c,xs,xe,24,gy,pps,Td/sl,function(k){return k+' Td'});restLine(c,xs,xe,m2c);
 trace(c,xs,xe,m2c,pps,function(tau){var q=s-tau;return x(((q%Tl)+Tl)%Tl)},css('--accent'),3);
 c.fillStyle=css('--muted');c.font='500 '+F(14)+'px '+css('--body');c.textAlign='right';c.fillText(s<hold?'Jalado hacia abajo…':'¡Suelta! Cámara lenta ×0.25',xe,A.h-8)}
+/* ===== L8 Topes: oscilación máxima contra el espacio de cada etapa ===== */
+/* Espacios (mm) sobre la posición de reposo con carga. Etapa 1: 3 mm hasta la cabeza del tornillo (arriba) y ~9 mm hasta que el buje se aplasta (abajo, 50 % de 20 mm menos 0.95 mm de deflexión estática).
+   Etapa 2: tope central con 18 mm libres menos 7.6 mm de deflexión estática de los cables = 10.4 mm (abajo); arriba solo el cordón, con holgura supuesta de 30 mm. */
+var GAP={u1up:3,u1dn:9,u2dn:10.4,u2up:30};
+var TC=[['Ralentí · 11.7 Hz · 0.37 mm',11.7,.37],['Ciudad · 25 Hz · 0.16 mm',25,.16],['Bache · 5.6 Hz · 3 mm',5.6,3]];
+S.tf=5.6;S.ty=3;
+function relH(f){var w=PI2*f,ar=K1+K2-M1*w*w,ai=w*(C1+C2),br=-K2,bi=-w*C2,dr=K2-M2*w*w,di=w*C2,fr=K1,fi=w*C1;
+/* [a b; b d][X1;X2]=[F;0] con complejos */
+var detr=ar*dr-ai*di-(br*br-bi*bi),deti=ar*di+ai*dr-2*br*bi,den=detr*detr+deti*deti;
+var n1r=fr*dr-fi*di,n1i=fr*di+fi*dr,n2r=-(fr*br-fi*bi),n2i=-(fr*bi+fi*br);
+var x1r=(n1r*detr+n1i*deti)/den,x1i=(n1i*detr-n1r*deti)/den,x2r=(n2r*detr+n2i*deti)/den,x2i=(n2i*detr-n2r*deti)/den;
+return{u1:Math.hypot(x1r-1,x1i),u2:Math.hypot(x2r-x1r,x2i-x1i)}}
+var u2pk=0,u2pf=0;for(var ff=1;ff<=30;ff+=.01){var hh=relH(ff).u2;if(hh>u2pk){u2pk=hh;u2pf=ff}}
+var updTC=chips($('tChips'),TC,function(it){return Math.abs(S.tf-it[1])<.01&&Math.abs(S.ty-it[2])<.001},function(it){S.tf=it[1];S.ty=it[2];$('tf').value=it[1];$('ty').value=it[2];updT()});
+$('tf').addEventListener('input',function(e){S.tf=+e.target.value;updT()});$('ty').addEventListener('input',function(e){S.ty=+e.target.value;updT()});
+var TS={x1:0,v1:0,x2:0,v2:0,t:0,hist:[],last:null,max1:0,max2:0,hit:false};
+function resetTS(){TS.x1=TS.v1=TS.x2=TS.v2=TS.t=0;TS.hist=[];TS.last=null;TS.max1=TS.max2=0;TS.hit=false}
+function updT(){var H=relH(S.tf),U1=H.u1*S.ty,U2=H.u2*S.ty,t1=U1>Math.min(GAP.u1up,GAP.u1dn),t2=U2>GAP.u2dn;
+$('tfv').textContent=fmt(S.tf,1)+' Hz';$('tyv').textContent=fmt(S.ty,2)+' mm';updTC();
+texv('vTope',['U_1&='+fx(H.u1,3)+'\\,('+fx(S.ty,2)+')='+fx(U1,2)+'\\ \\text{mm}\\ '+(t1?'>':'<')+'\\ '+GAP.u1up+'\\ \\text{mm}','U_2&='+fx(H.u2,2)+'\\,('+fx(S.ty,2)+')='+fx(U2,1)+'\\ \\text{mm}\\ '+(t2?'>':'<')+'\\ '+fx(GAP.u2dn,1)+'\\ \\text{mm}','Y_{máx}&=\\frac{'+fx(GAP.u2dn,1)+'}{'+fx(u2pk,2)+'}='+fx(GAP.u2dn/u2pk,1)+'\\ \\text{mm}\\ \\text{a}\\ '+fx(u2pf,1)+'\\ \\text{Hz}']);
+nums($('nTope'),[[fmt(U1,2)+' mm','Etapa 1 · espacio 3 mm',t1?'warn':'good'],[fmt(U2,1)+' mm','Etapa 2 · espacio 10.4 mm',t2?'warn':'good'],[(t1||t2)?'Sí topa':'No topa','Según el cálculo lineal',(t1||t2)?'warn':'good'],[fmt(GAP.u2dn/u2pk,1)+' mm','Bache máximo sin topar','']]);
+resetTS();drawTopBar()}
+function drawTopBar(){var A=setup($('cvTopBar')),c=A.c,n=TC.length,top=26,bot=A.h-30,lx=150,rx=A.w-16,xs=function(v){return lx+(rx-lx)*Math.min(v,1.5)/1.5};
+c.font='500 '+F(12)+'px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';[0,.5,1,1.5].forEach(function(v){var x=xs(v);line(c,[[x,top-6],[x,bot]],css('--grid'),1);c.fillText(Math.round(v*100)+' %',x,bot+16)});
+line(c,[[xs(1),top-14],[xs(1),bot]],css('--warn'),2,[6,4]);c.fillStyle=css('--warn');c.textAlign='left';c.fillText('Tope (100 %)',xs(1)+6,top-4);
+var bh=(bot-top)/n;TC.forEach(function(it,i){var H=relH(it[1]),p1=H.u1*it[2]/GAP.u1up,p2=H.u2*it[2]/GAP.u2dn,y=top+i*bh+bh*.18,h=bh*.28;
+c.fillStyle=css('--ink');c.font='600 '+F(13)+'px '+css('--body');c.textAlign='right';c.fillText(it[0].split(' · ')[0],lx-10,y+h+4);
+[[p1,'--c2'],[p2,'--accent']].forEach(function(q,k){var yy=y+k*(h+4);c.fillStyle=css(q[0]>1?'--warn':q[1]);c.fillRect(xs(0),yy,Math.max(2,xs(q[0])-xs(0)),h);c.fillStyle=css('--ink');c.textAlign='left';c.font='500 '+F(12)+'px '+css('--mono');c.fillText(Math.round(q[0]*100)+' %',Math.min(xs(q[0])+6,rx-52),yy+h-3)})})}
+function stepTS(dt){var w=PI2*S.tf,Y=S.ty/1000,y=Y*Math.sin(w*TS.t),yd=Y*w*Math.cos(w*TS.t),kc=2e5,cc=150,u1=TS.x1-y,ud1=TS.v1-yd,u2=TS.x2-TS.x1,ud2=TS.v2-TS.v1,F1=0,F2=0,h=false;
+if(u1>GAP.u1up/1000){F1=-kc*(u1-GAP.u1up/1000)-cc*ud1;h=true}else if(u1<-GAP.u1dn/1000){F1=-kc*(u1+GAP.u1dn/1000)-cc*ud1;h=true}
+if(u2<-GAP.u2dn/1000){F2=-kc*(u2+GAP.u2dn/1000)-cc*ud2;h=true}else if(u2>GAP.u2up/1000){F2=-kc*(u2-GAP.u2up/1000)-cc*ud2;h=true}
+var a1=(-K1*u1-C1*ud1+K2*u2+C2*ud2+F1-F2)/M1,a2=(-K2*u2-C2*ud2+F2)/M2;
+TS.v1+=a1*dt;TS.v2+=a2*dt;TS.x1+=TS.v1*dt;TS.x2+=TS.v2*dt;TS.t+=dt;return h}
+function drawTope(t){var A=setup($('cvTope')),c=A.c;if(TS.last===null)TS.last=t;var adv=Math.min(.02,Math.max(0,t-TS.last))*.25;TS.last=t;
+var hit=false,nst=Math.ceil(adv/5e-5);for(var i=0;i<nst;i++)if(stepTS(adv/nst))hit=true;
+var y=S.ty*Math.sin(PI2*S.tf*TS.t),u1=TS.x1*1000-y,u2=(TS.x2-TS.x1)*1000;if(TS.t>.6){TS.max1=Math.max(TS.max1,Math.abs(u1));TS.max2=Math.max(TS.max2,Math.abs(u2));if(hit)TS.hit=true}
+if(adv>0)TS.hist.unshift([TS.t,u1,u2,hit]);var Tw=Math.max(3/S.tf,.4);while(TS.hist.length>2&&TS.hist[0][0]-TS.hist[TS.hist.length-1][0]>Tw)TS.hist.pop();
+/* Diagrama: escala 3 px por mm, topes en rojo */
+var sc=3.2,gy=A.h-40,bw=Math.min(120,A.w*.22),x=16+bw/2+14,m1c=gy-120,m2c=gy-260,ink=css('--ink');
+var R=rig(c,{x:x,w:bw,gy:gy,yb:y*sc,m1:{yc:m1c,d:(u1+y)*sc},m2:{yc:m2c,d:(u2+u1+y)*sc,lab:'m₂ celular'}});
+c.strokeStyle=css('--warn');c.lineWidth=3;[[m1c-15-GAP.u1up*sc,'tornillo'],[m2c+22+(GAP.u2dn)*sc-y*0,'tope']].forEach(function(q,k){var yy=k?m2c+22+GAP.u2dn*sc-(u1+y)*sc:m1c-15-GAP.u1up*sc-y*sc;c.beginPath();c.moveTo(x-bw/2-10,yy);c.lineTo(x-bw/2+6,yy);c.moveTo(x+bw/2-6,yy);c.lineTo(x+bw/2+10,yy);c.stroke()});
+var xs=R.r+16,xe=A.w-10,lane=function(top,bot,lim,vals,col,lab,lo,hi,amp){var mid=(top+bot)/2,rng=Math.max(lo,amp)*1.25,Ys=function(v){return mid-v/rng*(bot-top)/2};
+line(c,[[xs,mid],[xe,mid]],css('--line'),1,[3,5]);c.fillStyle=css('--warn');c.font='500 '+F(12)+'px '+css('--mono');c.textAlign='right';
+[[hi,'+'+fmt(hi,1)],[-lo,'−'+fmt(lo,1)]].forEach(function(q){if(Math.abs(q[0])<=rng){line(c,[[xs,Ys(q[0])],[xe,Ys(q[0])]],css('--warn'),1.5,[6,4]);c.fillText('tope '+q[1]+' mm',xe,Ys(q[0])+(q[0]>0?-5:14))}});
+c.save();c.strokeStyle=col;c.lineWidth=2.6;c.beginPath();var t0=TS.hist.length?TS.hist[0][0]:0;TS.hist.forEach(function(hp,i){var xx=xs+(t0-hp[0])/Tw*(xe-xs),yy=Ys(Math.max(-rng,Math.min(rng,vals(hp))));i?c.lineTo(xx,yy):c.moveTo(xx,yy)});c.stroke();c.restore();
+c.fillStyle=css('--ink');c.font='700 '+F(15)+'px '+css('--display');c.textAlign='left';c.fillText(lab,xs+4,top+14)};
+lane(20,A.h*.46,0,function(h){return h[2]},css('--accent'),'Etapa 2: U₂ = x₂ − x₁',GAP.u2dn,GAP.u2up,S.ty*relH(S.tf).u2);
+lane(A.h*.54,A.h-34,0,function(h){return h[1]},css('--c2'),'Etapa 1: U₁ = x₁ − y',GAP.u1dn,GAP.u1up,S.ty*relH(S.tf).u1);
+c.font='700 '+F(20)+'px '+css('--display');c.textAlign='right';c.fillStyle=css(TS.hit?'--warn':'--accent');c.fillText(TS.hit?'¡Topa! El golpe pasa directo al celular':'No topa: la etapa trabaja libre',xe,A.h-8)}
+
 /* ===== Bucle ===== */
-var DRAW={'p-onda':function(t){drawOnda(t)},'p-etapa':function(t){drawRig3(t);drawTR1()},'p-modos':drawModos,'p-tr':drawTR,'p-rigido':function(t){drawBar();drawEsc(t)},'p-mecido':drawMec,'p-libre':function(t){drawRig16(t);drawLibre()}};
-var ANIM={'p-etapa':1,'p-onda':1,'p-modos':1,'p-tr':1,'p-rigido':1,'p-libre':1};
+var DRAW={'p-onda':function(t){drawOnda(t)},'p-etapa':function(t){drawRig3(t);drawTR1()},'p-modos':drawModos,'p-tr':drawTR,'p-rigido':function(t){drawBar();drawEsc(t)},'p-mecido':drawMec,'p-libre':function(t){drawRig16(t);drawLibre()},'p-topes':function(t){drawTopBar();drawTope(t)}};
+var ANIM={'p-topes':1,'p-etapa':1,'p-onda':1,'p-modos':1,'p-tr':1,'p-rigido':1,'p-libre':1};
 function draw(t,force){var id=panels[cur].id;if(!force&&!ANIM[id])return;EL=reduce?Infinity:now();DRAW[id](reduce?0:(t===undefined?now():t))}
 var T0=performance.now();function now(){return STARTED?(performance.now()-T0)/1000:0}
 /* Dentro de la presentación espera a que termine la transición de lámina (mensaje deckStart). */
 window.addEventListener('message',function(e){if(e.data&&e.data.deckStart&&!STARTED){STARTED=true;T0=performance.now()}});
 function loop(){if(!reduce)draw(now());requestAnimationFrame(loop)}
-updRpm();updR();updM();updF();updE();updMec();updL();fromHash();
+updRpm();updR();updM();updF();updE();updMec();updL();updT();fromHash();
 window.addEventListener('resize',function(){draw(now(),true)});
 if(window.matchMedia)window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){draw(now(),true)});
 new MutationObserver(function(){draw(now(),true)}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
