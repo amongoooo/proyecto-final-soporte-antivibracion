@@ -56,6 +56,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 .dcol{display:flex;flex-direction:column;gap:26px;min-height:0;min-width:0}
 .parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
 .parts li{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:32px;background:var(--chip);border-radius:10px;padding:14px 20px}
+.parts li[data-k]{cursor:pointer;border:3px solid transparent;transition:border-color .2s,background .2s}.parts li[data-k]:hover{border-color:var(--line)}.parts li.on{border-color:var(--accent);background:var(--panel)}
 .pt{font:600 22px/1 var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--accent);border:2px solid currentColor;border-radius:6px;padding:8px 10px;white-space:nowrap}.pt.buy{color:var(--warn)}
 .fn{margin:0;font-size:32px;color:var(--muted)}
 .plano{flex:1;min-height:0;border:2px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
@@ -65,12 +66,12 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 #d3{position:absolute;border:0;border-radius:8px;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .45s ease;z-index:5}
 #d3.on{opacity:1;pointer-events:auto}
 /* Navegación: flechas pegadas a las esquinas inferiores y contador al centro, sobre la lámina */
-#bar{position:fixed;left:0;right:0;bottom:0;height:64px;pointer-events:none}
+#bar{position:fixed;left:0;right:0;bottom:0;height:40px;pointer-events:none}
 #bar>*{pointer-events:auto;position:absolute;bottom:6px}
-#bar button,#bar a{font:600 24px/1 var(--body);color:var(--muted);background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:12px 20px;min-width:56px;cursor:pointer;text-decoration:none;opacity:.85;transition:opacity .2s}
+#bar button,#bar a{font:500 14px/1 var(--body);color:var(--muted);background:transparent;border:1px solid transparent;border-radius:6px;padding:7px 10px;cursor:pointer;text-decoration:none;opacity:.7;transition:opacity .2s}
 #bar button:hover,#bar a:hover{opacity:1;border-color:var(--line);color:var(--ink)}
-#prev{left:4px}#next{right:4px}#home{left:50%;transform:translateX(calc(-100% - 70px))}
-#count{left:50%;transform:translateX(-50%);font:600 22px/1 var(--mono);color:var(--muted);padding:14px 0}
+#prev{left:4px}#next{right:4px}#home{left:50%;transform:translateX(calc(-100% - 46px))}
+#count{left:50%;transform:translateX(-50%);font:500 14px/1 var(--mono);color:var(--muted);padding:7px 0}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 </style>
 </head>
@@ -314,7 +315,12 @@ function frames(sl){return [].slice.call(sl.querySelectorAll('iframe[data-src]')
 /* Avisa a las simulaciones que ya pueden arrancar; si el iframe aún carga, se avisa al terminar de cargar. */
 /* Ventana 3D compartida del apartado de diseño: no se recarga entre láminas, solo cambia la pieza que enfoca. */
 var d3=document.getElementById('d3'),d3go=false;
-function sync3d(sl){var part=sl.dataset.part;if(!part){d3.classList.remove('on');return}
+/* Clic en una pieza del recuadro: la selecciona y la enfoca en la ventana 3D; otro clic regresa a la vista de la lámina. */
+var PK={base:['base','bloque','ubolt'],bujes:['bujes','tornillos'],caja:['caja','solera'],cables:['cables','barrasi','tope'],porta:['sup','porta','cordon'],guia:['guia','guia']};
+[].forEach.call(document.querySelectorAll('.slide.design[data-part]'),function(sl){var ks=PK[sl.dataset.part];if(!ks)return;[].forEach.call(sl.querySelectorAll('.parts li'),function(li,i){if(!ks[i])return;li.dataset.k=ks[i];li.tabIndex=0;li.setAttribute('role','button');
+function pick(){var was=li.classList.contains('on');[].forEach.call(sl.querySelectorAll('.parts li'),function(o){o.classList.remove('on')});var v=was?sl.dataset.part:ks[i];if(!was)li.classList.add('on');try{d3.contentWindow.postMessage({view:v},'*')}catch(e){}}
+li.addEventListener('click',pick);li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();pick()}})})});
+function sync3d(sl){var part=sl.dataset.part;[].forEach.call(sl.querySelectorAll('.parts li.on'),function(o){o.classList.remove('on')});if(!part){d3.classList.remove('on');return}
 var slot=sl.querySelector('.slot3d');d3.style.left=slot.offsetLeft+'px';d3.style.top=slot.offsetTop+'px';d3.style.width=slot.offsetWidth+'px';d3.style.height=slot.offsetHeight+'px';
 if(!d3.getAttribute('src'))d3.setAttribute('src','modelo3d.html?embed&nopanel&theme=light#'+part);else try{d3.contentWindow.postMessage({view:part},'*')}catch(e){}
 d3.classList.add('on')}
