@@ -38,6 +38,8 @@ canvas{display:block;width:100%;border-radius:4px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .card h3{margin:0;font:700 19px/1.1 var(--display);letter-spacing:.2px}
 .tex{overflow-x:auto;font-size:15px;min-height:28px}
+.duo{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:14px}.fig{display:flex;flex-direction:column;gap:6px;min-width:0}.fig h4{margin:0;font:600 14px/1.2 var(--body);color:var(--muted)}
+.vals.mj{font:400 15px/1.3 var(--body);white-space:normal;padding:4px 10px}.vals.mj mjx-container{margin:6px 0!important;text-align:left!important}
 .vals{font:500 13.5px/1.6 var(--mono);background:var(--chip);border-radius:6px;padding:9px 11px;overflow-x:auto;white-space:pre-wrap;font-variant-numeric:tabular-nums}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .ctl{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;font-size:14px}
@@ -53,7 +55,9 @@ output{font:500 13px/1 var(--mono);text-align:right}
 .fine{margin:0;font-size:13px;color:var(--muted)}
 footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
-.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(400px,28%)}.embed .side{gap:12px}
+.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(480px,30%)}
+/* En la presentación: solo lo que se lee de lejos */
+.embed .fine{display:none}.embed .card h3{font-size:28px}.embed .tex{font-size:21px}.embed .vals.mj{font-size:21px}.embed button{font-size:18px;padding:9px 12px}.embed .ctl,.embed label.range{font-size:19px}.embed label.range{grid-template-columns:110px 1fr 100px}.embed .ctl{grid-template-columns:110px 1fr}.embed output{font-size:18px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:12px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
 </style>
@@ -69,11 +73,11 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <!-- L2 -->
 <section class="panel" role="tabpanel" id="p-onda" data-name="Onda del manubrio" data-l="L2">
 <div class="viz"><h2>Lo que mueve al manubrio</h2><p class="lead">La onda es la suma de la frecuencia de explosiones y sus múltiplos (armónicos). Si las rpm suben, todas las barras se recorren a la derecha.</p>
-<canvas id="cvOnda" height="330" aria-label="El manubrio vibrando con su rastro de onda"></canvas>
-<canvas id="cvEsp" height="130" aria-label="Espectro de la vibración"></canvas>
-<div class="key"><span><i style="background:var(--accent)"></i>Armónicos del motor</span><span><i style="background:var(--c3)"></i>Zona de baches, 1 a 20 Hz</span></div></div>
+<div class="duo"><div class="fig"><h4>La onda en el tiempo</h4><canvas id="cvOnda" height="440" aria-label="El manubrio vibrando con su rastro de onda"></canvas></div>
+<div class="fig"><h4>Sus armónicos</h4><canvas id="cvEsp" height="440" aria-label="Espectro de la vibración"></canvas>
+<div class="key"><span><i style="background:var(--accent)"></i>Armónicos del motor</span><span><i style="background:var(--c3)"></i>Zona de baches, 1 a 20 Hz</span></div></div></div></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ f_{exp} = \frac{rpm}{120} \qquad f_n = n\,f_{exp} \]</div><div class="vals" id="vOnda"></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ f_{exp} = \frac{rpm}{120} \qquad f_n = n\,f_{exp} \]</div><div class="vals mj" id="vOnda"></div>
 <p class="fine">Motor de 4 tiempos: una explosión cada 2 vueltas, por eso se divide entre 120 y no entre 60.</p></div>
 <div class="card"><h3>Controles</h3><label class="range" for="rpm"><span>Motor</span><input id="rpm" type="range" min="1000" max="7200" step="50" value="1404"><output id="rpmv"></output></label>
 <div class="ctl"><span>Régimen</span><div class="chips" id="rpmChips"></div></div>
@@ -89,7 +93,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <div class="key"><span><i style="background:var(--c2)"></i>ζ = 0.05</span><span><i style="background:var(--accent)"></i>ζ = 0.14 (nuestros cables)</span><span><i style="background:var(--c3)"></i>ζ = 0.5</span></div></div>
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ TR = \sqrt{\frac{1+(2\zeta r)^2}{(1-r^2)^2+(2\zeta r)^2}} \qquad r=\frac{f}{f_n} \]</div>
-<div class="tex">\[ TR<1 \iff r>\sqrt2 \;\Rightarrow\; f_n<\frac{11.7}{\sqrt2}=8.3\ \text{Hz} \]</div><div class="vals" id="vTR1"></div></div>
+<div class="tex">\[ TR<1 \iff r>\sqrt2 \;\Rightarrow\; f_n<\frac{11.7}{\sqrt2}=8.3\ \text{Hz} \]</div><div class="vals mj" id="vTR1"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="rr"><span>r = f / fn</span><input id="rr" type="range" min="0.1" max="5" step="0.01" value="2.13"><output id="rrv"></output></label>
 <div class="ctl"><span>ζ</span><div class="chips" id="zChips"></div></div><div class="nums" id="nTR1"></div></div>
 </div>
@@ -103,7 +107,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ \det\!\left(K-\omega^2M\right)=0 \]</div>
 <div class="tex">\[ M=\begin{bmatrix}0.308&0\\0&0.417\end{bmatrix}\text{ kg}\quad K=\begin{bmatrix}7999&-535\\-535&535\end{bmatrix}\text{ N/m} \]</div>
-<div class="vals" id="vModos"></div></div>
+<div class="vals mj" id="vModos"></div></div>
 <div class="card"><h3>Controles</h3><div class="ctl"><span>Modo</span><div class="chips" id="modoChips"></div></div><div class="ctl"><span>Velocidad</span><div class="chips" id="spModos"></div></div><p class="fine" id="fModos"></p></div>
 </div>
 </section>
@@ -116,7 +120,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <canvas id="cvOndas" height="440" aria-label="El soporte moviéndose con el rastro del manubrio, la caja y el celular"></canvas>
 <div class="key"><span><i style="background:var(--muted)"></i>Manubrio y(t)</span><span><i style="background:var(--c2)"></i>Caja x₁(t)</span><span><i style="background:var(--accent)"></i>Celular x₂(t)</span></div></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ \left(K-\omega^2M+i\omega C\right)\begin{bmatrix}X_1\\X_2\end{bmatrix}=\begin{bmatrix}k_1+i\omega c_1\\0\end{bmatrix}Y \]</div><div class="tex">\[ TR=\left|\frac{X_2}{Y}\right| \]</div><div class="vals" id="vTR"></div></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ \left(K-\omega^2M+i\omega C\right)\begin{bmatrix}X_1\\X_2\end{bmatrix}=\begin{bmatrix}k_1+i\omega c_1\\0\end{bmatrix}Y \]</div><div class="tex">\[ TR=\left|\frac{X_2}{Y}\right| \]</div><div class="vals mj" id="vTR"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="ff"><span>Frecuencia</span><input id="ff" type="range" min="0" max="1" step="0.001"><output id="ffv"></output></label>
 <div class="ctl"><span>Caso</span><div class="chips" id="fChips"></div></div><div class="nums" id="nTR"></div></div>
 </div>
@@ -129,7 +133,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <canvas id="cvEsc" height="610" aria-label="Soporte rígido y nuestro soporte vibrando con su rastro"></canvas>
 <div class="key"><span><i style="background:var(--muted)"></i>Manubrio</span><span><i style="background:var(--warn)"></i>Celular, soporte rígido</span><span><i style="background:var(--accent)"></i>Celular, nuestro soporte</span></div></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ \text{cambio}=\frac{a_{RMS,cel}}{a_{RMS,man}}-1 \]</div><div class="tex">\[ a_{RMS}=\sqrt{\tfrac12\sum_n \left(TR(f_n)\,a_n\right)^2} \]</div><div class="vals" id="vEsc"></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ \text{cambio}=\frac{a_{RMS,cel}}{a_{RMS,man}}-1 \]</div><div class="tex">\[ a_{RMS}=\sqrt{\tfrac12\sum_n \left(TR(f_n)\,a_n\right)^2} \]</div><div class="vals mj" id="vEsc"></div>
 <p class="fine">Supuestos: amplitud de cada armónico a<sub>n</sub> = 1/n, 6 armónicos. Rígido: una etapa con fn = 40 Hz y ζ = 0.05. Así se reproducen de cerca los números de la primera presentación.</p></div>
 <div class="card"><h3>Controles</h3><div class="ctl"><span>Escenario</span><div class="chips" id="escChips"></div></div><div class="nums" id="nEsc"></div></div>
 </div>
@@ -141,7 +145,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <canvas id="cvMec" height="330" aria-label="Inclinación de B contra C"></canvas>
 <p class="fine">La animación en 3D de este caso está en el <a class="lnk" href="https://claude.ai/artifact/Sb6cwnUPPPRU7Fc55ZYoAt" target="_blank" rel="noopener">modelo 3D del prototipo</a>: botón «Frenar 0.5 g» con «Comparar con el actual».</p></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ \theta\approx\frac{m_2\,a\,h}{k_\theta-m_2 g h}\qquad f_{mec}=\frac{1}{2\pi}\sqrt{\frac{k_\theta-m_2gh}{J}} \]</div><div class="vals" id="vMec"></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ \theta\approx\frac{m_2\,a\,h}{k_\theta-m_2 g h}\qquad f_{mec}=\frac{1}{2\pi}\sqrt{\frac{k_\theta-m_2gh}{J}} \]</div><div class="vals mj" id="vMec"></div>
 <p class="fine">h: altura del centro de masa sobre los cables. J: inercia al giro. Salen de las piezas del modelo 3D con el Galaxy S26 Ultra con funda. La fórmula simple da el orden de magnitud; el modelo completo acopla los dos pisos.</p></div>
 <div class="card"><h3>Controles</h3><div class="ctl"><span>Diseño</span><div class="chips" id="mecChips"></div></div><div class="nums" id="nMec"></div></div>
 </div>
@@ -154,7 +158,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <canvas id="cvLibre" height="300" aria-label="Vibración libre amortiguada con x1, x2 y Td"></canvas></div>
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ \delta=\ln\frac{x_1}{x_2}\qquad \zeta=\frac{\delta}{\sqrt{4\pi^2+\delta^2}} \]</div><div class="tex">\[ f_n=\frac{1}{T_d\sqrt{1-\zeta^2}} \]</div>
-<div class="tex">\[ k=\frac{m\,g}{\delta_{est}}\qquad TR=\frac{a_{cel}}{a_{man}} \]</div><div class="vals" id="vLibre"></div></div>
+<div class="vals mj" id="vLibre"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="zz"><span>ζ real</span><input id="zz" type="range" min="0.02" max="0.4" step="0.01" value="0.14"><output id="zzv"></output></label>
 <label class="range" for="fnn"><span>fn real</span><input id="fnn" type="range" min="2" max="10" step="0.1" value="5.5"><output id="fnnv"></output></label>
 <p class="fine">Mueve estos valores para ver qué leería el acelerómetro si el soporte real sale distinto a lo calculado.</p></div>
@@ -188,23 +192,31 @@ function sh(w){var r=(K1+K2-M1*w)/K2;return[1/r,1]} /* x1/x2 */
 var a=sh(w1),b=sh(w2);return{f1:Math.sqrt(w1)/PI2,f2:Math.sqrt(w2)/PI2,s1:[a[0],1],s2:[1,1/b[0]]}})();
 /* ===== Utilidades ===== */
 function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+var FS=document.documentElement.classList.contains('embed')?1.4:1;function F(n){return Math.round(n*FS)}
 function fmt(x,d){return x.toLocaleString('es-MX',{minimumFractionDigits:d,maximumFractionDigits:d})}
+/* Valores en formato fórmula (MathJax), redibujados en vivo al mover los controles. */
+function fx(x,d){return fmt(x,d).replace(/,/g,'{,}')}
+var TQ={},TQr=0;
+function texv(id,rows){TQ[id]='\\begin{aligned}'+rows.join('\\\\[2pt]')+'\\end{aligned}';if(!TQr){TQr=1;requestAnimationFrame(flushTex)}}
+function flushTex(){TQr=0;if(!window.MathJax||!MathJax.tex2svg){TQr=1;setTimeout(flushTex,150);return}
+Object.keys(TQ).forEach(function(id){var el=$(id);try{var n=MathJax.tex2svg(TQ[id],{display:true});el.innerHTML='';el.appendChild(n)}catch(e){el.textContent=TQ[id]}delete TQ[id]})}
 function setup(cv){var dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(200,cv.clientWidth),h=+cv.getAttribute('height');
 if(cv._w!==w||cv._d!==dpr){cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+'px';cv._w=w;cv._d=dpr}var c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);return{c:c,w:w,h:h}}
 function axes(o){/* o:{c,w,h,x0,x1,y0,y1,xlog,ylog,xt,yt,xl,yl,pad} */
 var P=o.pad||{l:54,r:14,t:12,b:38},c=o.c,W=o.w-P.l-P.r,H=o.h-P.t-P.b;
 function X(v){return P.l+(o.xlog?(Math.log10(v)-Math.log10(o.x0))/(Math.log10(o.x1)-Math.log10(o.x0)):(v-o.x0)/(o.x1-o.x0))*W}
 function Y(v){return P.t+H-(o.ylog?(Math.log10(v)-Math.log10(o.y0))/(Math.log10(o.y1)-Math.log10(o.y0)):(v-o.y0)/(o.y1-o.y0))*H}
-c.lineWidth=1;c.strokeStyle=css('--grid');c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');
+c.lineWidth=1;c.strokeStyle=css('--grid');c.fillStyle=css('--muted');c.font='500 '+F(12)+'px '+css('--mono');
 (o.xt||[]).forEach(function(v){var x=X(v);c.beginPath();c.moveTo(x,P.t);c.lineTo(x,P.t+H);c.stroke();c.textAlign='center';c.fillText(o.xf?o.xf(v):v,x,P.t+H+16)});
 (o.yt||[]).forEach(function(v){var y=Y(v);c.beginPath();c.moveTo(P.l,y);c.lineTo(P.l+W,y);c.stroke();c.textAlign='right';c.fillText(o.yf?o.yf(v):v,P.l-6,y+4)});
-c.font='500 13px '+css('--body');c.textAlign='center';if(o.xl)c.fillText(o.xl,P.l+W/2,o.h-4);
+c.font='500 '+F(13)+'px '+css('--body');c.textAlign='center';if(o.xl)c.fillText(o.xl,P.l+W/2,o.h-4);
 if(o.yl){c.save();c.translate(13,P.t+H/2);c.rotate(-Math.PI/2);c.fillText(o.yl,0,0);c.restore()}
 return{X:X,Y:Y,P:P,W:W,H:H}}
 function line(c,pts,col,lw,dash){c.save();c.strokeStyle=col;c.lineWidth=lw||2;if(dash)c.setLineDash(dash);c.beginPath();pts.forEach(function(p,i){i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])});c.stroke();c.restore()}
 function chips(host,list,get,set){host.innerHTML='';list.forEach(function(it,i){var b=document.createElement('button');b.type='button';b.textContent=it[0];b.onclick=function(){set(it,i);upd()};host.appendChild(b)});
 function upd(){[].forEach.call(host.children,function(b,i){b.setAttribute('aria-pressed',get(list[i],i))})}upd();return upd}
 function nums(host,arr){host.innerHTML=arr.map(function(n){return'<div class="num'+(n[2]?' '+n[2]:'')+'"><b>'+n[0]+'</b><span>'+n[1]+'</span></div>'}).join('')}
+function pctx(r){var v=Math.round((r-1)*100);return(v>0?'+':v<0?'-':'')+Math.abs(v)+'\\%'}
 function pct(r){var v=Math.round((r-1)*100);return(v>0?'+':v<0?'−':'')+Math.abs(v)+' %'}
 
 /* ===== Pestañas ===== */
@@ -226,26 +238,26 @@ $('rpm').addEventListener('input',function(e){S.rpm=+e.target.value;updRpm()});
 var updRpmChips=chips($('rpmChips'),[['Ralentí 1 404 rpm',1404],['Ciudad 3 000',3000],['Avenida 6 000',6000]],function(it){return S.rpm===it[1]},function(it){S.rpm=it[1];$('rpm').value=it[1];updRpm()});
 chips($('spOnda'),[['×0.02',.02],['×0.1',.1],['Tiempo real',1]],function(it){return S.spO===it[1]},function(it){S.spO=it[1]});
 function updRpm(){var fe=S.rpm/120;$('rpmv').textContent=S.rpm+' rpm';updRpmChips();
-$('vOnda').textContent='f_exp = '+S.rpm+' / 120 = '+fmt(fe,1)+' Hz\n'+[1,2,3,4].map(function(n){return'f_'+n+' = '+n+' × '+fmt(fe,1)+' = '+fmt(n*fe,1)+' Hz'}).join('\n')+'\n… hasta el armónico '+NH+': '+fmt(NH*fe,0)+' Hz';draw(0,true)}
+texv('vOnda',['f_{exp}&=\\frac{rpm}{120}=\\frac{'+S.rpm+'}{120}='+fx(fe,1)+'\\ \\text{Hz}'].concat([1,2,3,4].map(function(n){return 'f_'+n+'&='+n+'\\,('+fx(fe,1)+')='+fx(n*fe,1)+'\\ \\text{Hz}'}),['&\\vdots','f_'+NH+'&='+NH+'\\,('+fx(fe,1)+')='+fx(NH*fe,0)+'\\ \\text{Hz}']));draw(0,true)}
 function drawOnda(t){var fe=S.rpm/120,A=setup($('cvOnda')),c=A.c,sp=S.spO,amp=34,yc=A.h/2+8,cx=70,R=26,win=.25;
 var y0=amp*yOnda(t*sp,fe);
 c.strokeStyle=css('--muted');c.lineWidth=2;c.setLineDash([4,4]);c.beginPath();c.moveTo(cx,20);c.lineTo(cx,A.h-20);c.stroke();c.setLineDash([]);
 c.fillStyle=css('--c2');c.beginPath();c.arc(cx,yc-y0,R,0,PI2);c.fill();c.fillStyle=css('--panel');c.beginPath();c.arc(cx,yc-y0,R-7,0,PI2);c.fill();
-c.fillStyle=css('--muted');c.font='500 13px '+css('--body');c.textAlign='center';c.fillText('Manubrio',cx,A.h-6);
+c.fillStyle=css('--muted');c.font='500 '+F(13)+'px '+css('--body');c.textAlign='center';c.fillText('Manubrio',cx,A.h-6);
 var xs=cx+R+12,xe=A.w-10,pps=(xe-xs)/(win/sp);
 traceGrid(c,xs,xe,24,A.h-24,pps,.05/sp,function(k){return k*50+' ms'});restLine(c,xs,xe,yc);
 trace(c,xs,xe,yc,pps,function(tau){return amp*yOnda((t-tau)*sp,fe)},css('--accent'),2.5);
 var B=setup($('cvEsp')),xm=Math.max(100,NH*fe*1.08),ax2=axes({c:B.c,w:B.w,h:B.h,x0:0,x1:xm,y0:0,y1:1.1,xt:niceT(xm),yt:[0,.5,1],xl:'Frecuencia (Hz)',yl:'Amplitud'});
 B.c.fillStyle=css('--c3');B.c.globalAlpha=.18;B.c.fillRect(ax2.X(1),ax2.P.t,ax2.X(20)-ax2.X(1),ax2.H);B.c.globalAlpha=1;
 for(var n=1;n<=NH;n++){var x=ax2.X(n*fe),y=ax2.Y(1/n);B.c.fillStyle=css('--accent');B.c.fillRect(x-4,y,8,ax2.Y(0)-y)}
-B.c.fillStyle=css('--ink');B.c.font='600 13px '+css('--body');B.c.textAlign='left';B.c.fillText(fmt(fe,1)+' Hz',ax2.X(fe)+8,ax2.Y(1)+4)}
+B.c.fillStyle=css('--ink');B.c.font='600 '+F(13)+'px '+css('--body');B.c.textAlign='left';B.c.fillText(fmt(fe,1)+' Hz',ax2.X(fe)+8,ax2.Y(1)+4)}
 function niceT(xm){var st=xm>300?100:xm>150?25:xm>60?10:5,a=[];for(var v=0;v<=xm;v+=st)a.push(v);return a}
 
 /* ===== L3 Una etapa ===== */
 var ZS=[[.05,'--c2'],[.14,'--accent'],[.5,'--c3']];
 $('rr').addEventListener('input',function(e){S.r=+e.target.value;updR()});
 function updR(){$('rrv').textContent=fmt(S.r,2);var r=S.r;
-$('vTR1').textContent='Con fn = 5.5 Hz y f = 11.7 Hz: r = 11.7 / 5.5 = 2.13\nr elegido = '+fmt(r,2)+'\n'+ZS.map(function(z){return'ζ = '+z[0]+': TR = '+fmt(one(r,1,z[0]).m,2)}).join('\n');
+texv('vTR1',['r_{prot}&=\\frac{11.7}{5.5}=2.13','r&='+fx(r,2)].concat(ZS.map(function(z){return 'TR_{\\zeta='+z[0]+'}&='+fx(one(r,1,z[0]).m,2)})));
 nums($('nTR1'),ZS.map(function(z){var v=one(r,1,z[0]).m;return[fmt(v,2),'TR con ζ = '+z[0],v>1?'warn':'good']}).concat([[fmt(r*5.5,1)+' Hz','f si fn = 5.5 Hz']]));draw(0,true)}
 chips($('zChips'),[['ζ = 0.05',.05],['ζ = 0.14',.14],['ζ = 0.5',.5]],function(it){return S.z3===it[1]},function(it){S.z3=it[1]});
 function drawRig3(t){var A=setup($('cvRig3')),c=A.c,so=one(S.r,1,S.z3),fv=.8,Ab=16,gy=A.h-34,mc=gy-150,ph=PI2*fv*t,a=Math.min(90,Ab*so.m);
@@ -254,19 +266,19 @@ var xs=R.r+10,xe=A.w-10,pps=(xe-xs)/(3/fv);traceGrid(c,xs,xe,24,gy+10,pps,1/fv,f
 restLine(c,xs,xe,gy);restLine(c,xs,xe,mc);
 trace(c,xs,xe,gy,pps,function(tau){return Ab*Math.sin(PI2*fv*(t-tau))},css('--muted'),2);
 trace(c,xs,xe,mc,pps,function(tau){return a*Math.sin(PI2*fv*(t-tau)+so.p)},css('--accent'),3);
-c.fillStyle=css(so.m>1?'--warn':'--accent');c.font='700 20px '+css('--display');c.textAlign='right';c.fillText((so.m>1?'Amplifica: ':'Aísla: ')+'la masa se mueve '+fmt(so.m,2)+' veces lo que la base',xe,A.h-8)}
+c.fillStyle=css(so.m>1?'--warn':'--accent');c.font='700 '+F(20)+'px '+css('--display');c.textAlign='right';c.fillText((so.m>1?'Amplifica: ':'Aísla: ')+'la masa se mueve '+fmt(so.m,2)+' veces lo que la base',xe,A.h-8)}
 function drawTR1(){var A=setup($('cvTR1')),ax=axes({c:A.c,w:A.w,h:A.h,x0:0,x1:5,y0:.03,y1:12,ylog:true,xt:[0,1,1.414,2,3,4,5],xf:function(v){return v===1.414?'√2':v},yt:[.05,.1,.2,.5,1,2,5,10],yf:function(v){return fmt(v,v<.1?2:v<1?1:0)},xl:'r = f / fn',yl:'TR'});
 A.c.fillStyle=css('--warn');A.c.globalAlpha=.08;A.c.fillRect(ax.P.l,ax.P.t,ax.W,ax.Y(1)-ax.P.t);A.c.globalAlpha=1;
 line(A.c,[[ax.P.l,ax.Y(1)],[ax.P.l+ax.W,ax.Y(1)]],css('--muted'),1.2,[5,4]);
 ZS.forEach(function(z){var p=[];for(var i=1;i<=600;i++){var r=i/600*5,v=Math.min(12,Math.max(.03,one(r,1,z[0]).m));p.push([ax.X(r),ax.Y(v)])}line(A.c,p,css(z[1]),z[0]===.14?3:2)});
 line(A.c,[[ax.X(S.r),ax.P.t],[ax.X(S.r),ax.P.t+ax.H]],css('--ink'),1,[3,3]);
 ZS.forEach(function(z){var v=one(S.r,1,z[0]).m;A.c.fillStyle=css(z[1]);A.c.beginPath();A.c.arc(ax.X(S.r),ax.Y(Math.max(.03,Math.min(12,v))),5,0,PI2);A.c.fill()});
-A.c.fillStyle=css('--warn');A.c.font='600 13px '+css('--body');A.c.textAlign='left';A.c.fillText('Amplifica',ax.P.l+8,ax.P.t+16);A.c.fillStyle=css('--accent');A.c.fillText('Aísla',ax.P.l+ax.W-50,ax.Y(1)+18)}
+A.c.fillStyle=css('--warn');A.c.font='600 '+F(13)+'px '+css('--body');A.c.textAlign='left';A.c.fillText('Amplifica',ax.P.l+8,ax.P.t+16);A.c.fillStyle=css('--accent');A.c.fillText('Aísla',ax.P.l+ax.W-50,ax.Y(1)+18)}
 
 /* ===== L5 Modos ===== */
 chips($('spModos'),[['×0.05',.05],['×0.1',.1],['×0.25',.25]],function(it){return S.spM===it[1]},function(it){S.spM=it[1];updM()});
 function updM(){$('fModos').textContent='En pantalla: modo 1 a '+fmt(mo.f1*S.spM,2)+' Hz y modo 2 a '+fmt(mo.f2*S.spM,2)+' Hz. Amplitud exagerada.'}
-$('vModos').textContent='f₁ = '+fmt(mo.f1,2)+' Hz   forma: x₁/x₂ = '+fmt(mo.s1[0],3)+'\nf₂ = '+fmt(mo.f2,2)+' Hz   forma: x₂/x₁ = '+fmt(mo.s2[1],3)+'\n\nPor separado:\n√(535/0.417)/2π = '+fmt(Math.sqrt(535/.417)/PI2,1)+' Hz (celular en cables)\n√(7464/0.308)/2π = '+fmt(Math.sqrt(7464/.308)/PI2,1)+' Hz (caja en bujes)';
+texv('vModos',['f_1&='+fx(mo.f1,2)+'\\ \\text{Hz},\\quad \\frac{x_1}{x_2}='+fx(mo.s1[0],3),'f_2&='+fx(mo.f2,2)+'\\ \\text{Hz},\\quad \\frac{x_2}{x_1}='+fx(mo.s2[1],3),'f_{cel}&=\\frac{1}{2\\pi}\\sqrt{\\frac{535}{0.417}}='+fx(Math.sqrt(535/.417)/PI2,1)+'\\ \\text{Hz}','f_{caja}&=\\frac{1}{2\\pi}\\sqrt{\\frac{7464}{0.308}}='+fx(Math.sqrt(7464/.308)/PI2,1)+'\\ \\text{Hz}']);
 function spring(c,x,y0,y1,coils,wd,col){c.save();c.strokeStyle=col;c.lineWidth=2;c.beginPath();c.moveTo(x,y0);var L=y1-y0,n=coils*2;c.lineTo(x,y0+L*.1);for(var i=1;i<=n;i++){c.lineTo(x+(i%2?wd:-wd),y0+L*.1+L*.8*i/(n+1))}c.lineTo(x,y0+L*.9);c.lineTo(x,y1);c.stroke();c.restore()}
 function damper(c,x,y0,y1,col){c.save();c.strokeStyle=col;c.lineWidth=2;var m=(y0+y1)/2;c.beginPath();c.moveTo(x,y0);c.lineTo(x,m-6);c.moveTo(x-9,m-6);c.lineTo(x+9,m-6);c.moveTo(x-12,m-14);c.lineTo(x-12,m+10);c.lineTo(x+12,m+10);c.lineTo(x+12,m-14);c.moveTo(x,m+10);c.lineTo(x,y1);c.stroke();c.restore()}
 /* ---- Resorte con rastro (estilo osciloscopio) ---- */
@@ -277,13 +289,13 @@ c.fillStyle=css('--muted');c.fillRect(x-bw/2-14,gy,bw+28,3);c.strokeStyle=css('-
 for(var i=0;i<=10;i++){var hx=x-bw/2-14+i*(bw+28)/10;c.beginPath();c.moveTo(hx,gy+3);c.lineTo(hx-7,gy+11);c.stroke()}
 var low=gy,y1=null;
 if(o.m1){y1=o.m1.yc-o.m1.d;spring(c,x-bw/4,y1+15,low,5,9,ink);damper(c,x+bw/4,y1+15,low,ink);
-c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');c.textAlign='center';c.fillText('k₁ c₁',x,(y1+15+low)/2+4);
-c.fillStyle=css('--c2');c.fillRect(x-bw/2,y1-15,bw,30);c.fillStyle=css('--accent-ink');c.font='600 14px '+css('--body');c.fillText('m₁ caja',x,y1+5);low=y1-15}
+c.fillStyle=css('--muted');c.font='500 '+F(12)+'px '+css('--mono');c.textAlign='center';c.fillText('k₁ c₁',x,(y1+15+low)/2+4);
+c.fillStyle=css('--c2');c.fillRect(x-bw/2,y1-15,bw,30);c.fillStyle=css('--accent-ink');c.font='600 '+F(14)+'px '+css('--body');c.fillText('m₁ caja',x,y1+5);low=y1-15}
 var y2=o.m2.yc-o.m2.d;spring(c,x-bw/4,y2+22,low,o.coils||6,8,ink);damper(c,x+bw/4,y2+22,low,ink);
-c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');c.textAlign='center';c.fillText(o.klab||'k₂ c₂',x,(y2+22+low)/2+4);
-c.fillStyle=css(o.m2.col||'--accent');c.fillRect(x-bw/2,y2-22,bw,44);c.fillStyle=css('--accent-ink');c.font='600 14px '+css('--body');c.fillText(o.m2.lab||'m₂ celular',x,y2+5);
+c.fillStyle=css('--muted');c.font='500 '+F(12)+'px '+css('--mono');c.textAlign='center';c.fillText(o.klab||'k₂ c₂',x,(y2+22+low)/2+4);
+c.fillStyle=css(o.m2.col||'--accent');c.fillRect(x-bw/2,y2-22,bw,44);c.fillStyle=css('--accent-ink');c.font='600 '+F(14)+'px '+css('--body');c.fillText(o.m2.lab||'m₂ celular',x,y2+5);
 return{r:x+bw/2,y1:y1,y2:y2,gy:gy}}
-function traceGrid(c,xs,xe,top,bot,pps,step,lab){c.strokeStyle=css('--grid');c.lineWidth=1;c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');c.textAlign='center';
+function traceGrid(c,xs,xe,top,bot,pps,step,lab){c.strokeStyle=css('--grid');c.lineWidth=1;c.fillStyle=css('--muted');c.font='500 '+F(12)+'px '+css('--mono');c.textAlign='center';
 for(var k=1;xs+k*step*pps<=xe-28;k++){var x=xs+k*step*pps;c.beginPath();c.moveTo(x,top);c.lineTo(x,bot);c.stroke();c.fillText(lab(k),x,top-6)}
 c.textAlign='left';c.fillText('← ahora',xs+4,bot+16)}
 /* La onda nace en «ahora» (izquierda) y avanza a la derecha: solo hay historia desde el arranque, con entrada suave. */
@@ -298,20 +310,20 @@ traceGrid(c,xs,xe,24,gy,pps,1/fv,function(k){return fmt(k*1000/M[0],0)+' ms'});
 restLine(c,xs,xe,m1c);restLine(c,xs,xe,m2c);
 trace(c,xs,xe,m1c,pps,function(tau){return a1*Math.sin(PI2*fv*(t-tau))},css('--c2'));
 trace(c,xs,xe,m2c,pps,function(tau){return a2*Math.sin(PI2*fv*(t-tau))},css('--accent'),3);
-c.fillStyle=css('--ink');c.font='700 20px '+css('--display');c.textAlign='right';c.fillText(S.modo?'Se mueve la caja; el celular casi quieto':'Se mece el celular; la caja casi quieta',xe,A.h-8)}
+c.fillStyle=css('--ink');c.font='700 '+F(20)+'px '+css('--display');c.textAlign='right';c.fillText(S.modo?'Se mueve la caja; el celular casi quieto':'Se mece el celular; la caja casi quieta',xe,A.h-8)}
 
 /* ===== L6 TR ===== */
 var FMIN=1,FMAX=200;function f2s(f){return Math.log(f/FMIN)/Math.log(FMAX/FMIN)}function s2f(s){return FMIN*Math.pow(FMAX/FMIN,s)}
 $('ff').value=f2s(11.7);$('ff').addEventListener('input',function(e){S.fr=s2f(+e.target.value);updF()});
 var updFC=chips($('fChips'),[['Baches 5.6 Hz',5.6],['Ralentí 11.7 Hz',11.7],['23.4 Hz',23.4],['60 Hz',60]],function(it){return Math.abs(S.fr-it[1])<.05},function(it){S.fr=it[1];$('ff').value=f2s(it[1]);updF()});
 function updF(){var f=S.fr,a=solve(f).m,b=one(f,FN1,Z1).m,r=one(f,FNR,ZR).m;$('ffv').textContent=fmt(f,1)+' Hz';updFC();
-$('vTR').textContent='ω = 2π × '+fmt(f,1)+' = '+fmt(PI2*f,1)+' rad/s\nm₁ = 0.308  m₂ = 0.417 kg\nk₁ = 7 464  k₂ = 535 N/m\nc₁ = 55.4   c₂ = 4.18 N·s/m\nTR = |X₂/Y| = '+fmt(a,3);
+texv('vTR',['\\omega&=2\\pi\\,('+fx(f,1)+')='+fx(PI2*f,1)+'\\ \\text{rad/s}','m_1&=0.308,\\ m_2=0.417\\ \\text{kg}','k_1&=7464,\\ k_2=535\\ \\text{N/m}','c_1&=55.4,\\ c_2=4.18\\ \\text{N·s/m}','TR&=\\left|\\frac{X_2}{Y}\\right|='+fx(a,3)]);
 nums($('nTR'),[[fmt(a,2),'TR prototipo C',a>1?'warn':'good'],[pct(a),'Cambio en el celular',a>1?'warn':'good'],[fmt(b,2),'TR una etapa',b>1?'warn':''],[fmt(r,2),'TR rígido',r>1?'warn':'']]);draw(0,true)}
 function drawTR(t){var A=setup($('cvTR')),ax=axes({c:A.c,w:A.w,h:A.h,x0:FMIN,x1:FMAX,y0:.002,y1:20,xlog:true,ylog:true,xt:[1,2,5,10,20,50,100,200],yt:[.01,.1,1,10],yf:function(v){return v<1?fmt(v,2):v},xl:'Frecuencia (Hz)',yl:'TR'});
 A.c.fillStyle=css('--warn');A.c.globalAlpha=.08;A.c.fillRect(ax.P.l,ax.P.t,ax.W,ax.Y(1)-ax.P.t);A.c.globalAlpha=1;
 line(A.c,[[ax.P.l,ax.Y(1)],[ax.P.l+ax.W,ax.Y(1)]],css('--muted'),1.2,[5,4]);
 [[function(f){return one(f,FNR,ZR).m},'--warn',2],[function(f){return one(f,FN1,Z1).m},'--c2',2],[function(f){return solve(f).m},'--accent',3]].forEach(function(L){var p=[];for(var i=0;i<=500;i++){var f=s2f(i/500),v=Math.max(.002,Math.min(20,L[0](f)));p.push([ax.X(f),ax.Y(v)])}line(A.c,p,css(L[1]),L[2])});
-[[5.6,'baches'],[11.7,'ralentí']].forEach(function(m){var x=ax.X(m[0]);line(A.c,[[x,ax.P.t],[x,ax.P.t+ax.H]],css('--muted'),1,[2,4]);A.c.fillStyle=css('--muted');A.c.font='500 12px '+css('--body');A.c.textAlign='center';A.c.fillText(m[1],x,ax.P.t+ax.H-6)});
+[[5.6,'baches'],[11.7,'ralentí']].forEach(function(m){var x=ax.X(m[0]);line(A.c,[[x,ax.P.t],[x,ax.P.t+ax.H]],css('--muted'),1,[2,4]);A.c.fillStyle=css('--muted');A.c.font='500 '+F(12)+'px '+css('--body');A.c.textAlign='center';A.c.fillText(m[1],x,ax.P.t+ax.H-6)});
 var v=solve(S.fr).m;A.c.fillStyle=css('--accent');A.c.beginPath();A.c.arc(ax.X(S.fr),ax.Y(Math.max(.002,v)),6,0,PI2);A.c.fill();
 /* soporte con rastro */
 var B=setup($('cvOndas')),c=B.c,f=S.fr,so=solve(f),fv=.8,Ab=18,gy=B.h-44,m1c=gy-118,m2c=gy-292,ph=PI2*fv*t;
@@ -323,7 +335,7 @@ restLine(c,xs,xe,gy);restLine(c,xs,xe,m1c);restLine(c,xs,xe,m2c);
 trace(c,xs,xe,gy,pps,function(tau){return Ab*Math.sin(PI2*fv*(t-tau))},css('--muted'),2);
 trace(c,xs,xe,m1c,pps,function(tau){return a1*Math.sin(PI2*fv*(t-tau)+so.p1)},css('--c2'),2);
 trace(c,xs,xe,m2c,pps,function(tau){return a2*Math.sin(PI2*fv*(t-tau)+so.p)},css('--accent'),3);
-c.fillStyle=css(so.m>1?'--warn':'--accent');c.font='700 20px '+css('--display');c.textAlign='right';
+c.fillStyle=css(so.m>1?'--warn':'--accent');c.font='700 '+F(20)+'px '+css('--display');c.textAlign='right';
 c.fillText('El celular se mueve '+fmt(so.m,2)+' veces lo que el manubrio',xe,B.h-8)}
 
 /* ===== L7 Rígido contra nuestro ===== */
@@ -333,14 +345,14 @@ function trC(f){return solve(f).m}function trR(f){return one(f,FNR,ZR).m}
 var RES=ESC.map(function(e){return{n:e[0],rpm:e[1],c:escTR(e,trC),r:escTR(e,trR)}});
 chips($('escChips'),ESC.map(function(e){return[e[0]+(e[1]?' · '+e[1]+' rpm':' · 5.6 Hz')]}),function(it,i){return S.esc===i},function(it,i){S.esc=i;updE()});
 function updE(){var R=RES[S.esc],e=ESC[S.esc];
-$('vEsc').textContent=(e[1]?'f_exp = '+e[1]+' / 120 = '+fmt(e[1]/120,1)+' Hz, armónicos 1 a 6\n':'Bache: una sola frecuencia, 5.6 Hz\n')+'Nuestro: a_RMS,cel / a_RMS,man = '+fmt(R.c,2)+' → '+pct(R.c)+'\nRígido:  a_RMS,cel / a_RMS,man = '+fmt(R.r,2)+' → '+pct(R.r);
+texv('vEsc',[(e[1]?'f_{exp}&=\\frac{'+e[1]+'}{120}='+fx(e[1]/120,1)+'\\ \\text{Hz},\\ n=1\\ldots6':'f&=5.6\\ \\text{Hz}\\ \\text{(bache)}'),'\\text{Nuestro: }\\frac{a_{cel}}{a_{man}}&='+fx(R.c,2)+'\\ \\Rightarrow\\ '+pctx(R.c),'\\text{Rígido: }\\frac{a_{cel}}{a_{man}}&='+fx(R.r,2)+'\\ \\Rightarrow\\ '+pctx(R.r)]);
 nums($('nEsc'),[[pct(R.r),'Soporte rígido',R.r>1?'warn':'good'],[pct(R.c),'Nuestro soporte',R.c>1?'warn':'good']]);draw(0,true)}
 function drawBar(){var A=setup($('cvBar')),c=A.c,P={l:150,r:70,t:10,b:30},W=A.w-P.l-P.r,rows=RES.length,rh=(A.h-P.t-P.b)/rows,lo=-100,hi=300;
 function X(v){return P.l+(v-lo)/(hi-lo)*W}
-c.font='500 12px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';c.strokeStyle=css('--grid');[-100,0,100,200,300].forEach(function(v){c.beginPath();c.moveTo(X(v),P.t);c.lineTo(X(v),A.h-P.b);c.stroke();c.fillText((v>0?'+':'')+v+' %',X(v),A.h-P.b+16)});
+c.font='500 '+F(12)+'px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';c.strokeStyle=css('--grid');[-100,0,100,200,300].forEach(function(v){c.beginPath();c.moveTo(X(v),P.t);c.lineTo(X(v),A.h-P.b);c.stroke();c.fillText((v>0?'+':'')+v+' %',X(v),A.h-P.b+16)});
 line(c,[[X(0),P.t],[X(0),A.h-P.b]],css('--ink'),1.5);
 RES.forEach(function(R,i){var y=P.t+i*rh,bh=Math.min(16,rh*.3);c.fillStyle=css(i===S.esc?'--ink':'--muted');c.font=(i===S.esc?'700 ':'500 ')+'15px '+css('--body');c.textAlign='left';c.fillText(R.n,4,y+rh/2+5);
-[[R.r,'--warn',-bh-2],[R.c,'--accent',2]].forEach(function(b){var v=Math.max(lo,Math.min(hi,(b[0]-1)*100));c.fillStyle=css(b[1]);var x0=X(0),x1=X(v);c.fillRect(Math.min(x0,x1),y+rh/2+b[2],Math.abs(x1-x0),bh);c.font='500 12px '+css('--mono');c.textAlign=v>=0?'left':'right';c.fillText(pct(b[0]),x1+(v>=0?6:-6),y+rh/2+b[2]+bh-3)})})}
+[[R.r,'--warn',-bh-2],[R.c,'--accent',2]].forEach(function(b){var v=Math.max(lo,Math.min(hi,(b[0]-1)*100));c.fillStyle=css(b[1]);var x0=X(0),x1=X(v);c.fillRect(Math.min(x0,x1),y+rh/2+b[2],Math.abs(x1-x0),bh);c.font='500 '+F(12)+'px '+css('--mono');c.textAlign=v>=0?'left':'right';c.fillText(pct(b[0]),x1+(v>=0?6:-6),y+rh/2+b[2]+bh-3)})})}
 function drawEsc(t){var e=ESC[S.esc],A=setup($('cvEsc')),c=A.c,fe=e[1]?e[1]/120:5.6,sl=.8/fe,td=t*sl,fv=.8;
 function sig(tt,fn){if(!e[1]){var s=fn(5.6);return s.m*Math.sin(PI2*5.6*tt+s.p)}var v=0;for(var n=1;n<=6;n++){var s=fn(n*fe);v+=s.m/n*Math.sin(PI2*n*fe*tt+PH[n-1]+s.p)}return v}
 var base=function(tt){return sig(tt,function(){return{m:1,p:0}})},rigS=function(tt){return sig(tt,function(f){return one(f,FNR,ZR)})},ourS=function(tt){return sig(tt,solve)};
@@ -348,7 +360,7 @@ var Ab=12,bw=Math.min(120,A.w*.26),cx=14+bw/2+14,xs=cx+bw/2+10,xe=A.w-10,pps=(xe
 /* arriba: soporte rígido */
 var g1=250,m1c=g1-110;
 var R1=rig(c,{x:cx,w:bw,gy:g1,yb:Ab*base(td),m1:null,coils:3,klab:' ',m2:{yc:m1c,d:cap(Ab*rigS(td)),lab:'celular',col:'--warn'}});
-c.fillStyle=css('--warn');c.font='700 18px '+css('--display');c.textAlign='left';c.fillText('Soporte rígido',14,22);
+c.fillStyle=css('--warn');c.font='700 '+F(18)+'px '+css('--display');c.textAlign='left';c.fillText('Soporte rígido',14,22);
 traceGrid(c,xs,xe,40,g1+8,pps,1/fv,function(k){return k*Math.round(1000/fe)+' ms'});
 restLine(c,xs,xe,g1);restLine(c,xs,xe,m1c);
 trace(c,xs,xe,g1,pps,function(tau){return Ab*base((t-tau)*sl)},css('--muted'),1.8);
@@ -356,7 +368,7 @@ trace(c,xs,xe,m1c,pps,function(tau){return cap(Ab*rigS((t-tau)*sl))},css('--warn
 /* abajo: nuestro soporte */
 var g2=A.h-30,c1=g2-100,c2=g2-235,s1=function(tt){return sig(tt,function(f){var q=solve(f);return{m:q.m1,p:q.p1}})};
 line(c,[[10,g1+30],[A.w-10,g1+30]],css('--line'),1);
-c.fillStyle=css('--accent');c.font='700 18px '+css('--display');c.textAlign='left';c.fillText('Nuestro soporte',14,g1+56);
+c.fillStyle=css('--accent');c.font='700 '+F(18)+'px '+css('--display');c.textAlign='left';c.fillText('Nuestro soporte',14,g1+56);
 rig(c,{x:cx,w:bw,gy:g2,yb:Ab*base(td),m1:{yc:c1,d:Ab*s1(td)},m2:{yc:c2,d:cap(Ab*ourS(td))}});
 restLine(c,xs,xe,g2);restLine(c,xs,xe,c2);
 trace(c,xs,xe,g2,pps,function(tau){return Ab*base((t-tau)*sl)},css('--muted'),1.8);
@@ -370,9 +382,9 @@ var B=d(.1425,.03,0),C=d(.168,.05,30),kt1=7464*.0233*.0233,thb=(.308*.5*g*.01+C.
 return{B:B,C:C,kt1:kt1,thb:thb}})();
 chips($('mecChips'),[['B: cables a 60 mm'],['C: 100 mm + guía']],function(it,i){return S.mec===i},function(it,i){S.mec=i;updMec()});
 function updMec(){var B=MEC.B,C=MEC.C;
-if(S.mec===0){$('vMec').textContent='m₂ = '+fmt(B.m2,3)+' kg   h = '+fmt(B.h*1000,1)+' mm   a = 0.5 g\nkθ = k₂·a² = 475 × 0.030² = '+fmt(B.kt,2)+' N·m/rad\nkθ − m₂gh = '+fmt(B.kt,2)+' − '+fmt(B.m2*g*B.h,2)+' = '+fmt(B.ke,2)+' N·m/rad\nθ ≈ '+fmt(B.m2*.5*g*B.h,3)+' / '+fmt(B.ke,2)+' = '+fmt(B.th,0)+'°  → pasa el límite de 33°\nJ = '+fmt(B.J*1e4,1)+'×10⁻⁴ kg·m²   f ≈ '+fmt(B.f,1)+' Hz';
+if(S.mec===0){texv('vMec',['m_2&='+fx(B.m2,3)+'\\ \\text{kg},\\ h='+fx(B.h*1000,1)+'\\ \\text{mm},\\ a=0.5g','k_\\theta&=k_2\\,a^2=475\\,(0.030)^2='+fx(B.kt,2)+'\\ \\text{N·m/rad}','k_\\theta-m_2gh&='+fx(B.kt,2)+'-'+fx(B.m2*g*B.h,2)+'='+fx(B.ke,2),'\\theta&\\approx\\frac{'+fx(B.m2*.5*g*B.h,3)+'}{'+fx(B.ke,2)+'}='+fx(B.th,0)+'^\\circ>33^\\circ\\ \\text{(tope)}','f_{mec}&\\approx'+fx(B.f,1)+'\\ \\text{Hz}']);
 nums($('nMec'),[['33°','Inclinación, modelo completo (tope)','warn'],['0.64 Hz','Frecuencia de mecido','warn'],['139 mm','Movimiento arriba del celular','warn'],['1.1','Margen de vuelco (mín. 1.5)','warn']])}
-else{$('vMec').textContent='Piso 2 con guía:\nkθ = 475 × 0.050² + 30 = '+fmt(C.kt,1)+' N·m/rad\nθ₂ ≈ '+fmt(C.m2*.5*g*C.h,3)+' / '+fmt(C.ke,1)+' = '+fmt(C.th,2)+'°  (casi no gira)\n\nLo que queda es el giro sobre los bujes:\nkθ₁ = k₁·b² = 7464 × 0.0233² = '+fmt(MEC.kt1,2)+' N·m/rad\nθ₁ ≈ '+fmt(MEC.thb,1)+'° estático; con el rebote dinámico, 4.9°';
+else{texv('vMec',['k_{\\theta2}&=475\\,(0.050)^2+30='+fx(C.kt,1)+'\\ \\text{N·m/rad}','\\theta_2&\\approx\\frac{'+fx(C.m2*.5*g*C.h,3)+'}{'+fx(C.ke,1)+'}='+fx(C.th,2)+'^\\circ','k_{\\theta1}&=k_1\\,b^2=7464\\,(0.0233)^2='+fx(MEC.kt1,2)+'\\ \\text{N·m/rad}','\\theta_1&\\approx'+fx(MEC.thb,1)+'^\\circ\\ \\text{estático},\\ 4.9^\\circ\\ \\text{dinámico}']);
 nums($('nMec'),[['4.9°','Inclinación, modelo completo','good'],['3.3 Hz','Frecuencia de mecido','good'],['21 mm','Movimiento arriba del celular','good'],['0.38','TR a 11.7 Hz (antes 0.36)','']])}draw(0,true)}
 function drawMec(){var A=setup($('cvMec')),c=A.c,cw=A.w/2;
 [['B · cables a 60 mm',33,'--warn','llega al tope'],['C · con guía de láminas',4.9,'--accent','']].forEach(function(D,k){var cx=cw*k+cw/2,base=A.h-50,L=Math.min(170,A.h*.5),th=D[1]*Math.PI/180;
@@ -381,21 +393,21 @@ c.strokeStyle=css('--line');c.lineWidth=2;c.setLineDash([5,5]);c.beginPath();c.m
 c.fillStyle=css('--muted');c.fillRect(cx-70,base,140,8);
 c.save();c.translate(cx,base);c.rotate(th);c.fillStyle=css(D[2]);c.fillRect(-24,-L,48,L);c.fillStyle=css('--panel');c.fillRect(-18,-L+8,36,L-40);c.restore();
 c.strokeStyle=css('--ink');c.lineWidth=1.5;c.beginPath();c.arc(cx,base,L*.55,-Math.PI/2,-Math.PI/2+th,false);c.stroke();
-c.fillStyle=css('--ink');c.font='700 30px '+css('--display');c.textAlign='center';c.fillText(fmt(D[1],D[1]<10?1:0)+'°',cx-60,base-L*.75);
-c.font='700 20px '+css('--display');c.fillText(D[0],cx,24);c.font='500 13px '+css('--body');c.fillStyle=css('--muted');c.fillText(D[3]||' ',cx,44);
-c.fillStyle=css('--muted');c.textAlign='left';c.font='500 12px '+css('--body');c.fillText('→ frena 0.5 g',cx-70,base+26);c.globalAlpha=1})}
+c.fillStyle=css('--ink');c.font='700 '+F(30)+'px '+css('--display');c.textAlign='center';c.fillText(fmt(D[1],D[1]<10?1:0)+'°',cx-60,base-L*.75);
+c.font='700 '+F(20)+'px '+css('--display');c.fillText(D[0],cx,24);c.font='500 '+F(13)+'px '+css('--body');c.fillStyle=css('--muted');c.fillText(D[3]||' ',cx,44);
+c.fillStyle=css('--muted');c.textAlign='left';c.font='500 '+F(12)+'px '+css('--body');c.fillText('→ frena 0.5 g',cx-70,base+26);c.globalAlpha=1})}
 
 /* ===== L16 Vibración libre ===== */
 $('zz').addEventListener('input',function(e){S.z=+e.target.value;updL()});$('fnn').addEventListener('input',function(e){S.fn=+e.target.value;updL()});
 function updL(){var z=S.z,fn=S.fn,fd=fn*Math.sqrt(1-z*z),Td=1/fd,r=Math.exp(-z*PI2*fn*Td),dl=Math.log(1/r),zb=dl/Math.sqrt(4*Math.PI*Math.PI+dl*dl);
 $('zzv').textContent=fmt(z,2);$('fnnv').textContent=fmt(fn,1)+' Hz';
-$('vLibre').textContent='Lo que mediría el ESP32:\nTd = '+fmt(Td*1000,0)+' ms   x₂/x₁ = '+fmt(r,2)+'\nδ = ln(1 / '+fmt(r,2)+') = '+fmt(dl,3)+'\nζ = '+fmt(dl,3)+' / √(4π² + '+fmt(dl,3)+'²) = '+fmt(zb,3)+'\nfn = 1 / ('+fmt(Td,3)+' × √(1 − '+fmt(zb,3)+'²)) = '+fmt(1/(Td*Math.sqrt(1-zb*zb)),2)+' Hz\nk₂ = m₂(2π fn)² = 0.417 × (2π × '+fmt(fn,1)+')² = '+fmt(.417*Math.pow(PI2*fn,2),0)+' N/m';draw(0,true)}
+texv('vLibre',['T_d&='+fx(Td*1000,0)+'\\ \\text{ms},\\quad \\frac{x_2}{x_1}='+fx(r,2),'\\delta&=\\ln\\frac{1}{'+fx(r,2)+'}='+fx(dl,3),'\\zeta&=\\frac{'+fx(dl,3)+'}{\\sqrt{4\\pi^2+'+fx(dl,3)+'^2}}='+fx(zb,3),'f_n&=\\frac{1}{'+fx(Td,3)+'\\sqrt{1-'+fx(zb,3)+'^2}}='+fx(1/(Td*Math.sqrt(1-zb*zb)),2)+'\\ \\text{Hz}','k_2&=m_2(2\\pi f_n)^2=0.417\\,(2\\pi\\cdot'+fx(fn,1)+')^2='+fx(.417*Math.pow(PI2*fn,2),0)+'\\ \\text{N/m}']);draw(0,true)}
 function drawLibre(){var A=setup($('cvLibre')),z=S.z,fn=S.fn,wn=PI2*fn,wd=wn*Math.sqrt(1-z*z),Td=PI2/wd,T=Math.max(1.2,4*Td);
 var ax=axes({c:A.c,w:A.w,h:A.h,x0:0,x1:T*1000,y0:-1.1,y1:1.15,xt:niceT(T*1000).filter(function(v){return v%(T>2?500:200)===0}),yt:[-1,-.5,0,.5,1],xl:'Tiempo (ms)',yl:'x / x₀'});
 function x(t){return Math.exp(-z*wn*t)*(Math.cos(wd*t)+z*wn/wd*Math.sin(wd*t))}
 var env=[],env2=[],p=[];for(var i=0;i<=800;i++){var t=i/800*T;p.push([ax.X(t*1000),ax.Y(x(t))]);env.push([ax.X(t*1000),ax.Y(Math.exp(-z*wn*t))]);env2.push([ax.X(t*1000),ax.Y(-Math.exp(-z*wn*t))])}
 line(A.c,env,css('--muted'),1,[4,4]);line(A.c,env2,css('--muted'),1,[4,4]);line(A.c,p,css('--accent'),3);
-var t1=Td,t2=2*Td,y1=x(t1),y2=x(t2),c=A.c;c.fillStyle=css('--ink');c.font='600 14px '+css('--mono');c.textAlign='center';
+var t1=Td,t2=2*Td,y1=x(t1),y2=x(t2),c=A.c;c.fillStyle=css('--ink');c.font='600 '+F(14)+'px '+css('--mono');c.textAlign='center';
 [[t1,y1,'x₁'],[t2,y2,'x₂']].forEach(function(q){c.beginPath();c.arc(ax.X(q[0]*1000),ax.Y(q[1]),5,0,PI2);c.fill();c.fillText(q[2],ax.X(q[0]*1000),ax.Y(q[1])-12)});
 var ya=ax.Y(1.05);line(c,[[ax.X(t1*1000),ya],[ax.X(t2*1000),ya]],css('--ink'),1.5);[t1,t2].forEach(function(t){line(c,[[ax.X(t*1000),ya-6],[ax.X(t*1000),ya+6]],css('--ink'),1.5)});
 c.fillText('Td = '+fmt(Td*1000,0)+' ms',ax.X(1.5*Td*1000),ya-8)}
@@ -407,7 +419,7 @@ var bw=Math.min(130,A.w*.28),R=rig(c,{x:14+bw/2+14,w:bw,gy:gy,yb:0,m1:null,m2:{y
 var xs=R.r+10,xe=A.w-10,win=3*Td/sl+hold,pps=(xe-xs)/win;
 traceGrid(c,xs,xe,24,gy,pps,Td/sl,function(k){return k+' Td'});restLine(c,xs,xe,m2c);
 trace(c,xs,xe,m2c,pps,function(tau){var q=s-tau;return x(((q%Tl)+Tl)%Tl)},css('--accent'),3);
-c.fillStyle=css('--muted');c.font='500 14px '+css('--body');c.textAlign='right';c.fillText(s<hold?'Jalado hacia abajo…':'¡Suelta! Cámara lenta ×0.25',xe,A.h-8)}
+c.fillStyle=css('--muted');c.font='500 '+F(14)+'px '+css('--body');c.textAlign='right';c.fillText(s<hold?'Jalado hacia abajo…':'¡Suelta! Cámara lenta ×0.25',xe,A.h-8)}
 /* ===== Bucle ===== */
 var DRAW={'p-onda':function(t){drawOnda(t)},'p-etapa':function(t){drawRig3(t);drawTR1()},'p-modos':drawModos,'p-tr':drawTR,'p-rigido':function(t){drawBar();drawEsc(t)},'p-mecido':drawMec,'p-libre':function(t){drawRig16(t);drawLibre()}};
 var ANIM={'p-etapa':1,'p-onda':1,'p-modos':1,'p-tr':1,'p-rigido':1,'p-libre':1};
