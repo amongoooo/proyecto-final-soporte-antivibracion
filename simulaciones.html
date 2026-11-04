@@ -95,7 +95,7 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ TR = \sqrt{\frac{1+(2\zeta r)^2}{(1-r^2)^2+(2\zeta r)^2}} \qquad r=\frac{f}{f_n} \]</div>
 <div class="tex">\[ TR<1 \iff r>\sqrt2 \;\Rightarrow\; f_n<\frac{11.7}{\sqrt2}=8.3\ \text{Hz} \]</div><div class="vals mj" id="vTR1"></div></div>
-<div class="card"><h3>Controles</h3><label class="range" for="rr"><span>r = f / fn</span><input id="rr" type="range" min="0.1" max="5" step="0.01" value="2.13"><output id="rrv"></output></label>
+<div class="card"><h3>Controles</h3><label class="range" for="rr"><span>r = f / fn</span><input id="rr" type="range" min="0.1" max="5" step="0.01" value="2.13"><output id="rrv"></output></label><div class="ctl"><span>Velocidad</span><div class="chips" id="velEt"></div></div>
 <div class="ctl"><span>ζ</span><div class="chips" id="zChips"></div></div><div class="nums" id="nTR1"></div></div>
 </div>
 </section>
@@ -123,7 +123,7 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ \left(K-\omega^2M+i\omega C\right)\begin{bmatrix}X_1\\X_2\end{bmatrix}=\begin{bmatrix}k_1+i\omega c_1\\0\end{bmatrix}Y \]</div><div class="tex">\[ TR=\left|\frac{X_2}{Y}\right| \]</div><div class="vals mj" id="vTR"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="ff"><span>Frecuencia</span><input id="ff" type="range" min="0" max="1" step="0.001"><output id="ffv"></output></label>
-<div class="ctl"><span>Caso</span><div class="chips" id="fChips"></div></div><div class="nums" id="nTR"></div></div>
+<div class="ctl"><span>Caso</span><div class="chips" id="fChips"></div></div><div class="ctl"><span>Velocidad</span><div class="chips" id="velTR"></div></div><div class="nums" id="nTR"></div></div>
 </div>
 </section>
 
@@ -136,21 +136,21 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ \text{cambio}=\frac{a_{RMS,cel}}{a_{RMS,man}}-1 \]</div><div class="tex">\[ a_{RMS}=\sqrt{\tfrac12\sum_n \left(TR(f_n)\,a_n\right)^2} \]</div><div class="vals mj" id="vEsc"></div>
 <p class="fine">Supuestos: amplitud de cada armónico a<sub>n</sub> = 1/n, 6 armónicos. Rígido: una etapa con fn = 40 Hz y ζ = 0.05. Así se reproducen de cerca los números de la primera presentación.</p></div>
-<div class="card"><h3>Controles</h3><div class="ctl"><span>Escenario</span><div class="chips" id="escChips"></div></div><div class="nums" id="nEsc"></div></div>
+<div class="card"><h3>Controles</h3><div class="ctl"><span>Escenario</span><div class="chips" id="escChips"></div></div><div class="ctl"><span>Velocidad</span><div class="chips" id="velEsc"></div></div><div class="nums" id="nEsc"></div></div>
 </div>
 </section>
 
 <!-- L8 topes -->
 <section class="panel" role="tabpanel" id="p-topes" data-name="Oscilación máxima y topes" data-l="L8" hidden>
 <div class="viz"><h2>¿Cuánto oscila cada etapa y cuándo topa?</h2><p class="lead">Cada etapa tiene un espacio limitado: si la oscilación lo rebasa, choca contra el tope y la vibración pasa directa.</p>
-<div class="duo"><div class="fig"><h4>Espacio usado en cada caso</h4><canvas id="cvTopBar" height="430" aria-label="Porcentaje del espacio usado por cada etapa en cada caso"></canvas>
+<div class="duo"><div class="fig"><h4>Espacio usado</h4><canvas id="cvTopBar" height="430" aria-label="Porcentaje del espacio usado por cada etapa en cada caso"></canvas>
 <div class="key"><span><i style="background:var(--c2)"></i>Etapa 1, bujes</span><span><i style="background:var(--accent)"></i>Etapa 2, cables</span><span><i style="background:var(--warn)"></i>Topa</span></div></div>
-<div class="fig"><h4>Simulación con topes (cámara lenta)</h4><canvas id="cvTope" height="430" aria-label="El soporte oscilando con sus topes y el rastro de cada etapa"></canvas></div></div></div>
+<div class="fig"><h4>Simulación con topes</h4><canvas id="cvTope" height="430" aria-label="El soporte oscilando con sus topes y el rastro de cada etapa"></canvas></div></div></div>
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ U_1=|X_1-Y|\qquad U_2=|X_2-X_1| \]</div><div class="vals mj" id="vTope"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="tf"><span>Frecuencia</span><input id="tf" type="range" min="1" max="30" step="0.1" value="5.6"><output id="tfv"></output></label>
 <label class="range" for="ty"><span>Amplitud Y</span><input id="ty" type="range" min="0.1" max="40" step="0.1" value="30"><output id="tyv"></output></label>
-<div class="ctl"><span>Caso</span><div class="chips" id="tChips"></div></div><div class="nums" id="nTope"></div></div>
+<div class="ctl"><span>Caso</span><div class="chips" id="tChips"></div></div><div class="ctl"><span>Velocidad</span><div class="chips" id="velTop"></div></div><div class="nums" id="nTope"></div></div>
 </div>
 </section>
 
@@ -175,7 +175,7 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ \delta=\ln\frac{x_1}{x_2}\qquad \zeta=\frac{\delta}{\sqrt{4\pi^2+\delta^2}} \]</div>
 <div class="vals mj" id="vLibre"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="zz"><span>ζ real</span><input id="zz" type="range" min="0.02" max="0.4" step="0.01" value="0.14"><output id="zzv"></output></label>
-<label class="range" for="fnn"><span>fn real</span><input id="fnn" type="range" min="2" max="10" step="0.1" value="5.5"><output id="fnnv"></output></label>
+<label class="range" for="fnn"><span>fn real</span><input id="fnn" type="range" min="2" max="10" step="0.1" value="5.5"><output id="fnnv"></output></label><div class="ctl"><span>Velocidad</span><div class="chips" id="velLib"></div></div>
 <p class="fine">Mueve estos valores para ver qué leería el acelerómetro si el soporte real sale distinto a lo calculado.</p></div>
 </div>
 </section>
@@ -232,6 +232,9 @@ return{X:X,Y:Y,P:P,W:W,H:H}}
 function line(c,pts,col,lw,dash){c.save();c.strokeStyle=col;c.lineWidth=lw||2;if(dash)c.setLineDash(dash);c.beginPath();pts.forEach(function(p,i){i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])});c.stroke();c.restore()}
 function chips(host,list,get,set){host.innerHTML='';list.forEach(function(it,i){var b=document.createElement('button');b.type='button';b.textContent=it[0];b.onclick=function(){set(it,i);upd()};host.appendChild(b)});
 function upd(){[].forEach.call(host.children,function(b,i){b.setAttribute('aria-pressed',get(list[i],i))})}upd();return upd}
+/* Botones de velocidad iguales en todas las simulaciones: tiempo real o cámara lenta. */
+var VEL=[['Tiempo real',1],['×0.25',.25],['×0.1',.1],['×0.02',.02]];
+function velChips(k){var h=document.getElementById('vel'+k);if(!h)return;chips(h,VEL,function(it){return S['v'+k]===it[1]},function(it){S['v'+k]=it[1];if(k==='Top')resetTS();draw(0,true)})}
 function nums(host,arr){host.innerHTML=arr.map(function(n){return'<div class="num'+(n[2]?' '+n[2]:'')+'"><b>'+n[0]+'</b><span>'+n[1]+'</span></div>'}).join('')}
 function pctx(r){var v=Math.round((r-1)*100);return(v>0?'+':v<0?'-':'')+Math.abs(v)+'\\%'}
 function pct(r){var v=Math.round((r-1)*100);return(v>0?'+':v<0?'−':'')+Math.abs(v)+' %'}
@@ -248,7 +251,7 @@ function fromHash(){var h=(location.hash||'').slice(1),k=panels.findIndex(functi
 window.addEventListener('hashchange',fromHash);
 
 /* ===== L2 Onda ===== */
-var S={z3:.14,modo:0,rpm:1404,spO:.1,r:2.13,spM:.1,fr:11.7,esc:0,mec:0,z:.14,fn:5.5};
+var S={vEt:.1,vTR:1,vEsc:1,vTop:.25,vLib:.25,z3:.14,modo:0,rpm:1404,spO:.1,r:2.13,spM:.1,fr:11.7,esc:0,mec:0,z:.14,fn:5.5};
 var NH=8,PH=[0,.9,2.1,.4,1.7,2.8,1.1,.3];
 function yOnda(t,fe){var s=0;for(var n=1;n<=NH;n++)s+=Math.sin(PI2*n*fe*t+PH[n-1])/n;return s}
 $('rpm').addEventListener('input',function(e){S.rpm=+e.target.value;updRpm()});
@@ -277,7 +280,7 @@ function updR(){$('rrv').textContent=fmt(S.r,2);var r=S.r;
 texv('vTR1',['r_{prot}&=\\frac{11.7}{5.5}=2.13','r&='+fx(r,2)].concat(ZS.map(function(z){return 'TR_{\\zeta='+z[0]+'}&='+fx(one(r,1,z[0]).m,2)})));
 nums($('nTR1'),ZS.map(function(z){var v=one(r,1,z[0]).m;return[fmt(v,2),'TR con ζ = '+z[0],v>1?'warn':'good']}).concat([[fmt(r*5.5,1)+' Hz','f si fn = 5.5 Hz']]));draw(0,true)}
 chips($('zChips'),[['ζ = 0.05',.05],['ζ = 0.14',.14],['ζ = 0.5',.5]],function(it){return S.z3===it[1]},function(it){S.z3=it[1]});
-function drawRig3(t){var A=setup($('cvRig3')),c=A.c,so=one(S.r,1,S.z3),fv=.8,Ab=16,gy=A.h-34,mc=gy-150,ph=PI2*fv*t,a=Math.min(90,Ab*so.m);
+function drawRig3(t){var A=setup($('cvRig3')),c=A.c,so=one(S.r,1,S.z3),fv=S.r*5.5*S.vEt,Ab=16,gy=A.h-34,mc=gy-150,ph=PI2*fv*t,a=Math.min(90,Ab*so.m);
 var bw=Math.min(130,A.w*.28),R=rig(c,{x:14+bw/2+14,w:bw,gy:gy,yb:Ab*Math.sin(ph),m1:null,klab:'k c',m2:{yc:mc,d:a*Math.sin(ph+so.p),lab:'m'}});
 var xs=R.r+10,xe=A.w-10,pps=(xe-xs)/(3/fv);traceGrid(c,xs,xe,24,gy+10,pps,1/fv,function(k){return k+' T'});
 restLine(c,xs,xe,gy);restLine(c,xs,xe,mc);
@@ -293,7 +296,7 @@ ZS.forEach(function(z){var v=one(S.r,1,z[0]).m;A.c.fillStyle=css(z[1]);A.c.begin
 A.c.fillStyle=css('--warn');A.c.font='600 '+F(13)+'px '+css('--body');A.c.textAlign='left';A.c.fillText('Amplifica',ax.P.l+8,ax.P.t+16);A.c.fillStyle=css('--accent');A.c.fillText('Aísla',ax.P.l+ax.W-50,ax.Y(1)+18)}
 
 /* ===== L5 Modos ===== */
-chips($('spModos'),[['×0.05',.05],['×0.1',.1],['×0.25',.25]],function(it){return S.spM===it[1]},function(it){S.spM=it[1];updM()});
+chips($('spModos'),[['×0.05',.05],['×0.1',.1],['×0.25',.25],['Tiempo real',1]],function(it){return S.spM===it[1]},function(it){S.spM=it[1];updM()});
 function updM(){$('fModos').textContent='En pantalla: modo 1 a '+fmt(mo.f1*S.spM,2)+' Hz y modo 2 a '+fmt(mo.f2*S.spM,2)+' Hz. Amplitud exagerada.'}
 texv('vModos',['f_1&='+fx(mo.f1,2)+'\\ \\text{Hz},\\quad \\frac{x_1}{x_2}='+fx(mo.s1[0],3),'f_2&='+fx(mo.f2,2)+'\\ \\text{Hz},\\quad \\frac{x_2}{x_1}='+fx(mo.s2[1],3),'f_{cel}&=\\frac{1}{2\\pi}\\sqrt{\\frac{535}{0.417}}='+fx(Math.sqrt(535/.417)/PI2,1)+'\\ \\text{Hz}','f_{caja}&=\\frac{1}{2\\pi}\\sqrt{\\frac{7464}{0.308}}='+fx(Math.sqrt(7464/.308)/PI2,1)+'\\ \\text{Hz}']);
 function spring(c,x,y0,y1,coils,wd,col){c.save();c.strokeStyle=col;c.lineWidth=2;c.beginPath();c.moveTo(x,y0);var L=y1-y0,n=coils*2;c.lineTo(x,y0+L*.1);for(var i=1;i<=n;i++){c.lineTo(x+(i%2?wd:-wd),y0+L*.1+L*.8*i/(n+1))}c.lineTo(x,y0+L*.9);c.lineTo(x,y1);c.stroke();c.restore()}
@@ -343,7 +346,7 @@ line(A.c,[[ax.P.l,ax.Y(1)],[ax.P.l+ax.W,ax.Y(1)]],css('--muted'),1.2,[5,4]);
 [[5.6,'baches'],[11.7,'ralentí']].forEach(function(m){var x=ax.X(m[0]);line(A.c,[[x,ax.P.t],[x,ax.P.t+ax.H]],css('--muted'),1,[2,4]);A.c.fillStyle=css('--muted');A.c.font='500 '+F(12)+'px '+css('--body');A.c.textAlign='center';A.c.fillText(m[1],x,ax.P.t+ax.H-6)});
 var v=solve(S.fr).m;A.c.fillStyle=css('--accent');A.c.beginPath();A.c.arc(ax.X(S.fr),ax.Y(Math.max(.002,v)),6,0,PI2);A.c.fill();
 /* soporte con rastro */
-var B=setup($('cvOndas')),c=B.c,f=S.fr,so=solve(f),fv=.8,Ab=18,gy=B.h-44,m1c=gy-118,m2c=gy-292,ph=PI2*fv*t;
+var B=setup($('cvOndas')),c=B.c,f=S.fr,so=solve(f),fv=f*S.vTR,Ab=18,gy=B.h-44,m1c=gy-118,m2c=gy-292,ph=PI2*fv*t;
 var a2=Math.min(80,Ab*so.m),a1=Ab*so.m1;
 var bw=Math.min(130,B.w*.28),R=rig(c,{x:14+bw/2+14,w:bw,gy:gy,yb:Ab*Math.sin(ph),m1:{yc:m1c,d:a1*Math.sin(ph+so.p1)},m2:{yc:m2c,d:a2*Math.sin(ph+so.p)}});
 var xs=R.r+10,xe=B.w-10,pps=(xe-xs)/(3/fv);
@@ -380,7 +383,7 @@ c.fillStyle=css('--ink');c.font='700 '+F(17)+'px '+css('--body');c.textAlign='le
 c.fillStyle=css(b[2]);c.fillRect(Math.min(x0,x1),y,Math.abs(x1-x0),bh);
 c.font='700 '+F(20)+'px '+css('--mono');var lab=(b[1]>0?'+':'')+Math.round(b[1])+' %';c.textAlign=b[1]>=0?'left':'right';
 var lx=x1+(b[1]>=0?8:-8);if(b[1]>=0&&lx+90>A.w){lx=x1-8;c.textAlign='right';c.fillStyle=css('--panel')}c.fillText(lab,lx,y+bh/2+7)})}
-function drawEsc(t){var e=ESC[S.esc],A=setup($('cvEsc')),c=A.c,fe=e[1]?e[1]/120:5.6,sl=.8/fe,td=t*sl,fv=.8;
+function drawEsc(t){var e=ESC[S.esc],A=setup($('cvEsc')),c=A.c,fe=e[1]?e[1]/120:5.6,sl=S.vEsc,td=t*sl,fv=fe*S.vEsc;
 function sig(tt,fn){if(!e[1]){var s=fn(5.6);return s.m*Math.sin(PI2*5.6*tt+s.p)}var v=0;for(var n=1;n<=6;n++){var s=fn(n*fe);v+=s.m/n*Math.sin(PI2*n*fe*tt+PH[n-1]+s.p)}return v}
 var base=function(tt){return sig(tt,function(){return{m:1,p:0}})},rigS=function(tt){return sig(tt,function(f){return one(f,FNR,ZR)})},ourS=function(tt){return sig(tt,solve)};
 var Ab=12,bw=Math.min(120,A.w*.26),cx=14+bw/2+14,xs=cx+bw/2+10,xe=A.w-10,pps=(xe-xs)/(3/fv),cap=function(v){return Math.max(-70,Math.min(70,v))};
@@ -442,14 +445,14 @@ var t1=Td,t2=2*Td,y1=x(t1),y2=x(t2),c=A.c;c.fillStyle=css('--ink');c.font='600 '
 var ya=ax.Y(1.05);line(c,[[ax.X(t1*1000),ya],[ax.X(t2*1000),ya]],css('--ink'),1.5);[t1,t2].forEach(function(t){line(c,[[ax.X(t*1000),ya-6],[ax.X(t*1000),ya+6]],css('--ink'),1.5)});
 c.fillText('Td = '+fmt(Td*1000,0)+' ms',ax.X(1.5*Td*1000),ya-8)}
 
-function drawRig16(t){var A=setup($('cvRig16')),c=A.c,z=S.z,fn=S.fn,wn=PI2*fn,wd=wn*Math.sqrt(1-z*z),Td=PI2/wd,sl=.25,amp=60,gy=A.h-30,m2c=gy-150;
+function drawRig16(t){var A=setup($('cvRig16')),c=A.c,z=S.z,fn=S.fn,wn=PI2*fn,wd=wn*Math.sqrt(1-z*z),Td=PI2/wd,sl=S.vLib,amp=60,gy=A.h-30,m2c=gy-150;
 var hold=1,Tl=hold+Math.max(4*Td,6/(z*wn>0?z*wn:1)>12?12:6/(z*wn))/sl,s=t%Tl;
 function x(sd){var r=(sd-hold)*sl;if(r<0)return -amp;return -amp*Math.exp(-z*wn*r)*(Math.cos(wd*r)+z*wn/wd*Math.sin(wd*r))}
 var bw=Math.min(130,A.w*.28),R=rig(c,{x:14+bw/2+14,w:bw,gy:gy,yb:0,m1:null,m2:{yc:m2c,d:x(s)}});
 var xs=R.r+10,xe=A.w-10,win=3*Td/sl+hold,pps=(xe-xs)/win;
 traceGrid(c,xs,xe,24,gy,pps,Td/sl,function(k){return k+' Td'});restLine(c,xs,xe,m2c);
 trace(c,xs,xe,m2c,pps,function(tau){var q=s-tau;return x(((q%Tl)+Tl)%Tl)},css('--accent'),3);
-c.fillStyle=css('--muted');c.font='500 '+F(14)+'px '+css('--body');c.textAlign='right';c.fillText(s<hold?'Jalado hacia abajo…':'¡Suelta! Cámara lenta ×0.25',xe,A.h-8)}
+c.fillStyle=css('--muted');c.font='500 '+F(14)+'px '+css('--body');c.textAlign='right';c.fillText(s<hold?'Jalado hacia abajo…':(S.vLib<1?'¡Suelta! Cámara lenta ×'+S.vLib:'¡Suelta! Tiempo real'),xe,A.h-8)}
 /* ===== L8 Topes: oscilación máxima contra el espacio de cada etapa ===== */
 /* Espacios (mm) sobre la posición de reposo con carga. Etapa 1: 3 mm hasta la cabeza del tornillo (arriba) y ~9 mm hasta que el buje se aplasta (abajo, 50 % de 20 mm menos 0.95 mm de deflexión estática).
    Etapa 2: tope central con 18 mm libres menos 7.6 mm de deflexión estática de los cables = 10.4 mm (abajo); arriba solo el cordón, con holgura supuesta de 30 mm. */
@@ -473,18 +476,27 @@ $('tfv').textContent=fmt(S.tf,1)+' Hz';$('tyv').textContent=fmt(S.ty,S.ty<10?2:1
 var yd=S.ty<10?2:0;texv('vTope',['U_1&='+fx(H.u1,3)+'\\,('+fx(S.ty,yd)+')='+fx(U1,U1<10?2:0)+'\\ '+(t1?'>':'<')+'\\ '+GAP.u1up+'\\ \\text{mm}','U_2&='+fx(H.u2,2)+'\\,('+fx(S.ty,yd)+')='+fx(U2,U2<10?2:0)+'\\ '+(t2?'>':'<')+'\\ '+fx(GAP.u2dn,1)+'\\ \\text{mm}','Y_{máx}&=\\frac{'+fx(GAP.u2dn,1)+'}{'+fx(u2pk,2)+'}='+fx(GAP.u2dn/u2pk,1)+'\\ \\text{mm}\\ \\text{a}\\ '+fx(u2pf,1)+'\\ \\text{Hz}']);
 nums($('nTope'),[[(t1||t2)?'Sí topa':'No topa','Según el cálculo lineal',(t1||t2)?'warn':'good'],[fmt(U2,U2<10?1:0)+' mm','Etapa 2 · espacio 10.4 mm',t2?'warn':'good'],[fmt(U1,U1<10?2:0)+' mm','Etapa 1 · espacio 3 mm',t1?'warn':'good'],[fmt(GAP.u2dn/u2pk,1)+' mm','Bache máximo sin topar','']]);
 resetTS();drawTopBar()}
-function drawTopBar(){var A=setup($('cvTopBar')),c=A.c,n=TC.length,top=26,bot=A.h-30,lx=190,rx=A.w-16,xs=function(v){return lx+(rx-lx)*Math.min(v,1.5)/1.5};
-c.font='500 '+F(12)+'px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';[0,.5,1,1.5].forEach(function(v){var x=xs(v);line(c,[[x,top-6],[x,bot]],css('--grid'),1);c.fillText(Math.round(v*100)+' %',x,bot+16)});
-line(c,[[xs(1),top-14],[xs(1),bot]],css('--warn'),2,[6,4]);c.fillStyle=css('--warn');c.textAlign='left';c.fillText('Tope (100 %)',xs(1)+6,top-4);
-var bh=(bot-top)/n;TC.forEach(function(it,i){var H=relH(it[1]),p1=H.u1*it[2]/GAP.u1up,p2=H.u2*it[2]/GAP.u2dn,y=top+i*bh+bh*.18,h=bh*.28;
-c.fillStyle=css('--ink');c.font='600 '+F(13)+'px '+css('--body');c.textAlign='right';var nm=it[0].split(' · ')[0];c.fillText(nm,lx-10,y+h+4);
-[[p1,'--c2'],[p2,'--accent']].forEach(function(q,k){var yy=y+k*(h+4);c.fillStyle=css(q[0]>1?'--warn':q[1]);c.fillRect(xs(0),yy,Math.max(2,xs(q[0])-xs(0)),h);c.fillStyle=css(q[0]>1.3?'--panel':'--ink');c.textAlign='left';c.font='600 '+F(13)+'px '+css('--mono');c.fillText(Math.round(q[0]*100)+' %'+(q[0]>1.5?' ▶':''),Math.min(xs(q[0])+6,rx-72),yy+h-3)})})}
+/* Una sola gráfica, la del caso elegido (frecuencia y amplitud de los controles). Barras y escala se animan. */
+var TB={p1:0,p2:0,hi:150};
+function drawTopBar(){var A=setup($('cvTopBar')),c=A.c,H=relH(S.tf),t1=H.u1*S.ty/GAP.u1up*100,t2=H.u2*S.ty/GAP.u2dn*100,thi=Math.max(150,Math.ceil(Math.max(t1,t2)*1.12/50)*50),k=.12;
+TB.p1+=(t1-TB.p1)*k;TB.p2+=(t2-TB.p2)*k;TB.hi+=(thi-TB.hi)*k;
+var P={l:150,r:30,t:62,b:40},W=A.w-P.l-P.r,X=function(v){return P.l+Math.min(v,TB.hi)/TB.hi*W},step=TB.hi>600?200:TB.hi>300?100:50;
+var cs=TC.filter(function(it){return Math.abs(S.tf-it[1])<.01&&Math.abs(S.ty-it[2])<.001})[0];
+c.fillStyle=css('--ink');c.font='700 '+F(20)+'px '+css('--display');c.textAlign='left';c.fillText((cs?cs[0].split(' · ')[0]+' · ':'')+fmt(S.tf,1)+' Hz · '+fmt(S.ty,S.ty<10?2:0)+' mm',4,26);
+c.font='500 '+F(13)+'px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';
+for(var v=0;v<=TB.hi+.1;v+=step){line(c,[[X(v),P.t-8],[X(v),A.h-P.b]],css('--grid'),1);c.fillText(Math.round(v)+' %',X(v),A.h-P.b+20)}
+line(c,[[X(100),P.t-16],[X(100),A.h-P.b]],css('--warn'),2.5,[7,5]);c.fillStyle=css('--warn');c.textAlign='left';c.font='600 '+F(14)+'px '+css('--mono');c.fillText('Tope',X(100)+6,P.t-14);
+var rh=(A.h-P.t-P.b)/2,bh=Math.min(rh*.55,70);
+[['Etapa 1','bujes · 3 mm',TB.p1,'--c2'],['Etapa 2','cables · 10.4 mm',TB.p2,'--accent']].forEach(function(b,i){var y=P.t+i*rh+(rh-bh)/2,over=b[2]>100;
+c.fillStyle=css('--ink');c.font='700 '+F(17)+'px '+css('--body');c.textAlign='left';c.fillText(b[0],4,y+bh/2);c.fillStyle=css('--muted');c.font='500 '+F(12)+'px '+css('--body');c.fillText(b[1],4,y+bh/2+20);
+c.fillStyle=css(over?'--warn':b[3]);c.fillRect(X(0),y,Math.max(2,X(b[2])-X(0)),bh);
+var lab=Math.round(b[2])+' %',lx=X(b[2])+8;c.font='700 '+F(20)+'px '+css('--mono');c.textAlign='left';c.fillStyle=css(over?'--warn':'--ink');if(lx+90>A.w){lx=X(b[2])-8;c.textAlign='right';c.fillStyle=css('--panel')}c.fillText(lab,lx,y+bh/2+7)})}
 function stepTS(dt){var w=PI2*S.tf,Y=S.ty/1000,y=Y*Math.sin(w*TS.t),yd=Y*w*Math.cos(w*TS.t),kc=2e5,cc=150,u1=TS.x1-y,ud1=TS.v1-yd,u2=TS.x2-TS.x1,ud2=TS.v2-TS.v1,F1=0,F2=0,h=false;
 if(u1>GAP.u1up/1000){F1=-kc*(u1-GAP.u1up/1000)-cc*ud1;h=true}else if(u1<-GAP.u1dn/1000){F1=-kc*(u1+GAP.u1dn/1000)-cc*ud1;h=true}
 if(u2<-GAP.u2dn/1000){F2=-kc*(u2+GAP.u2dn/1000)-cc*ud2;h=true}else if(u2>GAP.u2up/1000){F2=-kc*(u2-GAP.u2up/1000)-cc*ud2;h=true}
 var a1=(-K1*u1-C1*ud1+K2*u2+C2*ud2+F1-F2)/M1,a2=(-K2*u2-C2*ud2+F2)/M2;
 TS.v1+=a1*dt;TS.v2+=a2*dt;TS.x1+=TS.v1*dt;TS.x2+=TS.v2*dt;TS.t+=dt;return h}
-function drawTope(t){var A=setup($('cvTope')),c=A.c;if(TS.last===null)TS.last=t;var adv=Math.min(.02,Math.max(0,t-TS.last))*.25;TS.last=t;
+function drawTope(t){var A=setup($('cvTope')),c=A.c;if(TS.last===null)TS.last=t;var adv=Math.min(.02,Math.max(0,t-TS.last))*S.vTop;TS.last=t;
 var hit=false,nst=Math.ceil(adv/5e-5);for(var i=0;i<nst;i++)if(stepTS(adv/nst))hit=true;
 var y=S.ty*Math.sin(PI2*S.tf*TS.t),u1=TS.x1*1000-y,u2=(TS.x2-TS.x1)*1000;if(TS.t>.6){TS.max1=Math.max(TS.max1,Math.abs(u1));TS.max2=Math.max(TS.max2,Math.abs(u2));if(hit)TS.hit=true}
 if(adv>0)TS.hist.unshift([TS.t,u1,u2,hit]);var Tw=Math.max(3/S.tf,.4);while(TS.hist.length>2&&TS.hist[0][0]-TS.hist[TS.hist.length-1][0]>Tw)TS.hist.pop();
@@ -509,6 +521,7 @@ var T0=performance.now();function now(){return STARTED?(performance.now()-T0)/10
 /* Dentro de la presentación espera a que termine la transición de lámina (mensaje deckStart). */
 window.addEventListener('message',function(e){if(e.data&&e.data.deckStart&&!STARTED){STARTED=true;T0=performance.now()}});
 function loop(){if(!reduce)draw(now());requestAnimationFrame(loop)}
+['Et','TR','Esc','Top','Lib'].forEach(velChips);
 updRpm();updR();updM();updF();updE();updMec();updL();updT();fromHash();
 window.addEventListener('resize',function(){draw(now(),true)});
 if(window.matchMedia)window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){draw(now(),true)});
