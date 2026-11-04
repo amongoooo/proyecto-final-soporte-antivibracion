@@ -369,7 +369,7 @@ if(u.cord){n.position.y=d[0];n.scale.y=(79+d[2]-d[0]+exS*246)/79;return}
 var P0=pose(u.stage,0,(u.z0||0)*SC);
 n.position.y=P0.y+e;n.position.z=P0.z;n.rotation.x=u.stage?PO[u.stage].th:0})}
 function place(id,x,y,txt){var el=$(id);if(el.hidden)return;LBL.set(x,y,0).project(cam);el.textContent=txt;el.style.left=((LBL.x+1)/2*host.clientWidth)+'px';el.style.top=((1-LBL.y)/2*host.clientHeight)+'px'}
-function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;
+function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;if(!STARTED3)dt=0;
 exS+=(S.ex-exS)*Math.min(1,dt*9);
 var p=PHONES[S.phone],sdt=dt*S.sp,cmp=S.compare&&S.dsg!==0;
 if(S.mode!=='stop')th+=sdt*2*Math.PI*S.f;
@@ -395,6 +395,8 @@ if(P[h]){S.ex=.25;select(h);setTimeout(function(){var bx=new T.Box3();meshes.for
 var c=bx.getCenter(new T.Vector3()),z=bx.getSize(new T.Vector3()),d=Math.max(z.x,z.y,z.z);orb.ty=c.y-exS*150;orb.tr=Math.max(420,d*5.5)-exS*620},700)}
 else if(h==='explotado'){S.ex=1;select(null);orb.ty=170;orb.tr=900}else if(h==='ensamble'){S.ex=0;select(null);orb.ty=92;orb.tr=760}else return;
 $('explode').value=S.ex;refresh()}
+var STARTED3=!document.documentElement.classList.contains('embed');
+window.addEventListener('message',function(e){if(e.data&&e.data.deckStart)STARTED3=true});
 window.addEventListener('hashchange',fromHash);fromHash();
 requestAnimationFrame(frame);
 })();
