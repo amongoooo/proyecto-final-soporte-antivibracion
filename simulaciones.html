@@ -52,12 +52,12 @@ output{font:500 13px/1 var(--mono);text-align:right}
 .fine{margin:0;font-size:13px;color:var(--muted)}
 footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
-.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding-block:0}.embed body{overflow:hidden}
+.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px}.embed .side{gap:12px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
 </style>
 
-<script>try{if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
+<script>try{var tm=location.search.match(/theme=(dark|light)/);if(tm)document.documentElement.setAttribute("data-theme",tm[1]);if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
 <div class="wrap">
 <header>
 <div><h1>Simulaciones del soporte</h1><p class="sub">Versión C: cables a 100 mm y guía de láminas. Cada pestaña es una lámina de la presentación. Mueve los controles para verlo en vivo.</p></div>
@@ -208,7 +208,7 @@ function pct(r){var v=Math.round((r-1)*100);return(v>0?'+':v<0?'−':'')+Math.ab
 /* ===== Pestañas ===== */
 var panels=[].slice.call(document.querySelectorAll('[role=tabpanel]')),cur=0;
 panels.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.id='t-'+p.id;b.setAttribute('aria-controls',p.id);b.innerHTML='<b>'+p.dataset.l+'</b>'+p.dataset.name;b.onclick=function(){show(i,true)};$('tabs').appendChild(b)});
-function fitEmbed(){var r=document.documentElement;if(!r.classList.contains('embed'))return;var w=document.querySelector('.wrap'),k=1;
+function fitEmbed(){return;var r=document.documentElement;var w=document.querySelector('.wrap'),k=1;
 for(var it=0;it<3;it++){w.style.transform='';w.style.width=(100/k)+'%';var h=w.scrollHeight;k=Math.min(1,window.innerHeight/h);if(k>.98)k=1}
 w.style.transformOrigin='0 0';w.style.width=(100/k)+'%';w.style.transform=k<1?'scale('+k+')':'';draw(0,true)}
 window.addEventListener('resize',function(){setTimeout(fitEmbed,50)});
