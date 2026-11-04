@@ -57,7 +57,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
 .embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(520px,34%)}
 /* En la presentación: solo lo que se lee de lejos */
-.embed .fine{display:none}.embed #p-mecido{grid-template-columns:minmax(0,1fr)}.embed #p-mecido .side{display:none}.embed .side>.card{gap:8px}.embed .nums>.num:nth-child(n+3){display:none}.embed .tex mjx-container[display="true"]{margin:.35em 0!important}
+.embed .fine{display:none}.embed .side>.card{gap:8px}.embed .nums>.num:nth-child(n+3){display:none}.embed .tex mjx-container[display="true"]{margin:.35em 0!important}
 html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-box}.embed .panel{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}.embed .viz{min-height:0}.embed .viz canvas,.embed .fig canvas{flex:1 1 0;height:0;min-height:60px}.embed .duo{flex:1;min-height:0}.embed .fig{min-height:0}.embed .side>.card:last-child{flex:1}.embed .card h3{font-size:28px}.embed .tex{font-size:25px}.embed .vals.mj{font-size:24px}.embed #vMec{font-size:20px}.embed button{font-size:22px;padding:9px 14px;min-height:46px}.embed .ctl,.embed label.range{font-size:22px}.embed label.range{grid-template-columns:130px 1fr 110px}.embed .ctl{grid-template-columns:130px 1fr}.embed output{font-size:21px}.embed input[type=range]{height:34px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:8px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
@@ -106,8 +106,7 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <canvas id="cvModos" height="420" aria-label="Animación del modo elegido con el rastro de cada masa"></canvas>
 <div class="key"><span><i style="background:var(--c2)"></i>Caja x₁</span><span><i style="background:var(--accent)"></i>Celular x₂</span></div></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ \det\!\left(K-\omega^2M\right)=0 \]</div>
-<div class="tex">\[ M=\begin{bmatrix}0.308&0\\0&0.417\end{bmatrix}\text{ kg}\quad K=\begin{bmatrix}7999&-535\\-535&535\end{bmatrix}\text{ N/m} \]</div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ f=\frac{1}{2\pi}\sqrt{\frac{k}{m}} \]</div>
 <div class="vals mj" id="vModos"></div></div>
 <div class="card"><h3>Controles</h3><div class="ctl"><span>Modo</span><div class="chips" id="modoChips"></div></div><div class="ctl"><span>Velocidad</span><div class="chips" id="spModos"></div></div><p class="fine" id="fModos"></p></div>
 </div>
@@ -121,7 +120,7 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <canvas id="cvOndas" height="440" aria-label="El soporte moviéndose con el rastro del manubrio, la caja y el celular"></canvas>
 <div class="key"><span><i style="background:var(--muted)"></i>Manubrio y(t)</span><span><i style="background:var(--c2)"></i>Caja x₁(t)</span><span><i style="background:var(--accent)"></i>Celular x₂(t)</span></div></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ \left(K-\omega^2M+i\omega C\right)\begin{bmatrix}X_1\\X_2\end{bmatrix}=\begin{bmatrix}k_1+i\omega c_1\\0\end{bmatrix}Y \]</div><div class="tex">\[ TR=\left|\frac{X_2}{Y}\right| \]</div><div class="vals mj" id="vTR"></div></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ TR=\left|\frac{X_2}{Y}\right| \]</div><div class="vals mj" id="vTR"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="ff"><span>Frecuencia</span><input id="ff" type="range" min="0" max="1" step="0.001"><output id="ffv"></output></label>
 <div class="ctl"><span>Caso</span><div class="chips" id="fChips"></div></div><div class="ctl"><span>Velocidad</span><div class="chips" id="velTR"></div></div><div class="nums" id="nTR"></div></div>
 </div>
@@ -298,7 +297,7 @@ A.c.fillStyle=css('--warn');A.c.font='600 '+F(13)+'px '+css('--body');A.c.textAl
 /* ===== L5 Modos ===== */
 chips($('spModos'),[['×0.05',.05],['×0.1',.1],['×0.25',.25],['Tiempo real',1]],function(it){return S.spM===it[1]},function(it){S.spM=it[1];updM()});
 function updM(){$('fModos').textContent='En pantalla: modo 1 a '+fmt(mo.f1*S.spM,2)+' Hz y modo 2 a '+fmt(mo.f2*S.spM,2)+' Hz. Amplitud exagerada.'}
-texv('vModos',['f_1&='+fx(mo.f1,2)+'\\ \\text{Hz},\\quad \\frac{x_1}{x_2}='+fx(mo.s1[0],3),'f_2&='+fx(mo.f2,2)+'\\ \\text{Hz},\\quad \\frac{x_2}{x_1}='+fx(mo.s2[1],3),'f_{cel}&=\\frac{1}{2\\pi}\\sqrt{\\frac{535}{0.417}}='+fx(Math.sqrt(535/.417)/PI2,1)+'\\ \\text{Hz}','f_{caja}&=\\frac{1}{2\\pi}\\sqrt{\\frac{7464}{0.308}}='+fx(Math.sqrt(7464/.308)/PI2,1)+'\\ \\text{Hz}']);
+texv('vModos',['f_{cel}&=\\frac{1}{2\\pi}\\sqrt{\\frac{535}{0.417}}='+fx(Math.sqrt(535/.417)/PI2,1)+'\\ \\text{Hz}','f_{caja}&=\\frac{1}{2\\pi}\\sqrt{\\frac{7464}{0.308}}='+fx(Math.sqrt(7464/.308)/PI2,1)+'\\ \\text{Hz}','\\text{Modo 1}&='+fx(mo.f1,1)+'\\ \\text{Hz},\\quad \\text{Modo 2}='+fx(mo.f2,1)+'\\ \\text{Hz}']);
 function spring(c,x,y0,y1,coils,wd,col){c.save();c.strokeStyle=col;c.lineWidth=2;c.beginPath();c.moveTo(x,y0);var L=y1-y0,n=coils*2;c.lineTo(x,y0+L*.1);for(var i=1;i<=n;i++){c.lineTo(x+(i%2?wd:-wd),y0+L*.1+L*.8*i/(n+1))}c.lineTo(x,y0+L*.9);c.lineTo(x,y1);c.stroke();c.restore()}
 function damper(c,x,y0,y1,col){c.save();c.strokeStyle=col;c.lineWidth=2;var m=(y0+y1)/2;c.beginPath();c.moveTo(x,y0);c.lineTo(x,m-6);c.moveTo(x-9,m-6);c.lineTo(x+9,m-6);c.moveTo(x-12,m-14);c.lineTo(x-12,m+10);c.lineTo(x+12,m+10);c.lineTo(x+12,m-14);c.moveTo(x,m+10);c.lineTo(x,y1);c.stroke();c.restore()}
 /* ---- Resorte con rastro (estilo osciloscopio) ---- */
@@ -504,13 +503,15 @@ if(adv>0)TS.hist.unshift([TS.t,u1,u2,hit]);var Tw=Math.max(3/S.tf,.4);while(TS.h
 var sc=Math.min(3.2,45/Math.max(S.ty,1)),gy=A.h-40,bw=Math.min(120,A.w*.22),x=16+bw/2+14,m1c=gy-120,m2c=gy-260,ink=css('--ink');
 var R=rig(c,{x:x,w:bw,gy:gy,yb:y*sc,m1:{yc:m1c,d:(u1+y)*sc},m2:{yc:m2c,d:(u2+u1+y)*sc,lab:'m₂ celular'}});
 c.strokeStyle=css('--warn');c.lineWidth=3;[[m1c-15-GAP.u1up*sc,'tornillo'],[m2c+22+(GAP.u2dn)*sc-y*0,'tope']].forEach(function(q,k){var yy=k?m2c+22+GAP.u2dn*sc-(u1+y)*sc:m1c-15-GAP.u1up*sc-y*sc;c.beginPath();c.moveTo(x-bw/2-10,yy);c.lineTo(x-bw/2+6,yy);c.moveTo(x+bw/2-6,yy);c.lineTo(x+bw/2+10,yy);c.stroke()});
-var xs=R.r+16,xe=A.w-10,lane=function(top,bot,lim,vals,col,lab,lo,hi,amp){var mid=(top+bot)/2,rng=Math.max(lo,Math.min(amp,hi))*1.25,Ys=function(v){return mid-v/rng*(bot-top)/2};
+var xs=R.r+16,xe=A.w-10,lane=function(top,bot,lim,vals,col,lab,lo,hi,amp,rng){var mid=(top+bot)/2,Ys=function(v){return mid-v/rng*(bot-top)/2};
 line(c,[[xs,mid],[xe,mid]],css('--line'),1,[3,5]);c.fillStyle=css('--warn');c.font='500 '+F(12)+'px '+css('--mono');c.textAlign='right';
 [[hi,'+'+fmt(hi,1)],[-lo,'−'+fmt(lo,1)]].forEach(function(q){if(Math.abs(q[0])<=rng){line(c,[[xs,Ys(q[0])],[xe,Ys(q[0])]],css('--warn'),1.5,[6,4]);c.fillText('tope '+q[1]+' mm',xe,Ys(q[0])+(q[0]>0?-5:14))}});
 c.save();c.strokeStyle=col;c.lineWidth=2.6;c.beginPath();var t0=TS.hist.length?TS.hist[0][0]:0;TS.hist.forEach(function(hp,i){var xx=xs+(t0-hp[0])/Tw*(xe-xs),yy=Ys(Math.max(-rng,Math.min(rng,vals(hp))));i?c.lineTo(xx,yy):c.moveTo(xx,yy)});c.stroke();c.restore();
 c.fillStyle=css('--ink');c.font='700 '+F(15)+'px '+css('--display');c.textAlign='left';c.fillText(lab,xs+4,top+14)};
-lane(20,A.h*.46,0,function(h){return h[2]},css('--accent'),'Etapa 2: U₂ = x₂ − x₁',GAP.u2dn,GAP.u2up,S.ty*relH(S.tf).u2);
-lane(A.h*.54,A.h-34,0,function(h){return h[1]},css('--c2'),'Etapa 1: U₁ = x₁ − y',GAP.u1dn,GAP.u1up,S.ty*relH(S.tf).u1);
+/* Misma escala (mm por píxel) en las dos gráficas: cada una mide de alto lo que su rango; la de arriba es la mayor. */
+var HH=relH(S.tf),r2=Math.max(GAP.u2dn,Math.min(S.ty*HH.u2,GAP.u2up))*1.25,r1=Math.max(GAP.u1dn,Math.min(S.ty*HH.u1,GAP.u1up))*1.25;r2=Math.max(r2,r1*1.3);var av=A.h-34-20-28,h2=av*r2/(r1+r2);
+lane(20,20+h2,0,function(h){return h[2]},css('--accent'),'Etapa 2: U₂ = x₂ − x₁',GAP.u2dn,GAP.u2up,0,r2);
+lane(48+h2,A.h-34,0,function(h){return h[1]},css('--c2'),'Etapa 1: U₁ = x₁ − y',GAP.u1dn,GAP.u1up,0,r1);
 c.font='700 '+F(20)+'px '+css('--display');c.textAlign='right';c.fillStyle=css(TS.hit?'--warn':'--accent');c.fillText(TS.hit?'¡Topa! El golpe pasa directo al celular':'No topa: la etapa trabaja libre',xe,A.h-8)}
 
 /* ===== Bucle ===== */
