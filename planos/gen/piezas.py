@@ -59,7 +59,7 @@ BUJ_X, BUJ_Y = 58, 23.3
 
 
 def placa_base(sh, x, y, s, iso=True, isob=None, lat=True):
-    sh.header(x, y + 18, "1", "Placa base", "Impresa · PETG",
+    sh.header(x, y + 18, "1", "Placa base", "Por imprimir · PETG",
               "Cant. 1 · relleno 60 %%, 6 perímetros · ≈ %.0f g" % masa_petg(132 * 120 * 8 - 6 * 16 * 3.14, 0.6))
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-66, 66, 0, 8), (-66, 66, -60, 60), (-60, 60, 0, 8) if lat else None)
     F = View(sh, *of, s)
@@ -118,7 +118,7 @@ def placa_base(sh, x, y, s, iso=True, isob=None, lat=True):
 def bloque_v(sh, x, y, s, iso=True, isob=None):
     prof = [(22, 0), (12, 0), (0, 12), (-12, 0), (-22, 0), (-22, 22), (22, 22)]
     area = 44 * 22 - 24 * 12 / 2
-    sh.header(x, y + 18, "2", "Bloque en V", "Impresa · PETG",
+    sh.header(x, y + 18, "2", "Bloque en V", "Por imprimir · PETG",
               "Cant. 1 · relleno 80 %%, V hacia arriba, sin soportes · ≈ %.0f g" % masa_petg(area * 40, 0.8))
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-20, 20, 0, 22), (-20, 20, -22, 22), (-22, 22, 0, 22), mt=100)
     F = View(sh, *of, s)
@@ -169,7 +169,7 @@ def bloque_v(sh, x, y, s, iso=True, isob=None):
 # 3. Abrazadera en U (ficha)
 # =====================================================================
 def abrazadera(sh, x, y, s):
-    sh.header(x, y + 18, "3", "Abrazadera en U M5", "Comprar",
+    sh.header(x, y + 18, "3", "Abrazadera en U M5", "Por comprar",
               "Cant. 1 · acero zincado · 2 tuercas nyloc M5 y 2 arandelas")
     V = View(sh, x + 70 + 14 * s, y + 120 + 8 * s, s)
     R = 14
@@ -195,7 +195,7 @@ def abrazadera(sh, x, y, s):
 # 4. Buje de neopreno
 # =====================================================================
 def buje(sh, x, y, s, iso=True, isob=None):
-    sh.header(x, y + 18, "4", "Buje de neopreno", "Comprar",
+    sh.header(x, y + 18, "4", "Buje de neopreno", "Por comprar",
               "Cant. 4 · neopreno esponjoso, cortar de barra o tubo Ø16 × Ø5")
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-8, 8, 0, 20), (-8, 8, -8, 8), None, mt=106)
     F = View(sh, *of, s)
@@ -222,7 +222,7 @@ def buje(sh, x, y, s, iso=True, isob=None):
 # 5. Tornillo M4 x 50 + arandela + nyloc
 # =====================================================================
 def tornillo(sh, x, y, s):
-    sh.header(x, y + 18, "5", "Tornillo M4 × 50 cabeza baja", "Comprar",
+    sh.header(x, y + 18, "5", "Tornillo M4 × 50 cabeza baja", "Por comprar",
               "Cant. 4 · con arandela Ø12 × 1 y tuerca nyloc M4 · inox A2")
     V = View(sh, x + 60, y + 110, s)
     # dibujado acostado: cabeza a la izquierda
@@ -277,7 +277,7 @@ CAJA_BAR = [(u, v) for u in (-27, 27) for v in (-50, 50)]
 
 def caja(sh, x, y, s, iso=True, isob=None):
     vol = 132 * 120 * 10 - 97 * 39 * 6.6 + 2 * 14 * 8 * 40
-    sh.header(x, y + 18, "6", "Caja de m₁ con postes de guía", "Impresa · PETG",
+    sh.header(x, y + 18, "6", "Caja de m₁ con postes de guía", "Por imprimir · PETG",
               "Cant. 1 · relleno 60 %% · lleva el lastre (7) en la cavidad · ≈ %.0f g" % masa_petg(vol, 0.6))
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-66, 66, 0, 50), (-66, 66, -60, 60), None, mt=94)
     F = View(sh, *of, s)
@@ -340,7 +340,7 @@ def caja(sh, x, y, s, iso=True, isob=None):
 # 7. Lastre: solera de acero
 # =====================================================================
 def solera(sh, x, y, s, iso=True, isob=None):
-    sh.header(x, y + 18, "7", "Lastre: solera 1½\" × ¼\"", "Comprar",
+    sh.header(x, y + 18, "7", "Lastre: solera 1½\" × ¼\"", "Por comprar",
               "Cant. 1 · acero 1018, cortar a 96 mm · ≈ 182 g · pegar con epóxico en la caja")
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-48, 48, 0, 6.35), (-48, 48, -19.05, 19.05), None, mt=88)
     F = View(sh, *of, s)
@@ -367,7 +367,7 @@ def solera(sh, x, y, s, iso=True, isob=None):
 # 8. Tope central
 # =====================================================================
 def tope(sh, x, y, s, iso=True, isob=None):
-    sh.header(x, y + 18, "8", "Tope central", "Impresa · PETG",
+    sh.header(x, y + 18, "8", "Tope central", "Por imprimir · PETG",
               "Cant. 1 · base PETG · disco de goma Ø16 × 12 (comprar) pegado arriba")
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-8, 8, 0, 31), None, None, mt=96)
     F = View(sh, *of, s)
@@ -400,7 +400,7 @@ def barra(sh, x, y, s, sup=False, iso=True, isob=None):
     num = "11" if sup else "9"
     nombre = "Barra superior" if sup else "Barra inferior"
     col = PETG_P2 if sup else PETG_P1
-    sh.header(x, y + 18, num, nombre, "Impresa · PETG",
+    sh.header(x, y + 18, num, nombre, "Por imprimir · PETG",
               "Cant. 2 · imprimir acostada · %d huecos Ø1.2 para el cable · ≈ %.0f g c/u"
               % (len(holes), masa_petg(10 * 10 * L, 0.95)))
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-L / 2, L / 2, 0, 10), (-L / 2, L / 2, -5, 5), None, mt=108, g=100)
@@ -452,7 +452,7 @@ def barra(sh, x, y, s, sup=False, iso=True, isob=None):
 # 10. Cable
 # =====================================================================
 def cable(sh, x, y, s):
-    sh.header(x, y + 18, "10", "Cable de acero 7×7, 1/32\"", "Comprar",
+    sh.header(x, y + 18, "10", "Cable de acero 7×7, 1/32\"", "Por comprar",
               "Cant. 2 · inox 304, Ø0.8 · cortar 850 mm por cable · rematar con casquillo")
     V = View(sh, x + 60 + 54 * s, y + 96 + 44 * s, s)
     V.rect(-57, -5, 57, 5, "t")
@@ -485,7 +485,7 @@ SUP_ESC = [(u, v) for u in (-20, 20) for v in (-12, 12)]
 
 def placa_sup(sh, x, y, s, iso=True, isob=None):
     vol = 106 * 120 * 5 - 2 * 20 * 40 * 5 + 2 * 14 * 8 * 29
-    sh.header(x, y + 18, "12", "Placa superior con postes de guía", "Impresa · PETG",
+    sh.header(x, y + 18, "12", "Placa superior con postes de guía", "Por imprimir · PETG",
               "Cant. 1 · relleno 60 %%, 4 perímetros · ≈ %.0f g" % masa_petg(vol, 0.6))
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-53, 53, -29, 5), (-53, 53, -60, 60), (-60, 60, -29, 5), mt=90)
     F = View(sh, *of, s)
@@ -543,7 +543,7 @@ def placa_sup(sh, x, y, s, iso=True, isob=None):
 # 13. Lámina de fleje y detalle de la guía
 # =====================================================================
 def lamina(sh, x, y, s, iso=True, isob=None):
-    sh.header(x, y + 18, "13", "Lámina de fleje", "Comprar",
+    sh.header(x, y + 18, "13", "Lámina de fleje", "Por comprar",
               "Cant. 4 · fleje de acero para resorte 0.6 mm, cortar 14 × 50 · se pega en las ranuras")
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-25, 25, 0, 0.6), (-25, 25, -7, 7), None, mt=124, g=50)
     F = View(sh, *of, s)
@@ -601,7 +601,7 @@ def ranura_detalle(sh, x, y, s):
 # =====================================================================
 def escuadra(sh, x, y, s, iso=True, isob=None):
     t = math.radians(15)
-    sh.header(x, y + 18, "14", "Escuadra de 15°", "Impresa · PETG",
+    sh.header(x, y + 18, "14", "Escuadra de 15°", "Por imprimir · PETG",
               "Cant. 1 · relleno 60 % · imprimir de lado (sobre el perfil)")
     # lateral (Y-Z): pie horizontal y nervio inclinado 15° hacia atrás
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-28, 28, 0, 78), None, (-34, 26, 0, 78), mt=88)
@@ -654,7 +654,7 @@ def escuadra(sh, x, y, s, iso=True, isob=None):
 
 
 def respaldo(sh, x, y, s, iso=True, isob=None):
-    sh.header(x, y + 18, "15", "Respaldo", "Impresa · PETG",
+    sh.header(x, y + 18, "15", "Respaldo", "Por imprimir · PETG",
               "Cant. 1 · 84 × 120 × 4 · lleva 4 cojines de EVA (18) y la banda de silicón")
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-42, 42, 0, 120), None, None, mt=86)
     F = View(sh, *of, s)
@@ -687,7 +687,7 @@ def respaldo(sh, x, y, s, iso=True, isob=None):
 
 
 def repisa(sh, x, y, s, iso=True, isob=None):
-    sh.header(x, y + 18, "16", "Repisa con hueco USB", "Impresa · PETG",
+    sh.header(x, y + 18, "16", "Repisa con hueco USB", "Por imprimir · PETG",
               "Cant. 1 · relleno 60 %")
     prof = [(0, 0), (22, 0), (22, 6), (19, 6), (19, 3), (3, 3), (3, 12), (0, 12)]
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-25, 25, 0, 12), (-25, 25, 0, 22), (-22, 0, 0, 12), mt=100)
@@ -724,7 +724,7 @@ def repisa(sh, x, y, s, iso=True, isob=None):
 
 
 def mordaza(sh, x, y, s, iso=True, isob=None):
-    sh.header(x, y + 18, "17", "Mordaza con perilla M4", "Impresa · PETG",
+    sh.header(x, y + 18, "17", "Mordaza con perilla M4", "Por imprimir · PETG",
               "Cant. 2 (una y su espejo) · se desliza en la ranura del respaldo")
     prof = [(-28, 0), (3, 0), (3, 25), (-6, 25), (-6, 22), (0, 22), (0, 3), (-28, 3)]
     of, ot, ol, (fr, fb, lr, tb) = place(x, y, s, (-28, 3, 0, 25), None, (-20, 20, 0, 25), mt=96)

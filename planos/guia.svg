@@ -53,9 +53,9 @@ text{font-family:'Century Gothic','Segoe UI',Arial,sans-serif;fill:#15191d}
 <line x1="14" y1="740.7" x2="21" y2="740.7" stroke="#15191d" stroke-width="1"/>
 <line x1="1186" y1="740.7" x2="1179" y2="740.7" stroke="#15191d" stroke-width="1"/>
 <text x="20.0" y="38.0" class="hd" text-anchor="start" >13  Lámina de fleje</text>
-<rect x="20.0" y="45.0" width="70.0" height="19" rx="9.5" fill="#2a6fb0"/>
-<text x="55.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">COMPRAR</text>
-<text x="98.0" y="59.0" class="sb" text-anchor="start" >Cant. 4</text>
+<rect x="20.0" y="45.0" width="102.0" height="19" rx="9.5" fill="#2a6fb0"/>
+<text x="71.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">POR COMPRAR</text>
+<text x="130.0" y="59.0" class="sb" text-anchor="start" >Cant. 4</text>
 <text x="20.0" y="76.0" class="sb" text-anchor="start" >fleje de acero para resorte 0.6 mm, cortar 14 × 50</text>
 <text x="20.0" y="92.0" class="sb" text-anchor="start" >se pega en las ranuras</text>
 <rect x="68.00" y="144.00" width="300.00" height="3.60" rx="0.00" class="stl"/>
