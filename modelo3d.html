@@ -398,7 +398,7 @@ else if(h==='frenado'){/* Problema y solución: el soporte de 60 mm contra C con
 else if(h==='explotado'){S.ex=1;select(null);orb.ty=170;orb.tr=900}else if(h==='ensamble'){S.ex=0;select(null);orb.ty=108;orb.tr=720}else return;
 $('explode').value=S.ex;refresh()}
 var STARTED3=!document.documentElement.classList.contains('embed');
-window.addEventListener('message',function(e){if(e.data&&e.data.deckStart)STARTED3=true});
+window.addEventListener('message',function(e){if(!e.data)return;if(e.data.deckStart)STARTED3=true;if(e.data.view&&('#'+e.data.view)!==location.hash){try{history.replaceState(null,'','#'+e.data.view)}catch(x){}fromHash()}});
 window.addEventListener('hashchange',fromHash);fromHash();
 requestAnimationFrame(frame);
 })();
