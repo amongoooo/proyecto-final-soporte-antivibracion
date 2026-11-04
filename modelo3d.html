@@ -64,7 +64,7 @@ html,body{height:auto}
 .panel{border-left:0;border-top:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 }
 </style>
-<style>@media (max-width:860px){html.embed,html.embed body{height:100%}.embed .app{display:grid;height:100%}.embed .stage{height:100%;min-height:0}}</style>
+<style>.nopanel .views,.nopanel #note{display:none!important}@media (max-width:860px){html.embed,html.embed body{height:100%}.embed .app{display:grid;height:100%}.embed .stage{height:100%;min-height:0}}</style>
 <script>try{var tm=location.search.match(/theme=(dark|light)/);if(tm)document.documentElement.setAttribute("data-theme",tm[1]);if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
 <div class="app">
 <main class="stage">
