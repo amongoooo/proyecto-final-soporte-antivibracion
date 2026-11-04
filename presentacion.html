@@ -81,8 +81,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <section class="slide" data-who="Miguel Ángel Gonzales" data-sec="El problema">
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>La moto vibra en muchas frecuencias a la vez</h1>
-<p class="idea">De 11.7 Hz en ralentí hasta cientos de Hz con los armónicos, más los baches de 1 a 20 Hz. No sirve sintonizar a una sola frecuencia.</p>
-<div class="body"><div class="fit" data-vh="575"><iframe data-src="simulaciones.html?embed#onda" title="Onda del manubrio"></iframe></div></div>
+<div class="body"><div class="fit" data-vh="571"><iframe data-src="simulaciones.html?embed#onda" title="Onda del manubrio"></iframe></div></div>
 </section>
 
 <!-- 3 -->
@@ -122,7 +121,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>A 5.5 Hz se mece el celular; a 25.7 Hz, la caja</h1>
 <p class="idea">Corrección de la primera presentación: el cable es el resorte blando, y si k baja, fn baja. Por eso el cable da el modo lento.</p>
-<div class="body"><div class="fit" data-vh="546"><iframe data-src="simulaciones.html?embed#modos" title="Los dos modos"></iframe></div></div>
+<div class="body"><div class="fit" data-vh="592"><iframe data-src="simulaciones.html?embed#modos" title="Los dos modos"></iframe></div></div>
 </section>
 
 <!-- 6 -->
@@ -217,7 +216,7 @@ c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>Con los cables solos, al frenar el celular se inclina hasta el límite</h1>
 <p class="idea">Al frenar (eje Y, adelante y atrás) la inercia hace girar el piso del celular sobre los cables.</p>
-<div class="body"><div class="fit" data-vh="686"><iframe data-src="simulaciones.html?embed#mecido" title="Mecido al frenar"></iframe></div></div>
+<div class="body"><div class="fit" data-vh="728"><iframe data-src="simulaciones.html?embed#mecido" title="Mecido al frenar"></iframe></div></div>
 </section>
 
 <!-- 14 -->
@@ -297,7 +296,7 @@ slides.forEach(function(s){var w=s.querySelector('.who');if(w)w.textContent='Exp
 function fit(){var r=vp.getBoundingClientRect(),k=Math.min(r.width/1920,r.height/1080);deck.style.transform='translate(-50%,-50%) scale('+k+')'}
 function srcOf(f){var d=f.dataset.src,i=d.indexOf('#');return d.slice(0,i)+'&theme=light'+d.slice(i)}
 function fitFrames(sl){[].forEach.call(sl.querySelectorAll('.fit'),function(b){var f=b.querySelector('iframe'),bw=b.clientWidth,bh=b.clientHeight,vh=+b.dataset.vh;if(!bw||!bh)return;
-var sc=Math.min(1,bh/vh),vw=Math.max(1200,Math.round(bw/sc));sc=Math.min(sc,bw/vw);f.style.width=vw+'px';f.style.height=vh+'px';f.style.left=Math.max(0,(bw-vw*sc)/2)+'px';f.style.top=Math.max(0,(bh-vh*sc)/2)+'px';f.style.transform='scale('+sc+')'})}
+var sc=bh/vh,vw=Math.max(1200,Math.round(bw/sc));sc=Math.min(sc,bw/vw);f.style.width=vw+'px';f.style.height=vh+'px';f.style.left=Math.max(0,(bw-vw*sc)/2)+'px';f.style.top=Math.max(0,(bh-vh*sc)/2)+'px';f.style.transform='scale('+sc+')'})}
 function frames(sl){return [].slice.call(sl.querySelectorAll('iframe[data-src]'))}
 /* Avisa a las simulaciones que ya pueden arrancar; si el iframe aún carga, se avisa al terminar de cargar. */
 function start(sl){frames(sl).forEach(function(f){f.dataset.go='1';try{f.contentWindow.postMessage({deckStart:1},'*')}catch(e){}})}
