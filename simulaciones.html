@@ -40,6 +40,7 @@ canvas{display:block;width:100%;border-radius:4px}
 .tex{overflow-x:auto;font-size:15px;min-height:28px}
 .vals{font:500 13.5px/1.6 var(--mono);background:var(--chip);border-radius:6px;padding:9px 11px;overflow-x:auto;white-space:pre-wrap;font-variant-numeric:tabular-nums}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
+.ctl{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;font-size:14px}
 label.range{display:grid;grid-template-columns:96px 1fr 76px;gap:10px;align-items:center;font-size:14px}
 input[type=range]{width:100%;accent-color:var(--accent)}
 output{font:500 13px/1 var(--mono);text-align:right}
@@ -52,7 +53,7 @@ output{font:500 13px/1 var(--mono);text-align:right}
 .fine{margin:0;font-size:13px;color:var(--muted)}
 footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
-.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px}.embed .side{gap:12px}
+.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(400px,28%)}.embed .side{gap:12px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
 </style>
@@ -68,15 +69,15 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <!-- L2 -->
 <section class="panel" role="tabpanel" id="p-onda" data-name="Onda del manubrio" data-l="L2">
 <div class="viz"><h2>Lo que mueve al manubrio</h2><p class="lead">La onda es la suma de la frecuencia de explosiones y sus múltiplos (armónicos). Si las rpm suben, todas las barras se recorren a la derecha.</p>
-<canvas id="cvOnda" height="300" aria-label="El manubrio vibrando con su rastro de onda"></canvas>
-<canvas id="cvEsp" height="190" aria-label="Espectro de la vibración"></canvas>
+<canvas id="cvOnda" height="330" aria-label="El manubrio vibrando con su rastro de onda"></canvas>
+<canvas id="cvEsp" height="130" aria-label="Espectro de la vibración"></canvas>
 <div class="key"><span><i style="background:var(--accent)"></i>Armónicos del motor</span><span><i style="background:var(--c3)"></i>Zona de baches, 1 a 20 Hz</span></div></div>
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ f_{exp} = \frac{rpm}{120} \qquad f_n = n\,f_{exp} \]</div><div class="vals" id="vOnda"></div>
 <p class="fine">Motor de 4 tiempos: una explosión cada 2 vueltas, por eso se divide entre 120 y no entre 60.</p></div>
 <div class="card"><h3>Controles</h3><label class="range" for="rpm"><span>Motor</span><input id="rpm" type="range" min="1000" max="7200" step="50" value="1404"><output id="rpmv"></output></label>
-<div class="chips" id="rpmChips"></div>
-<div class="chips" id="spOnda"></div></div>
+<div class="ctl"><span>Régimen</span><div class="chips" id="rpmChips"></div></div>
+<div class="ctl"><span>Velocidad</span><div class="chips" id="spOnda"></div></div></div>
 </div>
 </section>
 
@@ -90,21 +91,20 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ TR = \sqrt{\frac{1+(2\zeta r)^2}{(1-r^2)^2+(2\zeta r)^2}} \qquad r=\frac{f}{f_n} \]</div>
 <div class="tex">\[ TR<1 \iff r>\sqrt2 \;\Rightarrow\; f_n<\frac{11.7}{\sqrt2}=8.3\ \text{Hz} \]</div><div class="vals" id="vTR1"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="rr"><span>r = f / fn</span><input id="rr" type="range" min="0.1" max="5" step="0.01" value="2.13"><output id="rrv"></output></label>
-<div class="chips" id="zChips"></div><div class="nums" id="nTR1"></div></div>
+<div class="ctl"><span>ζ</span><div class="chips" id="zChips"></div></div><div class="nums" id="nTR1"></div></div>
 </div>
 </section>
 
 <!-- L5 -->
 <section class="panel" role="tabpanel" id="p-modos" data-name="Los dos modos" data-l="L5" hidden>
 <div class="viz"><h2>Los dos modos de vibrar</h2><p class="lead">Cada masa deja su rastro a la derecha, como en un osciloscopio. En el modo lento casi solo se mueve el celular; en el rápido, la caja.</p>
-<div class="chips" id="modoChips"></div>
 <canvas id="cvModos" height="420" aria-label="Animación del modo elegido con el rastro de cada masa"></canvas>
 <div class="key"><span><i style="background:var(--c2)"></i>Caja x₁</span><span><i style="background:var(--accent)"></i>Celular x₂</span></div></div>
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ \det\!\left(K-\omega^2M\right)=0 \]</div>
 <div class="tex">\[ M=\begin{bmatrix}0.308&0\\0&0.417\end{bmatrix}\text{ kg}\quad K=\begin{bmatrix}7999&-535\\-535&535\end{bmatrix}\text{ N/m} \]</div>
 <div class="vals" id="vModos"></div></div>
-<div class="card"><h3>Velocidad</h3><div class="chips" id="spModos"></div><p class="fine" id="fModos"></p></div>
+<div class="card"><h3>Controles</h3><div class="ctl"><span>Modo</span><div class="chips" id="modoChips"></div></div><div class="ctl"><span>Velocidad</span><div class="chips" id="spModos"></div></div><p class="fine" id="fModos"></p></div>
 </div>
 </section>
 
@@ -118,7 +118,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ \left(K-\omega^2M+i\omega C\right)\begin{bmatrix}X_1\\X_2\end{bmatrix}=\begin{bmatrix}k_1+i\omega c_1\\0\end{bmatrix}Y \]</div><div class="tex">\[ TR=\left|\frac{X_2}{Y}\right| \]</div><div class="vals" id="vTR"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="ff"><span>Frecuencia</span><input id="ff" type="range" min="0" max="1" step="0.001"><output id="ffv"></output></label>
-<div class="chips" id="fChips"></div><div class="nums" id="nTR"></div></div>
+<div class="ctl"><span>Caso</span><div class="chips" id="fChips"></div></div><div class="nums" id="nTR"></div></div>
 </div>
 </section>
 
@@ -129,9 +129,9 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <canvas id="cvEsc" height="610" aria-label="Soporte rígido y nuestro soporte vibrando con su rastro"></canvas>
 <div class="key"><span><i style="background:var(--muted)"></i>Manubrio</span><span><i style="background:var(--warn)"></i>Celular, soporte rígido</span><span><i style="background:var(--accent)"></i>Celular, nuestro soporte</span></div></div>
 <div class="side">
-<div class="card"><h3>Cómo se calcula</h3><div class="tex">\[ \text{cambio}=\frac{a_{RMS,cel}}{a_{RMS,man}}-1 \]</div><div class="tex">\[ a_{RMS}=\sqrt{\tfrac12\sum_n \left(TR(f_n)\,a_n\right)^2} \]</div><div class="vals" id="vEsc"></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ \text{cambio}=\frac{a_{RMS,cel}}{a_{RMS,man}}-1 \]</div><div class="tex">\[ a_{RMS}=\sqrt{\tfrac12\sum_n \left(TR(f_n)\,a_n\right)^2} \]</div><div class="vals" id="vEsc"></div>
 <p class="fine">Supuestos: amplitud de cada armónico a<sub>n</sub> = 1/n, 6 armónicos. Rígido: una etapa con fn = 40 Hz y ζ = 0.05. Así se reproducen de cerca los números de la primera presentación.</p></div>
-<div class="card"><h3>Escenario</h3><div class="chips" id="escChips"></div><div class="nums" id="nEsc"></div></div>
+<div class="card"><h3>Controles</h3><div class="ctl"><span>Escenario</span><div class="chips" id="escChips"></div></div><div class="nums" id="nEsc"></div></div>
 </div>
 </section>
 
@@ -141,9 +141,9 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <canvas id="cvMec" height="330" aria-label="Inclinación de B contra C"></canvas>
 <p class="fine">La animación en 3D de este caso está en el <a class="lnk" href="https://claude.ai/artifact/Sb6cwnUPPPRU7Fc55ZYoAt" target="_blank" rel="noopener">modelo 3D del prototipo</a>: botón «Frenar 0.5 g» con «Comparar con el actual».</p></div>
 <div class="side">
-<div class="card"><h3>Fórmula (un grado de libertad)</h3><div class="tex">\[ \theta\approx\frac{m_2\,a\,h}{k_\theta-m_2 g h}\qquad f_{mec}=\frac{1}{2\pi}\sqrt{\frac{k_\theta-m_2gh}{J}} \]</div><div class="vals" id="vMec"></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ \theta\approx\frac{m_2\,a\,h}{k_\theta-m_2 g h}\qquad f_{mec}=\frac{1}{2\pi}\sqrt{\frac{k_\theta-m_2gh}{J}} \]</div><div class="vals" id="vMec"></div>
 <p class="fine">h: altura del centro de masa sobre los cables. J: inercia al giro. Salen de las piezas del modelo 3D con el Galaxy S26 Ultra con funda. La fórmula simple da el orden de magnitud; el modelo completo acopla los dos pisos.</p></div>
-<div class="card"><h3>Diseño</h3><div class="chips" id="mecChips"></div><div class="nums" id="nMec"></div></div>
+<div class="card"><h3>Controles</h3><div class="ctl"><span>Diseño</span><div class="chips" id="mecChips"></div></div><div class="nums" id="nMec"></div></div>
 </div>
 </section>
 
@@ -153,7 +153,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <canvas id="cvRig16" height="330" aria-label="El piso del celular soltado, con su rastro"></canvas>
 <canvas id="cvLibre" height="300" aria-label="Vibración libre amortiguada con x1, x2 y Td"></canvas></div>
 <div class="side">
-<div class="card"><h3>Fórmulas</h3><div class="tex">\[ \delta=\ln\frac{x_1}{x_2}\qquad \zeta=\frac{\delta}{\sqrt{4\pi^2+\delta^2}} \]</div><div class="tex">\[ f_n=\frac{1}{T_d\sqrt{1-\zeta^2}} \]</div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ \delta=\ln\frac{x_1}{x_2}\qquad \zeta=\frac{\delta}{\sqrt{4\pi^2+\delta^2}} \]</div><div class="tex">\[ f_n=\frac{1}{T_d\sqrt{1-\zeta^2}} \]</div>
 <div class="tex">\[ k=\frac{m\,g}{\delta_{est}}\qquad TR=\frac{a_{cel}}{a_{man}} \]</div><div class="vals" id="vLibre"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="zz"><span>ζ real</span><input id="zz" type="range" min="0.02" max="0.4" step="0.01" value="0.14"><output id="zzv"></output></label>
 <label class="range" for="fnn"><span>fn real</span><input id="fnn" type="range" min="2" max="10" step="0.1" value="5.5"><output id="fnnv"></output></label>
