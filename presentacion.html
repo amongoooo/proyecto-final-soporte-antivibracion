@@ -34,7 +34,7 @@ h2{margin:0;font:700 40px/1.1 var(--display)}
 .text b{color:var(--accent)}
 .box{background:var(--chip);border-radius:10px;padding:20px 24px;font-size:31px}
 .box .k{font:500 20px/1 var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:block;margin-bottom:8px}
-.tex{font-size:34px;overflow:hidden}.split .tex{font-size:25px}
+.tex{font-size:42px;overflow:hidden}.split .tex{font-size:32px}
 .vals{font:500 24px/1.55 var(--mono);background:var(--chip);border-radius:10px;padding:16px 20px;white-space:pre-wrap}
 iframe{width:100%;height:100%;border:0;border-radius:8px;background:var(--bg);display:block}
 .fit{position:relative;min-height:0;min-width:0;overflow:hidden;border-radius:8px;background:var(--bg)}.fit iframe{position:absolute;left:0;top:0;transform-origin:0 0;border-radius:0}
@@ -65,12 +65,12 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 #d3{position:absolute;border:0;border-radius:8px;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .45s ease;z-index:5}
 #d3.on{opacity:1;pointer-events:auto}
 /* Navegación: flechas pegadas a las esquinas inferiores y contador al centro, sobre la lámina */
-#bar{position:fixed;left:0;right:0;bottom:0;height:40px;pointer-events:none}
+#bar{position:fixed;left:0;right:0;bottom:0;height:64px;pointer-events:none}
 #bar>*{pointer-events:auto;position:absolute;bottom:6px}
-#bar button,#bar a{font:500 14px/1 var(--body);color:var(--muted);background:transparent;border:1px solid transparent;border-radius:6px;padding:7px 10px;cursor:pointer;text-decoration:none;opacity:.7;transition:opacity .2s}
+#bar button,#bar a{font:600 24px/1 var(--body);color:var(--muted);background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:12px 20px;min-width:56px;cursor:pointer;text-decoration:none;opacity:.85;transition:opacity .2s}
 #bar button:hover,#bar a:hover{opacity:1;border-color:var(--line);color:var(--ink)}
-#prev{left:4px}#next{right:4px}#home{left:50%;transform:translateX(calc(-100% - 46px))}
-#count{left:50%;transform:translateX(-50%);font:500 14px/1 var(--mono);color:var(--muted);padding:7px 0}
+#prev{left:4px}#next{right:4px}#home{left:50%;transform:translateX(calc(-100% - 70px))}
+#count{left:50%;transform:translateX(-50%);font:600 22px/1 var(--mono);color:var(--muted);padding:14px 0}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 </style>
 </head>
@@ -148,7 +148,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 
 <!-- 8 -->
 <section class="slide">
-<h1>En un bache de 3 mm la segunda etapa topa; en el motor sobra espacio</h1>
+<h1>Un bache de 3 cm hace topar el soporte; en el motor sobra espacio</h1>
 <div class="body"><div class="fit" data-vh="860"><iframe data-src="simulaciones.html?embed#topes" title="Oscilación máxima y topes"></iframe></div></div>
 </section>
 
