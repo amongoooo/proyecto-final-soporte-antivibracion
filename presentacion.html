@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soporte antivibración · Presentación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Lámina de 1920 × 1080 escalada a la ventana. Arriba la sección y quién expone; el título; abajo el contenido o la simulación en vivo. */
+:root{--bg:#e6ebee;--slide:#f6f8f8;--ink:#172027;--muted:#52606a;--line:#cdd5da;--accent:#0b6f66;--accent-ink:#f4faf8;--warn:#b04a12;--chip:#e7ecee;--c2:#4f6f8f;
+--display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;--body:'Barlow',Arial,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1216;--slide:#1a2228;--ink:#e8eef0;--muted:#a0b0b9;--line:#303c44;--accent:#58c9b8;--accent-ink:#08221f;--warn:#f0985f;--chip:#27323a;--c2:#8fb0d6;color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.4 var(--body);overflow:hidden}
+#viewport{position:absolute;inset:0 0 56px 0}
+#deck{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--slide);border-radius:10px;padding:56px 72px 48px;display:flex;flex-direction:column;gap:22px;box-shadow:0 10px 40px rgba(0,0,0,.12)}
+.slide[hidden]{display:none}
+.eyebrow{display:flex;justify-content:space-between;align-items:center;font:500 22px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+.eyebrow .who{color:var(--muted);border:2px solid var(--line);border-radius:30px;padding:10px 18px;letter-spacing:1px}
+h1{margin:0;font:700 76px/1.02 var(--display);text-wrap:balance}
+h2{margin:0;font:700 40px/1.1 var(--display)}
+.idea{margin:0;font-size:32px;color:var(--muted);max-width:60ch}
+.body{flex:1;min-height:0;display:grid;gap:40px}
+.split{grid-template-columns:640px minmax(0,1fr)}
+.split2{grid-template-columns:1fr 1fr}
+.text{display:flex;flex-direction:column;gap:24px;font-size:36px;line-height:1.35;min-width:0}
+.text ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:14px}
+.text b{color:var(--accent)}
+.box{background:var(--chip);border-radius:10px;padding:20px 24px;font-size:31px}
+.box .k{font:500 18px/1 var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:block;margin-bottom:8px}
+.tex{font-size:30px;overflow:hidden}
+.vals{font:500 24px/1.55 var(--mono);background:var(--chip);border-radius:10px;padding:16px 20px;white-space:pre-wrap}
+iframe{width:100%;height:100%;border:0;border-radius:8px;background:var(--bg);display:block}
+table{border-collapse:collapse;font-size:30px;width:100%}
+th,td{text-align:left;padding:10px 14px;border-bottom:2px solid var(--line)}
+th{font:600 22px/1.2 var(--body);color:var(--muted)}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+td.bad{color:var(--warn)}td.good{color:var(--accent)}
+.foot{font-size:22px;color:var(--muted)}
+.concl .text{font-size:44px}.concl .box{font-size:36px}.concl .body{align-content:center}
+/* Portada */
+.cover{justify-content:center;gap:28px}
+.cover h1{font-size:120px;max-width:13ch}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px;font-size:30px;max-width:900px}
+.coverGrid{display:grid;grid-template-columns:1fr 760px;gap:40px;align-items:center;flex:1;min-height:0}
+.coverGrid iframe{height:100%}
+.tag{display:inline-block;font:500 20px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--warn);border:2px solid currentColor;border-radius:6px;padding:8px 12px}
+/* Barra de navegación */
+#bar{position:fixed;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 max(16px,env(safe-area-inset-left,0px))}
+#bar button,#bar a{font:500 15px/1 var(--body);color:var(--ink);background:var(--chip);border:1px solid transparent;border-radius:6px;padding:10px 14px;cursor:pointer;text-decoration:none}
+#bar button:hover,#bar a:hover{border-color:var(--muted)}
+#count{font:500 15px/1 var(--mono);min-width:72px;text-align:center}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+:fullscreen #viewport{inset:0}
+:fullscreen #bar{opacity:0;transition:opacity .2s}:fullscreen #bar:hover{opacity:1}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="deck">
+
+<!-- 1 -->
+<section class="slide cover" data-who="Miguel Ángel Gonzales">
+<div class="eyebrow"><span>Vibraciones Mecánicas · Tercer parcial</span><span class="who"></span></div>
+<div class="coverGrid">
+<div style="display:flex;flex-direction:column;gap:28px">
+<h1>Soporte antivibración en dos etapas</h1>
+<p class="idea">Del diseño al prototipo que vamos a construir: cómo protege el celular de un repartidor de la vibración de la moto.</p>
+<div class="team"><span>Bocanegra González Jorge</span><span>Gonzales Nava Miguel Ángel</span><span>Lara Lizardi José Froylán</span><span>Ramírez Rosas Roberto</span></div>
+<p class="foot">Equipo Camaradas · Ingeniería Mecatrónica · Profesor: ________ · Fecha: ________</p>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#ensamble" title="Modelo 3D del prototipo armado"></iframe>
+</div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-who="Miguel Ángel Gonzales" data-sec="El problema">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>La moto vibra en muchas frecuencias a la vez</h1>
+<p class="idea">De 11.7 Hz en ralentí hasta cientos de Hz con los armónicos, más los baches de 1 a 20 Hz. No sirve sintonizar a una sola frecuencia.</p>
+<div class="body"><iframe data-src="simulaciones.html?embed#onda" title="Onda del manubrio"></iframe></div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-who="Jorge Bocanegra" data-sec="Teoría">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Un resorte aísla solo arriba de √2 · fn</h1>
+<p class="idea">Si f/fn sube, TR baja. Si ζ sube, el pico baja pero aísla un poco menos.</p>
+<div class="body"><iframe data-src="simulaciones.html?embed#etapa" title="Transmisibilidad de una etapa"></iframe></div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-who="Jorge Bocanegra" data-sec="Teoría">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Modelo de dos masas con base excitada</h1>
+<div class="body split2">
+<div class="text">
+<p>La caja con lastre (m₁) va sobre 4 bujes (k₁, c₁). El piso del celular (m₂) va sobre 2 cables y la guía (k₂, c₂). El manubrio mueve la base con y(t).</p>
+<div class="tex">\[ \begin{aligned} m_1\ddot{x}_1 &+ c_1(\dot{x}_1-\dot{y}) + k_1(x_1-y) \\ &- c_2(\dot{x}_2-\dot{x}_1) - k_2(x_2-x_1) = 0 \end{aligned} \]</div>
+<div class="tex">\[ m_2\ddot{x}_2 + c_2(\dot{x}_2-\dot{x}_1) + k_2(x_2-x_1) = 0 \]</div>
+</div>
+<table>
+<thead><tr><th>Variable</th><th>Valor</th><th>Pieza</th></tr></thead>
+<tbody>
+<tr><td>m₁</td><td class="n">0.308 kg</td><td>Caja de PETG con solera de acero</td></tr>
+<tr><td>k₁</td><td class="n">7 464 N/m</td><td>4 bujes de neopreno</td></tr>
+<tr><td>c₁</td><td class="n">55.4 N·s/m</td><td>Bujes (ζ₁ = 0.58)</td></tr>
+<tr><td>m₂</td><td class="n">0.417 kg</td><td>Base 168 g + celular 249 g</td></tr>
+<tr><td>k₂</td><td class="n">535 N/m</td><td>Cables 475 + guía 60</td></tr>
+<tr><td>c₂</td><td class="n">4.18 N·s/m</td><td>Cables (ζ₂ = 0.14)</td></tr>
+</tbody></table>
+</div>
+<p class="foot">Valores estimados para reproducir la primera presentación. Se miden en el cuarto parcial.</p>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-who="Jorge Bocanegra" data-sec="Teoría">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>A 5.5 Hz se mece el celular; a 25.7 Hz, la caja</h1>
+<p class="idea">Corrección de la primera presentación: el cable es el resorte blando, y si k baja, fn baja. Por eso el cable da el modo lento.</p>
+<div class="body"><iframe data-src="simulaciones.html?embed#modos" title="Los dos modos"></iframe></div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-who="Jorge Bocanegra" data-sec="Resultados">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>En ralentí llega 0.38 de la vibración; arriba de 30 Hz, casi nada</h1>
+<p class="idea">El precio es amplificar cerca de 5.5 Hz, en los baches.</p>
+<div class="body"><iframe data-src="simulaciones.html?embed#tr" title="Qué tanto aísla"></iframe></div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-who="Miguel Ángel Gonzales" data-sec="Resultados">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>El rígido amplifica; el nuestro reduce todo lo del motor</h1>
+<p class="idea">La misma vibración del manubrio pasa por los dos soportes.</p>
+<div class="body"><iframe data-src="simulaciones.html?embed#rigido" title="Rígido contra nuestro"></iframe></div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Placa base y abrazadera</h1>
+<div class="body split">
+<div class="text">
+<div class="box"><span class="k">Diseño</span>PETG de 132 × 120 × 8 mm, con 4 asientos para bujes en X = ±58 mm y Y = ±23.3 mm. Abrazadera en U M5 metálica.</div>
+<div class="box"><span class="k">Función</span>Es la única pieza unida rígido a la moto. Recibe el movimiento del manubrio y(t) y lo pasa a los bujes. Todo lo demás flota.</div>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#base" title="Placa base en el modelo 3D"></iframe>
+</div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Bujes de neopreno: primera etapa</h1>
+<div class="body split">
+<div class="text">
+<div class="box"><span class="k">Diseño</span>4 bujes de neopreno esponjoso de Ø16 × Ø5 × 20 mm. Se compran.</div>
+<div class="box"><span class="k">Función</span>Filtran lo rápido del motor y amortiguan mucho (ζ₁ = 0.58). Si el buje es más largo, k₁ baja.</div>
+<div class="tex">\[ k=\frac{EA}{L}=\frac{(0.2\times10^{6})\,\tfrac{\pi}{4}(0.016^2-0.005^2)}{0.020}=1814\ \tfrac{\text{N}}{\text{m}} \]</div>
+<div class="vals">4 × 1 814 = 7 257 N/m → usamos 7 464 N/m
+c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#bujes" title="Bujes en el modelo 3D"></iframe>
+</div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Caja con lastre: la masa intermedia</h1>
+<div class="body split">
+<div class="text">
+<div class="box"><span class="k">Diseño</span>Caja de PETG de 10 mm de alto con una solera de acero de 1½″ × ¼″ × 96 mm adentro (unos 182 g). m₁ ≈ 308 g.</div>
+<div class="box"><span class="k">Función</span>Es la masa que hace doble el filtro. Si m₁ sube, la frecuencia rápida baja y la etapa 1 aísla antes.</div>
+<div class="tex">\[ f=\frac{1}{2\pi}\sqrt{\frac{k_1}{m_1}}=\frac{1}{2\pi}\sqrt{\frac{7464}{0.308}}=24.8\ \text{Hz} \]</div>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#caja" title="Caja con lastre en el modelo 3D"></iframe>
+</div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Cables de acero: segunda etapa</h1>
+<div class="body split">
+<div class="text">
+<div class="box"><span class="k">Diseño</span>2 cables inoxidables 7×7 de 1/32″, 6 vueltas, D = 39 mm, separados 100 mm.</div>
+<div class="box"><span class="k">Función</span>Son el resorte blando que da la frecuencia baja. El roce entre hilos amortigua (ζ₂ = 0.14). Si D sube, k₂ baja.</div>
+<div class="tex">\[ c_2=2\zeta_2\sqrt{k_2m_2}=2(0.14)\sqrt{535\times0.417}=4.18\ \tfrac{\text{N·s}}{\text{m}} \]</div>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#cables" title="Cables en el modelo 3D"></iframe>
+</div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Piso del celular</h1>
+<div class="body split">
+<div class="text">
+<div class="box"><span class="k">Diseño</span>Barras de 10 × 10 mm, placa superior de 132 × 120 × 5 mm, escuadra de 15° y porta-celular con mordazas.</div>
+<div class="box"><span class="k">Función</span>Sostiene el celular. Todo lo que va arriba de los cables es m₂. Si m₂ sube, la frecuencia lenta baja.</div>
+<div class="tex">\[ m_2=0.168+0.249=0.417\ \text{kg} \]</div>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#porta" title="Porta-celular en el modelo 3D"></iframe>
+</div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-who="Roberto Ramírez" data-sec="Un problema">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Con los cables solos, al frenar el celular se inclina hasta el límite</h1>
+<p class="idea">Al frenar (eje Y, adelante y atrás) la inercia hace girar el piso del celular sobre los cables.</p>
+<div class="body"><iframe data-src="simulaciones.html?embed#mecido" title="Mecido al frenar"></iframe></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-who="Roberto Ramírez" data-sec="La solución">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>4 láminas de fleje frenan el giro sin endurecer lo vertical</h1>
+<div class="body split">
+<div class="text">
+<div class="box"><span class="k">Función</span>Rígidas al giro (30 N·m/rad) y de lado, blandas hacia arriba (60 N/m). Solo en el piso 2: en los dos pisos, la vibración horizontal llegaría al celular.</div>
+<table>
+<thead><tr><th>Frenar a 0.5 g</th><th>Sin guía</th><th>Con guía</th></tr></thead>
+<tbody>
+<tr><td>Inclinación</td><td class="n bad">33°</td><td class="n good">4.9°</td></tr>
+<tr><td>Movimiento arriba</td><td class="n bad">139 mm</td><td class="n good">21 mm</td></tr>
+<tr><td>Mecido</td><td class="n bad">0.64 Hz</td><td class="n good">3.3 Hz</td></tr>
+<tr><td>TR a 11.7 Hz</td><td class="n">0.36</td><td class="n">0.38</td></tr>
+</tbody></table>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#guia" title="Guía de láminas en el modelo 3D"></iframe>
+</div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-who="Roberto Ramírez" data-sec="El prototipo">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>Todas las piezas juntas</h1>
+<div class="body split">
+<div class="text">
+<p>De abajo hacia arriba:</p>
+<ul><li>Placa base y abrazadera</li><li>4 bujes de neopreno</li><li>Caja con lastre de acero</li><li>Barras inferiores, cables y barras superiores</li><li>Placa superior y guía de láminas</li><li>Porta-celular y cordón de seguridad</li></ul>
+<p class="foot">Se imprime en PETG; se compran el lastre, los cables, los bujes, la tornillería y la abrazadera.</p>
+</div>
+<iframe data-src="modelo3d.html?embed#explotado" title="Modelo 3D separado en piezas"></iframe>
+</div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-who="Roberto Ramírez" data-sec="Cuarto parcial">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>En el cuarto parcial medimos lo que hoy es estimado</h1>
+<p class="idea">En banco: k con pesos y ζ soltando el celular. En la moto: un ESP32 con un acelerómetro en el manubrio y otro en el celular. Siempre con el cordón de seguridad.</p>
+<div class="body"><iframe data-src="simulaciones.html?embed#libre" title="Prueba de soltar"></iframe></div>
+</section>
+
+<!-- 17 -->
+<section class="slide concl" data-who="Miguel Ángel Gonzales" data-sec="Conclusiones">
+<div class="eyebrow"><span></span><span class="who"></span></div>
+<h1>No atacamos una frecuencia: filtramos todas</h1>
+<div class="body split2">
+<div class="text"><ul>
+<li>La moto vibra en muchas frecuencias: <b>aislar</b> sirve, sintonizar no.</li>
+<li>Un aislador solo funciona arriba de <b>√2 · fn</b>.</li>
+<li>Dos etapas caen mucho más rápido que una: en ralentí llega <b>0.38</b>, a 60 Hz <b>1.5 %</b>.</li>
+<li>La <b>guía de láminas</b> evita que el celular se meza al frenar.</li>
+</ul></div>
+<div class="text"><div class="box"><span class="k">Siguiente paso</span>Imprimir, armar y medir k, ζ, fn y TR en el cuarto parcial.</div>
+<div class="box"><span class="k">Preguntas</span>¿Cable hecho o comprado? ¿Neopreno o Sorbothane? ¿Es aceptable TR ≈ 3.9 en baches?</div>
+<span class="tag">Todos los resultados son simulados</span></div>
+</div>
+</section>
+
+</div></div>
+
+<nav id="bar" aria-label="Navegación de la presentación">
+<a href="index.html">Inicio</a>
+<button id="prev" type="button" aria-label="Lámina anterior">←</button>
+<span id="count" aria-live="polite"></span>
+<button id="next" type="button" aria-label="Lámina siguiente">→</button>
+<button id="fs" type="button">Pantalla completa</button>
+</nav>
+
+<script>window.MathJax={tex:{packages:{'[+]':['ams']}},svg:{fontCache:'global'}};</script>
+<script src="vendor/mathjax/tex-svg.js" async></script>
+<script>
+(function(){'use strict';
+var slides=[].slice.call(document.querySelectorAll('.slide')),cur=0,deck=document.getElementById('deck'),vp=document.getElementById('viewport');
+slides.forEach(function(s,i){var w=s.querySelector('.who');if(w)w.textContent='Expone · '+s.dataset.who;var e=s.querySelector('.eyebrow span');if(s.dataset.sec&&e)e.textContent=(i+1)+' · '+s.dataset.sec});
+function fit(){var r=vp.getBoundingClientRect(),k=Math.min(r.width/1920,r.height/1080)*.97;deck.style.transform='translate(-50%,-50%) scale('+k+')'}
+function go(i){i=Math.max(0,Math.min(slides.length-1,i));cur=i;
+slides.forEach(function(s,j){s.hidden=j!==i;[].forEach.call(s.querySelectorAll('iframe[data-src]'),function(f){if(j===i){if(f.getAttribute('src')!==f.dataset.src)f.setAttribute('src',f.dataset.src)}else if(f.getAttribute('src'))f.removeAttribute('src')})});
+document.getElementById('count').textContent=(i+1)+' / '+slides.length;
+try{history.replaceState(null,'','#'+(i+1))}catch(e){}}
+document.getElementById('prev').onclick=function(){go(cur-1)};document.getElementById('next').onclick=function(){go(cur+1)};
+document.getElementById('fs').onclick=function(){var d=document.documentElement;try{if(document.fullscreenElement)document.exitFullscreen();else d.requestFullscreen().catch(function(){})}catch(e){}};
+document.addEventListener('keydown',function(e){if(e.target.closest&&e.target.closest('input,textarea,select'))return;
+if(['ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(cur+1)}else if(['ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur-1)}
+else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);else if(e.key==='f'||e.key==='F')document.getElementById('fs').click()});
+window.addEventListener('resize',fit);
+window.addEventListener('message',function(e){if(e.data&&e.data.deckNav)go(cur+e.data.deckNav)});
+function fromHash(){var n=parseInt((location.hash||'').slice(1),10);if(!isNaN(n)&&n-1!==cur)go(n-1)}
+window.addEventListener('hashchange',fromHash);fit();var n0=parseInt((location.hash||'').slice(1),10);go(isNaN(n0)?0:n0-1);
+})();
+</script>
+</body>
+</html>

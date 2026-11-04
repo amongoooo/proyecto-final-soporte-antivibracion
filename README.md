@@ -3,6 +3,7 @@
 Página de la presentación del tercer parcial de Vibraciones Mecánicas (Equipo Camaradas, Ingeniería Mecatrónica).
 
 - `index.html`: portada.
+- `presentacion.html`: las 17 láminas, con las simulaciones y el modelo 3D en vivo. Flechas para avanzar, F para pantalla completa y `#n` para abrir la lámina n.
 - `simulaciones.html`: simulaciones interactivas, una pestaña por lámina.
 - `modelo3d.html`: modelo 3D del prototipo. Vistas directas con `#base`, `#bujes`, `#caja`, `#solera`, `#cables`, `#sup`, `#porta`, `#guia`, `#explotado` y `#ensamble`.
 - `vendor/`: MathJax 3.2.2 y three.js r128, para que todo funcione sin internet.

@@ -52,10 +52,12 @@ output{font:500 13px/1 var(--mono);text-align:right}
 .fine{margin:0;font-size:13px;color:var(--muted)}
 footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
+.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding-block:0}.embed body{overflow:hidden}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
 </style>
 
+<script>try{if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
 <div class="wrap">
 <header>
 <div><h1>Simulaciones del soporte</h1><p class="sub">Versión C: cables a 100 mm y guía de láminas. Cada pestaña es una lámina de la presentación. Mueve los controles para verlo en vivo.</p></div>
@@ -185,7 +187,7 @@ var a=sh(w1),b=sh(w2);return{f1:Math.sqrt(w1)/PI2,f2:Math.sqrt(w2)/PI2,s1:[a[0],
 /* ===== Utilidades ===== */
 function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
 function fmt(x,d){return x.toLocaleString('es-MX',{minimumFractionDigits:d,maximumFractionDigits:d})}
-function setup(cv){var r=cv.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(200,r.width),h=+cv.getAttribute('height');
+function setup(cv){var dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(200,cv.clientWidth),h=+cv.getAttribute('height');
 if(cv._w!==w||cv._d!==dpr){cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+'px';cv._w=w;cv._d=dpr}var c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);return{c:c,w:w,h:h}}
 function axes(o){/* o:{c,w,h,x0,x1,y0,y1,xlog,ylog,xt,yt,xl,yl,pad} */
 var P=o.pad||{l:54,r:14,t:12,b:38},c=o.c,W=o.w-P.l-P.r,H=o.h-P.t-P.b;
@@ -206,7 +208,11 @@ function pct(r){var v=Math.round((r-1)*100);return(v>0?'+':v<0?'−':'')+Math.ab
 /* ===== Pestañas ===== */
 var panels=[].slice.call(document.querySelectorAll('[role=tabpanel]')),cur=0;
 panels.forEach(function(p,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.id='t-'+p.id;b.setAttribute('aria-controls',p.id);b.innerHTML='<b>'+p.dataset.l+'</b>'+p.dataset.name;b.onclick=function(){show(i,true)};$('tabs').appendChild(b)});
-function show(i,push){cur=i;panels.forEach(function(p,j){p.hidden=j!==i;$('t-'+p.id).setAttribute('aria-selected',j===i)});if(push)try{history.replaceState(null,'','#'+panels[i].id.slice(2))}catch(e){}draw(0,true)}
+function fitEmbed(){var r=document.documentElement;if(!r.classList.contains('embed'))return;var w=document.querySelector('.wrap'),k=1;
+for(var it=0;it<3;it++){w.style.transform='';w.style.width=(100/k)+'%';var h=w.scrollHeight;k=Math.min(1,window.innerHeight/h);if(k>.98)k=1}
+w.style.transformOrigin='0 0';w.style.width=(100/k)+'%';w.style.transform=k<1?'scale('+k+')':'';draw(0,true)}
+window.addEventListener('resize',function(){setTimeout(fitEmbed,50)});
+function show(i,push){cur=i;panels.forEach(function(p,j){p.hidden=j!==i;$('t-'+p.id).setAttribute('aria-selected',j===i)});if(push)try{history.replaceState(null,'','#'+panels[i].id.slice(2))}catch(e){}draw(0,true);fitEmbed();setTimeout(fitEmbed,400);setTimeout(fitEmbed,1500)}
 function fromHash(){var h=(location.hash||'').slice(1),k=panels.findIndex(function(p){return p.id==='p-'+h});show(k<0?0:k)}
 window.addEventListener('hashchange',fromHash);
 
