@@ -57,7 +57,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
 .embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(520px,34%)}
 /* En la presentación: solo lo que se lee de lejos */
-.embed .fine{display:none}.embed .side>.card{gap:8px}.embed .nums>.num:nth-child(n+3){display:none}.embed .tex mjx-container[display="true"]{margin:.35em 0!important}
+.embed .fine{display:none}.embed #p-mecido{grid-template-columns:minmax(0,1fr)}.embed #p-mecido .side{display:none}.embed .side>.card{gap:8px}.embed .nums>.num:nth-child(n+3){display:none}.embed .tex mjx-container[display="true"]{margin:.35em 0!important}
 html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-box}.embed .panel{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}.embed .viz{min-height:0}.embed .viz canvas,.embed .fig canvas{flex:1 1 0;height:0;min-height:60px}.embed .duo{flex:1;min-height:0}.embed .fig{min-height:0}.embed .side>.card:last-child{flex:1}.embed .card h3{font-size:28px}.embed .tex{font-size:25px}.embed .vals.mj{font-size:24px}.embed #vMec{font-size:20px}.embed button{font-size:22px;padding:9px 14px;min-height:46px}.embed .ctl,.embed label.range{font-size:22px}.embed label.range{grid-template-columns:130px 1fr 110px}.embed .ctl{grid-template-columns:130px 1fr}.embed output{font-size:21px}.embed input[type=range]{height:34px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:8px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
@@ -413,16 +413,19 @@ if(S.mec===0){texv('vMec',['m_2&='+fx(B.m2,3)+'\\ \\text{kg},\\ h='+fx(B.h*1000,
 nums($('nMec'),[['33°','Inclinación, modelo completo (tope)','warn'],['0.64 Hz','Frecuencia de mecido','warn'],['139 mm','Movimiento arriba del celular','warn'],['1.1','Margen de vuelco (mín. 1.5)','warn']])}
 else{texv('vMec',['k_{\\theta2}&=475\\,(0.050)^2+30='+fx(C.kt,1)+'\\ \\text{N·m/rad}','\\theta_2&\\approx\\frac{'+fx(C.m2*.5*g*C.h,3)+'}{'+fx(C.ke,1)+'}='+fx(C.th,2)+'^\\circ','k_{\\theta1}&=k_1\\,b^2=7464\\,(0.0233)^2='+fx(MEC.kt1,2)+'\\ \\text{N·m/rad}','\\theta_1&\\approx'+fx(MEC.thb,1)+'^\\circ\\ \\text{estático},\\ 4.9^\\circ\\ \\text{dinámico}']);
 nums($('nMec'),[['4.9°','Inclinación, modelo completo','good'],['3.3 Hz','Frecuencia de mecido','good'],['21 mm','Movimiento arriba del celular','good'],['0.38','TR a 11.7 Hz (antes 0.36)','']])}draw(0,true)}
-function drawMec(){var A=setup($('cvMec')),c=A.c,cw=A.w/2;
-[['B · cables a 60 mm',33,'--warn','llega al tope'],['C · con guía de láminas',4.9,'--accent','']].forEach(function(D,k){var cx=cw*k+cw/2,base=A.h-50,L=Math.min(170,A.h*.5),th=D[1]*Math.PI/180;
-c.globalAlpha=k===S.mec?1:.45;
-c.strokeStyle=css('--line');c.lineWidth=2;c.setLineDash([5,5]);c.beginPath();c.moveTo(cx,base);c.lineTo(cx,base-L);c.stroke();c.setLineDash([]);
-c.fillStyle=css('--muted');c.fillRect(cx-70,base,140,8);
-c.save();c.translate(cx,base);c.rotate(th);c.fillStyle=css(D[2]);c.fillRect(-24,-L,48,L);c.fillStyle=css('--panel');c.fillRect(-18,-L+8,36,L-40);c.restore();
-c.strokeStyle=css('--ink');c.lineWidth=1.5;c.beginPath();c.arc(cx,base,L*.55,-Math.PI/2,-Math.PI/2+th,false);c.stroke();
-c.fillStyle=css('--ink');c.font='700 '+F(30)+'px '+css('--display');c.textAlign='center';c.fillText(fmt(D[1],D[1]<10?1:0)+'°',cx-60,base-L*.75);
-c.font='700 '+F(20)+'px '+css('--display');c.fillText(D[0],cx,24);c.font='500 '+F(13)+'px '+css('--body');c.fillStyle=css('--muted');c.fillText(D[3]||' ',cx,44);
-c.fillStyle=css('--muted');c.textAlign='left';c.font='500 '+F(12)+'px '+css('--body');c.fillText('→ frena 0.5 g',cx-70,base+26);c.globalAlpha=1})}
+function drawMec(){var A=setup($('cvMec')),c=A.c,cw=A.w/2,sc=Math.max(1,Math.min(A.h/380,cw/320));
+[['B · cables a 60 mm',33,'--warn','Sin guía: se ladea y llega al tope'],['C · con guía de láminas',4.9,'--accent','Con guía: se queda firme']].forEach(function(D,k){var cx=cw*k+cw/2,base=A.h-80*sc,L=Math.min(A.h*.56,170*sc),th=D[1]*Math.PI/180,on=k===S.mec,bw=48*sc;
+if(on){c.fillStyle=css('--chip');c.beginPath();c.roundRect?c.roundRect(cw*k+10,8,cw-20,A.h-48,14):c.rect(cw*k+10,8,cw-20,A.h-48);c.fill();c.strokeStyle=css(D[2]);c.lineWidth=3;c.stroke()}
+c.globalAlpha=on?1:.4;
+c.strokeStyle=css('--line');c.lineWidth=2*sc;c.setLineDash([6*sc,6*sc]);c.beginPath();c.moveTo(cx,base);c.lineTo(cx,base-L);c.stroke();c.setLineDash([]);
+c.fillStyle=css('--muted');c.fillRect(cx-1.5*bw,base,3*bw,8*sc);
+c.save();c.translate(cx,base);c.rotate(th);c.fillStyle=css(D[2]);c.fillRect(-bw/2,-L,bw,L);c.fillStyle=css('--panel');c.fillRect(-bw/2+6*sc,-L+8*sc,bw-12*sc,L-40*sc);c.restore();
+c.strokeStyle=css('--ink');c.lineWidth=2;c.beginPath();c.arc(cx,base,L*.55,-Math.PI/2,-Math.PI/2+th,false);c.stroke();
+c.fillStyle=css('--ink');c.font='700 '+F(30*sc)+'px '+css('--display');c.textAlign='center';c.fillText(fmt(D[1],D[1]<10?1:0)+'°',cx-1.6*bw,base-L*.75);
+c.font='700 '+F(20*sc)+'px '+css('--display');c.fillStyle=css(D[2]);c.fillText(D[0],cx,22+22*sc);c.font='500 '+F(14*sc)+'px '+css('--body');c.fillStyle=css('--ink');c.fillText(D[3],cx,30+46*sc);
+c.fillStyle=css('--muted');c.font='500 '+F(13*sc)+'px '+css('--body');c.fillText('→ frena 0.5 g',cx,base+30*sc);c.globalAlpha=1});
+c.fillStyle=css('--muted');c.font='500 '+F(16)+'px '+css('--body');c.textAlign='center';c.fillText('Toca un celular para compararlo',A.w/2,A.h-12)}
+$('cvMec').style.cursor='pointer';$('cvMec').addEventListener('click',function(e){var r=this.getBoundingClientRect(),k=(e.clientX-r.left)<r.width/2?0:1;if(k!==S.mec){S.mec=k;updMec()}});
 
 /* ===== L16 Vibración libre ===== */
 $('zz').addEventListener('input',function(e){S.z=+e.target.value;updL()});$('fnn').addEventListener('input',function(e){S.fn=+e.target.value;updL()});
