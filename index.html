@@ -12,9 +12,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 'Barlow',A
 main{max-width:760px;margin:0 auto;padding:48px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:20px}
 h1{margin:0;font:700 44px/1 'Barlow Condensed','Arial Narrow',sans-serif}
 p{margin:0;color:var(--muted)}
-a.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;color:var(--ink);text-decoration:none}
+.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;color:var(--ink);text-decoration:none}
 a.card:hover{border-color:var(--accent)}
-a.card b{display:block;font:700 22px/1.2 'Barlow Condensed','Arial Narrow',sans-serif;color:var(--accent)}
+.card a{color:var(--accent)}
+.card > a{text-decoration:none}
+.card b{display:block;font:700 22px/1.2 'Barlow Condensed','Arial Narrow',sans-serif;color:var(--accent)}
 </style>
 </head>
 <body>
@@ -22,6 +24,7 @@ a.card b{display:block;font:700 22px/1.2 'Barlow Condensed','Arial Narrow',sans-
 <h1>Soporte antivibración en dos etapas</h1>
 <p>Vibraciones Mecánicas · Equipo Camaradas · Ingeniería Mecatrónica. Tercer parcial: el prototipo que construiremos y cómo funciona.</p>
 <a class="card" href="simulaciones.html"><b>Simulaciones</b>Una pestaña por lámina: onda del manubrio, transmisibilidad, modos, rígido contra nuestro soporte, mecido y prueba de soltar.</a>
+<div class="card"><a href="modelo3d.html"><b>Modelo 3D del prototipo</b></a>Gíralo, sepáralo en piezas y pruébalo frenando. Vistas directas: <span class="links"><a href="modelo3d.html#base">placa base</a> · <a href="modelo3d.html#bujes">bujes</a> · <a href="modelo3d.html#caja">caja</a> · <a href="modelo3d.html#solera">lastre</a> · <a href="modelo3d.html#cables">cables</a> · <a href="modelo3d.html#sup">placa superior</a> · <a href="modelo3d.html#porta">porta-celular</a> · <a href="modelo3d.html#guia">guía de láminas</a> · <a href="modelo3d.html#explotado">explotado</a> · <a href="modelo3d.html#ensamble">ensamble</a></span></div>
 <p>La presentación completa se agregará aquí.</p>
 </main>
 </body>

@@ -4,7 +4,8 @@ Página de la presentación del tercer parcial de Vibraciones Mecánicas (Equipo
 
 - `index.html`: portada.
 - `simulaciones.html`: simulaciones interactivas, una pestaña por lámina.
-- `vendor/mathjax/`: MathJax 3.2.2 para que las fórmulas se vean sin internet.
+- `modelo3d.html`: modelo 3D del prototipo. Vistas directas con `#base`, `#bujes`, `#caja`, `#solera`, `#cables`, `#sup`, `#porta`, `#guia`, `#explotado` y `#ensamble`.
+- `vendor/`: MathJax 3.2.2 y three.js r128, para que todo funcione sin internet.
 
 ## Verla
 
