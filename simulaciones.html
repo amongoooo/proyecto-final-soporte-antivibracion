@@ -66,7 +66,7 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <!-- L2 -->
 <section class="panel" role="tabpanel" id="p-onda" data-name="Onda del manubrio" data-l="L2">
 <div class="viz"><h2>Lo que mueve al manubrio</h2><p class="lead">La onda es la suma de la frecuencia de explosiones y sus múltiplos (armónicos). Si las rpm suben, todas las barras se recorren a la derecha.</p>
-<canvas id="cvOnda" height="260" aria-label="Onda del manubrio en el tiempo"></canvas>
+<canvas id="cvOnda" height="300" aria-label="El manubrio vibrando con su rastro de onda"></canvas>
 <canvas id="cvEsp" height="190" aria-label="Espectro de la vibración"></canvas>
 <div class="key"><span><i style="background:var(--accent)"></i>Armónicos del motor</span><span><i style="background:var(--c3)"></i>Zona de baches, 1 a 20 Hz</span></div></div>
 <div class="side">
@@ -81,13 +81,14 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <!-- L3 -->
 <section class="panel" role="tabpanel" id="p-etapa" data-name="Una etapa" data-l="L3" hidden>
 <div class="viz"><h2>Transmisibilidad de una etapa</h2><p class="lead">Abajo de la línea TR = 1 el soporte aísla. Todas las curvas cruzan esa línea en r = √2, sin importar ζ.</p>
-<canvas id="cvTR1" height="440" aria-label="TR contra r para tres amortiguamientos"></canvas>
+<canvas id="cvRig3" height="300" aria-label="Una masa sobre un resorte con base que se mueve, con su rastro"></canvas>
+<canvas id="cvTR1" height="340" aria-label="TR contra r para tres amortiguamientos"></canvas>
 <div class="key"><span><i style="background:var(--c2)"></i>ζ = 0.05</span><span><i style="background:var(--accent)"></i>ζ = 0.14 (nuestros cables)</span><span><i style="background:var(--c3)"></i>ζ = 0.5</span></div></div>
 <div class="side">
 <div class="card"><h3>Fórmula</h3><div class="tex">\[ TR = \sqrt{\frac{1+(2\zeta r)^2}{(1-r^2)^2+(2\zeta r)^2}} \qquad r=\frac{f}{f_n} \]</div>
 <div class="tex">\[ TR<1 \iff r>\sqrt2 \;\Rightarrow\; f_n<\frac{11.7}{\sqrt2}=8.3\ \text{Hz} \]</div><div class="vals" id="vTR1"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="rr"><span>r = f / fn</span><input id="rr" type="range" min="0.1" max="5" step="0.01" value="2.13"><output id="rrv"></output></label>
-<div class="nums" id="nTR1"></div></div>
+<div class="chips" id="zChips"></div><div class="nums" id="nTR1"></div></div>
 </div>
 </section>
 
@@ -123,10 +124,10 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 <section class="panel" role="tabpanel" id="p-rigido" data-name="Rígido contra nuestro" data-l="L7" hidden>
 <div class="viz"><h2>Soporte rígido contra nuestro soporte</h2><p class="lead">La misma vibración del manubrio pasa por los dos soportes. Barra a la derecha: amplifica. A la izquierda: reduce.</p>
 <canvas id="cvBar" height="250" aria-label="Cambio de la vibración por escenario"></canvas>
-<canvas id="cvEsc" height="230" aria-label="Aceleración en el tiempo del escenario elegido"></canvas>
+<canvas id="cvEsc" height="610" aria-label="Soporte rígido y nuestro soporte vibrando con su rastro"></canvas>
 <div class="key"><span><i style="background:var(--muted)"></i>Manubrio</span><span><i style="background:var(--warn)"></i>Celular, soporte rígido</span><span><i style="background:var(--accent)"></i>Celular, nuestro soporte</span></div></div>
 <div class="side">
-<div class="card"><h3>Cómo se calcula</h3><div class="tex">\[ \text{cambio}=\frac{a_{RMS,cel}}{a_{RMS,man}}-1,\qquad a_{RMS}=\sqrt{\tfrac12\sum_n \left(TR(f_n)\,a_n\right)^2} \]</div><div class="vals" id="vEsc"></div>
+<div class="card"><h3>Cómo se calcula</h3><div class="tex">\[ \text{cambio}=\frac{a_{RMS,cel}}{a_{RMS,man}}-1 \]</div><div class="tex">\[ a_{RMS}=\sqrt{\tfrac12\sum_n \left(TR(f_n)\,a_n\right)^2} \]</div><div class="vals" id="vEsc"></div>
 <p class="fine">Supuestos: amplitud de cada armónico a<sub>n</sub> = 1/n, 6 armónicos. Rígido: una etapa con fn = 40 Hz y ζ = 0.05. Así se reproducen de cerca los números de la primera presentación.</p></div>
 <div class="card"><h3>Escenario</h3><div class="chips" id="escChips"></div><div class="nums" id="nEsc"></div></div>
 </div>
@@ -210,17 +211,22 @@ function fromHash(){var h=(location.hash||'').slice(1),k=panels.findIndex(functi
 window.addEventListener('hashchange',fromHash);
 
 /* ===== L2 Onda ===== */
-var S={modo:0,rpm:1404,spO:.1,r:2.13,spM:.1,fr:11.7,esc:0,mec:1,z:.14,fn:5.5};
+var S={z3:.14,modo:0,rpm:1404,spO:.1,r:2.13,spM:.1,fr:11.7,esc:0,mec:1,z:.14,fn:5.5};
 var NH=8,PH=[0,.9,2.1,.4,1.7,2.8,1.1,.3];
 function yOnda(t,fe){var s=0;for(var n=1;n<=NH;n++)s+=Math.sin(PI2*n*fe*t+PH[n-1])/n;return s}
 $('rpm').addEventListener('input',function(e){S.rpm=+e.target.value;updRpm()});
 var updRpmChips=chips($('rpmChips'),[['Ralentí 1 404 rpm',1404],['Ciudad 3 000',3000],['Avenida 6 000',6000]],function(it){return S.rpm===it[1]},function(it){S.rpm=it[1];$('rpm').value=it[1];updRpm()});
-chips($('spOnda'),[['Cámara lenta ×0.1',.1],['Tiempo real',1]],function(it){return S.spO===it[1]},function(it){S.spO=it[1]});
+chips($('spOnda'),[['×0.02',.02],['×0.1',.1],['Tiempo real',1]],function(it){return S.spO===it[1]},function(it){S.spO=it[1]});
 function updRpm(){var fe=S.rpm/120;$('rpmv').textContent=S.rpm+' rpm';updRpmChips();
 $('vOnda').textContent='f_exp = '+S.rpm+' / 120 = '+fmt(fe,1)+' Hz\n'+[1,2,3,4].map(function(n){return'f_'+n+' = '+n+' × '+fmt(fe,1)+' = '+fmt(n*fe,1)+' Hz'}).join('\n')+'\n… hasta el armónico '+NH+': '+fmt(NH*fe,0)+' Hz';draw(0,true)}
-function drawOnda(t){var fe=S.rpm/120,A=setup($('cvOnda')),win=.5,t0=t*S.spO;
-var ax=axes({c:A.c,w:A.w,h:A.h,x0:0,x1:win,y0:-2.4,y1:2.4,xt:[0,.1,.2,.3,.4,.5],yt:[-2,-1,0,1,2],xf:function(v){return fmt(v,1)+' s'},yl:'y(t), relativa'});
-var pts=[];for(var i=0;i<=900;i++){var tt=i/900*win;pts.push([ax.X(tt),ax.Y(yOnda(tt+t0,fe))])}line(A.c,pts,css('--accent'),2);
+function drawOnda(t){var fe=S.rpm/120,A=setup($('cvOnda')),c=A.c,sp=S.spO,amp=34,yc=A.h/2+8,cx=70,R=26,win=.25;
+var y0=amp*yOnda(t*sp,fe);
+c.strokeStyle=css('--muted');c.lineWidth=2;c.setLineDash([4,4]);c.beginPath();c.moveTo(cx,20);c.lineTo(cx,A.h-20);c.stroke();c.setLineDash([]);
+c.fillStyle=css('--c2');c.beginPath();c.arc(cx,yc-y0,R,0,PI2);c.fill();c.fillStyle=css('--panel');c.beginPath();c.arc(cx,yc-y0,R-7,0,PI2);c.fill();
+c.fillStyle=css('--muted');c.font='500 13px '+css('--body');c.textAlign='center';c.fillText('Manubrio',cx,A.h-6);
+var xs=cx+R+12,xe=A.w-10,pps=(xe-xs)/(win/sp);
+traceGrid(c,xs,xe,24,A.h-24,pps,.05/sp,function(k){return k*50+' ms'});restLine(c,xs,xe,yc);
+trace(c,xs,xe,yc,pps,function(tau){return amp*yOnda((t-tau)*sp,fe)},css('--accent'),2.5);
 var B=setup($('cvEsp')),xm=Math.max(100,NH*fe*1.08),ax2=axes({c:B.c,w:B.w,h:B.h,x0:0,x1:xm,y0:0,y1:1.1,xt:niceT(xm),yt:[0,.5,1],xl:'Frecuencia (Hz)',yl:'Amplitud'});
 B.c.fillStyle=css('--c3');B.c.globalAlpha=.18;B.c.fillRect(ax2.X(1),ax2.P.t,ax2.X(20)-ax2.X(1),ax2.H);B.c.globalAlpha=1;
 for(var n=1;n<=NH;n++){var x=ax2.X(n*fe),y=ax2.Y(1/n);B.c.fillStyle=css('--accent');B.c.fillRect(x-4,y,8,ax2.Y(0)-y)}
@@ -233,6 +239,14 @@ $('rr').addEventListener('input',function(e){S.r=+e.target.value;updR()});
 function updR(){$('rrv').textContent=fmt(S.r,2);var r=S.r;
 $('vTR1').textContent='Con fn = 5.5 Hz y f = 11.7 Hz: r = 11.7 / 5.5 = 2.13\nr elegido = '+fmt(r,2)+'\n'+ZS.map(function(z){return'ζ = '+z[0]+': TR = '+fmt(one(r,1,z[0]).m,2)}).join('\n');
 nums($('nTR1'),ZS.map(function(z){var v=one(r,1,z[0]).m;return[fmt(v,2),'TR con ζ = '+z[0],v>1?'warn':'good']}).concat([[fmt(r*5.5,1)+' Hz','f si fn = 5.5 Hz']]));draw(0,true)}
+chips($('zChips'),[['ζ = 0.05',.05],['ζ = 0.14',.14],['ζ = 0.5',.5]],function(it){return S.z3===it[1]},function(it){S.z3=it[1]});
+function drawRig3(t){var A=setup($('cvRig3')),c=A.c,so=one(S.r,1,S.z3),fv=.8,Ab=16,gy=A.h-34,mc=gy-150,ph=PI2*fv*t,a=Math.min(90,Ab*so.m);
+var bw=Math.min(130,A.w*.28),R=rig(c,{x:14+bw/2+14,w:bw,gy:gy,yb:Ab*Math.sin(ph),m1:null,klab:'k c',m2:{yc:mc,d:a*Math.sin(ph+so.p),lab:'m'}});
+var xs=R.r+10,xe=A.w-10,pps=(xe-xs)/(3/fv);traceGrid(c,xs,xe,24,gy+10,pps,1/fv,function(k){return k+' T'});
+restLine(c,xs,xe,gy);restLine(c,xs,xe,mc);
+trace(c,xs,xe,gy,pps,function(tau){return Ab*Math.sin(PI2*fv*(t-tau))},css('--muted'),2);
+trace(c,xs,xe,mc,pps,function(tau){return a*Math.sin(PI2*fv*(t-tau)+so.p)},css('--accent'),3);
+c.fillStyle=css(so.m>1?'--warn':'--accent');c.font='700 20px '+css('--display');c.textAlign='right';c.fillText((so.m>1?'Amplifica: ':'Aísla: ')+'la masa se mueve '+fmt(so.m,2)+' veces lo que la base',xe,A.h-8)}
 function drawTR1(){var A=setup($('cvTR1')),ax=axes({c:A.c,w:A.w,h:A.h,x0:0,x1:5,y0:.03,y1:12,ylog:true,xt:[0,1,1.414,2,3,4,5],xf:function(v){return v===1.414?'√2':v},yt:[.05,.1,.2,.5,1,2,5,10],yf:function(v){return fmt(v,v<.1?2:v<1?1:0)},xl:'r = f / fn',yl:'TR'});
 A.c.fillStyle=css('--warn');A.c.globalAlpha=.08;A.c.fillRect(ax.P.l,ax.P.t,ax.W,ax.Y(1)-ax.P.t);A.c.globalAlpha=1;
 line(A.c,[[ax.P.l,ax.Y(1)],[ax.P.l+ax.W,ax.Y(1)]],css('--muted'),1.2,[5,4]);
@@ -256,9 +270,9 @@ var low=gy,y1=null;
 if(o.m1){y1=o.m1.yc-o.m1.d;spring(c,x-bw/4,y1+15,low,5,9,ink);damper(c,x+bw/4,y1+15,low,ink);
 c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');c.textAlign='center';c.fillText('k₁ c₁',x,(y1+15+low)/2+4);
 c.fillStyle=css('--c2');c.fillRect(x-bw/2,y1-15,bw,30);c.fillStyle=css('--accent-ink');c.font='600 14px '+css('--body');c.fillText('m₁ caja',x,y1+5);low=y1-15}
-var y2=o.m2.yc-o.m2.d;spring(c,x-bw/4,y2+22,low,6,8,ink);damper(c,x+bw/4,y2+22,low,ink);
-c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');c.textAlign='center';c.fillText('k₂ c₂',x,(y2+22+low)/2+4);
-c.fillStyle=css('--accent');c.fillRect(x-bw/2,y2-22,bw,44);c.fillStyle=css('--accent-ink');c.font='600 14px '+css('--body');c.fillText('m₂ celular',x,y2+5);
+var y2=o.m2.yc-o.m2.d;spring(c,x-bw/4,y2+22,low,o.coils||6,8,ink);damper(c,x+bw/4,y2+22,low,ink);
+c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');c.textAlign='center';c.fillText(o.klab||'k₂ c₂',x,(y2+22+low)/2+4);
+c.fillStyle=css(o.m2.col||'--accent');c.fillRect(x-bw/2,y2-22,bw,44);c.fillStyle=css('--accent-ink');c.font='600 14px '+css('--body');c.fillText(o.m2.lab||'m₂ celular',x,y2+5);
 return{r:x+bw/2,y1:y1,y2:y2,gy:gy}}
 function traceGrid(c,xs,xe,top,bot,pps,step,lab){c.strokeStyle=css('--grid');c.lineWidth=1;c.fillStyle=css('--muted');c.font='500 12px '+css('--mono');c.textAlign='center';
 for(var k=1;xs+k*step*pps<=xe-28;k++){var x=xs+k*step*pps;c.beginPath();c.moveTo(x,top);c.lineTo(x,bot);c.stroke();c.fillText(lab(k),x,top-6)}
@@ -317,11 +331,26 @@ c.font='500 12px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center'
 line(c,[[X(0),P.t],[X(0),A.h-P.b]],css('--ink'),1.5);
 RES.forEach(function(R,i){var y=P.t+i*rh,bh=Math.min(16,rh*.3);c.fillStyle=css(i===S.esc?'--ink':'--muted');c.font=(i===S.esc?'700 ':'500 ')+'15px '+css('--body');c.textAlign='left';c.fillText(R.n,4,y+rh/2+5);
 [[R.r,'--warn',-bh-2],[R.c,'--accent',2]].forEach(function(b){var v=Math.max(lo,Math.min(hi,(b[0]-1)*100));c.fillStyle=css(b[1]);var x0=X(0),x1=X(v);c.fillRect(Math.min(x0,x1),y+rh/2+b[2],Math.abs(x1-x0),bh);c.font='500 12px '+css('--mono');c.textAlign=v>=0?'left':'right';c.fillText(pct(b[0]),x1+(v>=0?6:-6),y+rh/2+b[2]+bh-3)})})}
-function drawEsc(t){var e=ESC[S.esc],A=setup($('cvEsc')),fe=e[1]?e[1]/120:5.6,win=3/fe,sl=.1,t0=t*sl;
+function drawEsc(t){var e=ESC[S.esc],A=setup($('cvEsc')),c=A.c,fe=e[1]?e[1]/120:5.6,sl=.8/fe,td=t*sl,fv=.8;
 function sig(tt,fn){if(!e[1]){var s=fn(5.6);return s.m*Math.sin(PI2*5.6*tt+s.p)}var v=0;for(var n=1;n<=6;n++){var s=fn(n*fe);v+=s.m/n*Math.sin(PI2*n*fe*tt+PH[n-1]+s.p)}return v}
-var ys=[],ym=0;for(var i=0;i<=600;i++){var tt=t0+i/600*win,a=sig(tt,function(){return{m:1,p:0}}),r=sig(tt,function(f){return one(f,FNR,ZR)}),c=sig(tt,solve);ys.push([i/600*win,a,r,c]);ym=Math.max(ym,Math.abs(a),Math.abs(r),Math.abs(c))}
-ym*=1.1;var ax=axes({c:A.c,w:A.w,h:A.h,x0:0,x1:win*1000,y0:-ym,y1:ym,xt:niceT(win*1000).filter(function(v){return v<=win*1000}),yt:[0],xl:'Tiempo (ms), cámara lenta ×0.1',yl:'Aceleración'});
-[[1,'--muted',1.5],[2,'--warn',2],[3,'--accent',2.5]].forEach(function(L){line(A.c,ys.map(function(p){return[ax.X(p[0]*1000),ax.Y(p[L[0]])]}),css(L[1]),L[2])})}
+var base=function(tt){return sig(tt,function(){return{m:1,p:0}})},rigS=function(tt){return sig(tt,function(f){return one(f,FNR,ZR)})},ourS=function(tt){return sig(tt,solve)};
+var Ab=12,bw=Math.min(120,A.w*.26),cx=14+bw/2+14,xs=cx+bw/2+10,xe=A.w-10,pps=(xe-xs)/(3/fv),cap=function(v){return Math.max(-70,Math.min(70,v))};
+/* arriba: soporte rígido */
+var g1=250,m1c=g1-110;
+var R1=rig(c,{x:cx,w:bw,gy:g1,yb:Ab*base(td),m1:null,coils:3,klab:' ',m2:{yc:m1c,d:cap(Ab*rigS(td)),lab:'celular',col:'--warn'}});
+c.fillStyle=css('--warn');c.font='700 18px '+css('--display');c.textAlign='left';c.fillText('Soporte rígido',14,22);
+traceGrid(c,xs,xe,40,g1+8,pps,1/fv,function(k){return k*Math.round(1000/fe)+' ms'});
+restLine(c,xs,xe,g1);restLine(c,xs,xe,m1c);
+trace(c,xs,xe,g1,pps,function(tau){return Ab*base((t-tau)*sl)},css('--muted'),1.8);
+trace(c,xs,xe,m1c,pps,function(tau){return cap(Ab*rigS((t-tau)*sl))},css('--warn'),2.6);
+/* abajo: nuestro soporte */
+var g2=A.h-30,c1=g2-100,c2=g2-235,s1=function(tt){return sig(tt,function(f){var q=solve(f);return{m:q.m1,p:q.p1}})};
+line(c,[[10,g1+30],[A.w-10,g1+30]],css('--line'),1);
+c.fillStyle=css('--accent');c.font='700 18px '+css('--display');c.textAlign='left';c.fillText('Nuestro soporte',14,g1+56);
+rig(c,{x:cx,w:bw,gy:g2,yb:Ab*base(td),m1:{yc:c1,d:Ab*s1(td)},m2:{yc:c2,d:cap(Ab*ourS(td))}});
+restLine(c,xs,xe,g2);restLine(c,xs,xe,c2);
+trace(c,xs,xe,g2,pps,function(tau){return Ab*base((t-tau)*sl)},css('--muted'),1.8);
+trace(c,xs,xe,c2,pps,function(tau){return cap(Ab*ourS((t-tau)*sl))},css('--accent'),2.6)}
 
 /* ===== L13-14 Mecido ===== */
 var MEC=(function(){var mph=.249,Hp=.170,hp=(17+Hp*1000/2*Math.cos(15*Math.PI/180))/1000;
@@ -370,8 +399,8 @@ traceGrid(c,xs,xe,24,gy,pps,Td/sl,function(k){return k+' Td'});restLine(c,xs,xe,
 trace(c,xs,xe,m2c,pps,function(tau){var q=s-tau;return x(((q%Tl)+Tl)%Tl)},css('--accent'),3);
 c.fillStyle=css('--muted');c.font='500 14px '+css('--body');c.textAlign='right';c.fillText(s<hold?'Jalado hacia abajo…':'¡Suelta! Cámara lenta ×0.25',xe,A.h-8)}
 /* ===== Bucle ===== */
-var DRAW={'p-onda':function(t){drawOnda(t)},'p-etapa':drawTR1,'p-modos':drawModos,'p-tr':drawTR,'p-rigido':function(t){drawBar();drawEsc(t)},'p-mecido':drawMec,'p-libre':function(t){drawRig16(t);drawLibre()}};
-var ANIM={'p-onda':1,'p-modos':1,'p-tr':1,'p-rigido':1,'p-libre':1};
+var DRAW={'p-onda':function(t){drawOnda(t)},'p-etapa':function(t){drawRig3(t);drawTR1()},'p-modos':drawModos,'p-tr':drawTR,'p-rigido':function(t){drawBar();drawEsc(t)},'p-mecido':drawMec,'p-libre':function(t){drawRig16(t);drawLibre()}};
+var ANIM={'p-etapa':1,'p-onda':1,'p-modos':1,'p-tr':1,'p-rigido':1,'p-libre':1};
 function draw(t,force){var id=panels[cur].id;if(!force&&!ANIM[id])return;DRAW[id](reduce?0:(t===undefined?now():t))}
 var T0=performance.now();function now(){return(performance.now()-T0)/1000}
 function loop(){if(!reduce)draw(now());requestAnimationFrame(loop)}
