@@ -10,7 +10,7 @@
 /* Lámina de 1920 × 1080 escalada a la ventana. Arriba la sección y quién expone; el título; abajo el contenido o la simulación en vivo. */
 :root{--bg:#e6ebee;--slide:#f6f8f8;--ink:#172027;--muted:#52606a;--line:#cdd5da;--accent:#0b6f66;--accent-ink:#f4faf8;--warn:#b04a12;--chip:#e7ecee;--c2:#4f6f8f;
 --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;--body:'Barlow',Arial,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#0d1216;--slide:#1a2228;--ink:#e8eef0;--muted:#a0b0b9;--line:#303c44;--accent:#58c9b8;--accent-ink:#08221f;--warn:#f0985f;--chip:#27323a;--c2:#8fb0d6;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1216;--slide:#1a2228;--ink:#e8eef0;--muted:#a0b0b9;--line:#303c44;--accent:#58c9b8;--accent-ink:#08221f;--warn:#f0985f;--chip:#27323a;--c2:#8fb0d6;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{background:var(--bg);color:var(--ink);font:400 16px/1.4 var(--body);overflow:hidden}
@@ -31,9 +31,10 @@ h2{margin:0;font:700 40px/1.1 var(--display)}
 .text b{color:var(--accent)}
 .box{background:var(--chip);border-radius:10px;padding:20px 24px;font-size:31px}
 .box .k{font:500 18px/1 var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:block;margin-bottom:8px}
-.tex{font-size:30px;overflow:hidden}
+.tex{font-size:30px;overflow:hidden}.split .tex{font-size:25px}
 .vals{font:500 24px/1.55 var(--mono);background:var(--chip);border-radius:10px;padding:16px 20px;white-space:pre-wrap}
 iframe{width:100%;height:100%;border:0;border-radius:8px;background:var(--bg);display:block}
+.fit{position:relative;min-height:0;min-width:0;overflow:hidden;border-radius:8px;background:var(--bg)}.fit iframe{position:absolute;left:0;top:0;transform-origin:0 0;border-radius:0}
 table{border-collapse:collapse;font-size:30px;width:100%}
 th,td{text-align:left;padding:10px 14px;border-bottom:2px solid var(--line)}
 th{font:600 22px/1.2 var(--body);color:var(--muted)}
@@ -80,7 +81,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>La moto vibra en muchas frecuencias a la vez</h1>
 <p class="idea">De 11.7 Hz en ralentí hasta cientos de Hz con los armónicos, más los baches de 1 a 20 Hz. No sirve sintonizar a una sola frecuencia.</p>
-<div class="body"><iframe data-src="simulaciones.html?embed#onda" title="Onda del manubrio"></iframe></div>
+<div class="body"><div class="fit" data-vh="575"><iframe data-src="simulaciones.html?embed#onda" title="Onda del manubrio"></iframe></div></div>
 </section>
 
 <!-- 3 -->
@@ -88,7 +89,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>Un resorte aísla solo arriba de √2 · fn</h1>
 <p class="idea">Si f/fn sube, TR baja. Si ζ sube, el pico baja pero aísla un poco menos.</p>
-<div class="body"><iframe data-src="simulaciones.html?embed#etapa" title="Transmisibilidad de una etapa"></iframe></div>
+<div class="body"><div class="fit" data-vh="725"><iframe data-src="simulaciones.html?embed#etapa" title="Transmisibilidad de una etapa"></iframe></div></div>
 </section>
 
 <!-- 4 -->
@@ -120,7 +121,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>A 5.5 Hz se mece el celular; a 25.7 Hz, la caja</h1>
 <p class="idea">Corrección de la primera presentación: el cable es el resorte blando, y si k baja, fn baja. Por eso el cable da el modo lento.</p>
-<div class="body"><iframe data-src="simulaciones.html?embed#modos" title="Los dos modos"></iframe></div>
+<div class="body"><div class="fit" data-vh="546"><iframe data-src="simulaciones.html?embed#modos" title="Los dos modos"></iframe></div></div>
 </section>
 
 <!-- 6 -->
@@ -128,7 +129,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>En ralentí llega 0.38 de la vibración; arriba de 30 Hz, casi nada</h1>
 <p class="idea">El precio es amplificar cerca de 5.5 Hz, en los baches.</p>
-<div class="body"><iframe data-src="simulaciones.html?embed#tr" title="Qué tanto aísla"></iframe></div>
+<div class="body"><div class="fit" data-vh="884"><iframe data-src="simulaciones.html?embed#tr" title="Qué tanto aísla"></iframe></div></div>
 </section>
 
 <!-- 7 -->
@@ -136,7 +137,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>El rígido amplifica; el nuestro reduce todo lo del motor</h1>
 <p class="idea">La misma vibración del manubrio pasa por los dos soportes.</p>
-<div class="body"><iframe data-src="simulaciones.html?embed#rigido" title="Rígido contra nuestro"></iframe></div>
+<div class="body"><div class="fit" data-vh="945"><iframe data-src="simulaciones.html?embed#rigido" title="Rígido contra nuestro"></iframe></div></div>
 </section>
 
 <!-- 8 -->
@@ -215,7 +216,7 @@ c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>Con los cables solos, al frenar el celular se inclina hasta el límite</h1>
 <p class="idea">Al frenar (eje Y, adelante y atrás) la inercia hace girar el piso del celular sobre los cables.</p>
-<div class="body"><iframe data-src="simulaciones.html?embed#mecido" title="Mecido al frenar"></iframe></div>
+<div class="body"><div class="fit" data-vh="686"><iframe data-src="simulaciones.html?embed#mecido" title="Mecido al frenar"></iframe></div></div>
 </section>
 
 <!-- 14 -->
@@ -248,7 +249,7 @@ c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
 <ul><li>Placa base y abrazadera</li><li>4 bujes de neopreno</li><li>Caja con lastre de acero</li><li>Barras inferiores, cables y barras superiores</li><li>Placa superior y guía de láminas</li><li>Porta-celular y cordón de seguridad</li></ul>
 <p class="foot">Se imprime en PETG; se compran el lastre, los cables, los bujes, la tornillería y la abrazadera.</p>
 </div>
-<iframe data-src="modelo3d.html?embed#explotado" title="Modelo 3D separado en piezas"></iframe>
+<iframe data-src="modelo3d.html?embed&nopanel#explotado" title="Modelo 3D separado en piezas"></iframe>
 </div>
 </section>
 
@@ -257,7 +258,7 @@ c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
 <div class="eyebrow"><span></span><span class="who"></span></div>
 <h1>En el cuarto parcial medimos lo que hoy es estimado</h1>
 <p class="idea">En banco: k con pesos y ζ soltando el celular. En la moto: un ESP32 con un acelerómetro en el manubrio y otro en el celular. Siempre con el cordón de seguridad.</p>
-<div class="body"><iframe data-src="simulaciones.html?embed#libre" title="Prueba de soltar"></iframe></div>
+<div class="body"><div class="fit" data-vh="686"><iframe data-src="simulaciones.html?embed#libre" title="Prueba de soltar"></iframe></div></div>
 </section>
 
 <!-- 17 -->
@@ -285,6 +286,7 @@ c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
 <span id="count" aria-live="polite"></span>
 <button id="next" type="button" aria-label="Lámina siguiente">→</button>
 <button id="fs" type="button">Pantalla completa</button>
+<button id="theme" type="button">Modo oscuro</button>
 </nav>
 
 <script>window.MathJax={tex:{packages:{'[+]':['ams']}},svg:{fontCache:'global'}};</script>
@@ -294,8 +296,14 @@ c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
 var slides=[].slice.call(document.querySelectorAll('.slide')),cur=0,deck=document.getElementById('deck'),vp=document.getElementById('viewport');
 slides.forEach(function(s,i){var w=s.querySelector('.who');if(w)w.textContent='Expone · '+s.dataset.who;var e=s.querySelector('.eyebrow span');if(s.dataset.sec&&e)e.textContent=(i+1)+' · '+s.dataset.sec});
 function fit(){var r=vp.getBoundingClientRect(),k=Math.min(r.width/1920,r.height/1080)*.97;deck.style.transform='translate(-50%,-50%) scale('+k+')'}
+var theme='light';try{if(localStorage.getItem('pres-theme')==='dark')theme='dark'}catch(e){}
+function applyTheme(){document.documentElement.setAttribute('data-theme',theme);document.getElementById('theme').textContent=theme==='dark'?'Modo claro':'Modo oscuro'}
+function srcOf(f){var d=f.dataset.src,i=d.indexOf('#');return d.slice(0,i)+'&theme='+theme+d.slice(i)}
+function fitFrames(){var sl=slides[cur];[].forEach.call(sl.querySelectorAll('.fit'),function(b){var f=b.querySelector('iframe'),bw=b.clientWidth,bh=b.clientHeight,vh=+b.dataset.vh;if(!bw||!bh)return;
+var sc=Math.min(1,bh/vh),vw=Math.max(1200,Math.round(bw/sc));sc=Math.min(sc,bw/vw);f.style.width=vw+'px';f.style.height=vh+'px';f.style.left=Math.max(0,(bw-vw*sc)/2)+'px';f.style.top=Math.max(0,(bh-vh*sc)/2)+'px';f.style.transform='scale('+sc+')'})}
 function go(i){i=Math.max(0,Math.min(slides.length-1,i));cur=i;
-slides.forEach(function(s,j){s.hidden=j!==i;[].forEach.call(s.querySelectorAll('iframe[data-src]'),function(f){if(j===i){if(f.getAttribute('src')!==f.dataset.src)f.setAttribute('src',f.dataset.src)}else if(f.getAttribute('src'))f.removeAttribute('src')})});
+slides.forEach(function(s,j){s.hidden=j!==i;[].forEach.call(s.querySelectorAll('iframe[data-src]'),function(f){if(j===i){var u=srcOf(f);if(f.getAttribute('src')!==u)f.setAttribute('src',u)}else if(f.getAttribute('src'))f.removeAttribute('src')})});
+fitFrames();
 document.getElementById('count').textContent=(i+1)+' / '+slides.length;
 try{history.replaceState(null,'','#'+(i+1))}catch(e){}}
 document.getElementById('prev').onclick=function(){go(cur-1)};document.getElementById('next').onclick=function(){go(cur+1)};
@@ -303,7 +311,8 @@ document.getElementById('fs').onclick=function(){var d=document.documentElement;
 document.addEventListener('keydown',function(e){if(e.target.closest&&e.target.closest('input,textarea,select'))return;
 if(['ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(cur+1)}else if(['ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur-1)}
 else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);else if(e.key==='f'||e.key==='F')document.getElementById('fs').click()});
-window.addEventListener('resize',fit);
+window.addEventListener('resize',function(){fit();fitFrames()});
+document.getElementById('theme').onclick=function(){theme=theme==='dark'?'light':'dark';try{localStorage.setItem('pres-theme',theme)}catch(e){}applyTheme();go(cur)};applyTheme();
 window.addEventListener('message',function(e){if(e.data&&e.data.deckNav)go(cur+e.data.deckNav)});
 function fromHash(){var n=parseInt((location.hash||'').slice(1),10);if(!isNaN(n)&&n-1!==cur)go(n-1)}
 window.addEventListener('hashchange',fromHash);fit();var n0=parseInt((location.hash||'').slice(1),10);go(isNaN(n0)?0:n0-1);
