@@ -64,7 +64,7 @@ html,body{height:auto}
 .panel{border-left:0;border-top:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 }
 </style>
-<style>.nopanel .views,.nopanel #note{display:none!important}@media (max-width:860px){html.embed,html.embed body{height:100%}.embed .app{display:grid;height:100%}.embed .stage{height:100%;min-height:0}}</style>
+<style>.embed .rigl{font-size:24px!important;padding:6px 12px!important}.nopanel .views,.nopanel #note{display:none!important}@media (max-width:860px){html.embed,html.embed body{height:100%}.embed .app{display:grid;height:100%}.embed .stage{height:100%;min-height:0}}</style>
 <script>try{var tm=location.search.match(/theme=(dark|light)/);if(tm)document.documentElement.setAttribute("data-theme",tm[1]);if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
 <div class="app">
 <main class="stage">
@@ -370,7 +370,7 @@ if(u.cord){n.position.y=d[0];n.scale.y=(79+d[2]-d[0]+exS*246)/79;return}
 var P0=pose(u.stage,0,(u.z0||0)*SC);
 n.position.y=P0.y+e;n.position.z=P0.z;n.rotation.x=u.stage?PO[u.stage].th:0})}
 function place(id,x,y,txt){var el=$(id);if(el.hidden)return;LBL.set(x,y,0).project(cam);el.textContent=txt;el.style.left=((LBL.x+1)/2*host.clientWidth)+'px';el.style.top=((1-LBL.y)/2*host.clientHeight)+'px'}
-function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;if(!STARTED3)dt=0;
+function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;if(!STARTED3)dt=0;if(S.loopBrake&&STARTED3&&!S.pulse&&now-(S.lastBrake||0)>6500){S.lastBrake=now;resetQ();S.pulse={a:-.5*9.81,t:0};S.peak=0;S.peakA=0;S.hit=false}
 exS+=(S.ex-exS)*Math.min(1,dt*9);
 var p=PHONES[S.phone],sdt=dt*S.sp,cmp=S.compare&&S.dsg!==0;
 if(S.mode!=='stop')th+=sdt*2*Math.PI*S.f;
@@ -386,7 +386,7 @@ setDesign(S.dsg);
 var ey=exS*150;
 orb.th+=(orb.tth-orb.th)*Math.min(1,dt*7);orb.ph+=(orb.tph-orb.ph)*Math.min(1,dt*7);orb.r+=(orb.tr+exS*620+(cmp?280:0)-orb.r)*Math.min(1,dt*6);
 var ty=orb.ty+ey,sp=Math.sin(orb.ph);cam.position.set(orb.r*sp*Math.sin(orb.th),ty+orb.r*Math.cos(orb.ph),orb.r*sp*Math.cos(orb.th));cam.lookAt(0,ty,0);
-if(cmp){scene.updateMatrixWorld();cam.updateMatrixWorld();var yl=292+exS*340;place('rl1',-100,yl,DESIGNS[0].n);place('rl0',100,yl,DESIGNS[S.dsg].n)}
+if(cmp){scene.updateMatrixWorld();cam.updateMatrixWorld();var yl=292+exS*340;place('rl1',-100,yl,S.labA||DESIGNS[0].n);place('rl0',100,yl,S.labB||DESIGNS[S.dsg].n)}
 ren.render(scene,cam);requestAnimationFrame(frame)}
 /* ===== Vistas por enlace: modelo3d.html#bujes, #explotado, #ensamble ===== */
 function fromHash(){var h=(location.hash||'').slice(1);if(!h)return;
@@ -394,6 +394,7 @@ S.compare=false;S.mode='stop';
 orb.tth=VIEWS.iso[0];orb.tph=VIEWS.iso[1];
 if(P[h]){S.ex=.25;select(h);setTimeout(function(){var bx=new T.Box3();meshes.forEach(function(m){if(m.userData.part===h)bx.expandByObject(m)});if(bx.isEmpty())return;
 var c=bx.getCenter(new T.Vector3()),z=bx.getSize(new T.Vector3()),d=Math.max(z.x,z.y,z.z);orb.ty=c.y-exS*150;orb.tr=Math.max(420,d*5.5)-exS*620},700)}
+else if(h==='frenado'){/* Problema y solución: el soporte de 60 mm contra C con guía, frenando a 0.5 g una y otra vez */S.ex=0;select(null);S.compare=true;S.dsg=2;rebuildH();resetQ();S.sp=.5;S.loopBrake=true;S.labA='Sin guía: se ladea';S.labB='Con guía: se queda firme';orb.tth=.5;orb.tph=1.32;orb.ty=105;orb.tr=620}
 else if(h==='explotado'){S.ex=1;select(null);orb.ty=170;orb.tr=900}else if(h==='ensamble'){S.ex=0;select(null);orb.ty=108;orb.tr=720}else return;
 $('explode').value=S.ex;refresh()}
 var STARTED3=!document.documentElement.classList.contains('embed');

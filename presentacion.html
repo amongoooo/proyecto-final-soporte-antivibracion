@@ -66,37 +66,33 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div id="viewport"><div id="deck">
 
 <!-- 1 -->
-<section class="slide cover" data-who="Miguel Ángel Gonzales">
-<div class="eyebrow"><span>Vibraciones Mecánicas · Tercer parcial</span><span class="who"></span></div>
+<section class="slide cover">
 <div class="coverGrid">
 <div style="display:flex;flex-direction:column;gap:28px">
 <h1>Soporte antivibración en dos etapas</h1>
 <p class="idea">Del diseño al prototipo que vamos a construir: cómo protege el celular de un repartidor de la vibración de la moto.</p>
 <div class="team"><span>Bocanegra González Jorge</span><span>Gonzales Nava Miguel Ángel</span><span>Lara Lizardi José Froylán</span><span>Ramírez Rosas Roberto</span></div>
-<p class="foot">Equipo Camaradas · Ingeniería Mecatrónica · Profesor: ________ · Fecha: ________</p>
+<p class="foot">Vibraciones Mecánicas · Tercer parcial · Equipo Camaradas · Ingeniería Mecatrónica · Profesor: ________ · Fecha: ________</p>
 </div>
 <iframe data-src="modelo3d.html?embed&nopanel#ensamble" title="Modelo 3D del prototipo armado"></iframe>
 </div>
 </section>
 
 <!-- 2 -->
-<section class="slide" data-who="Miguel Ángel Gonzales" data-sec="El problema">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<section class="slide">
 <h1>La moto vibra en muchas frecuencias a la vez</h1>
 <div class="body"><div class="fit" data-vh="743"><iframe data-src="simulaciones.html?embed#onda" title="Onda del manubrio"></iframe></div></div>
 </section>
 
 <!-- 3 -->
-<section class="slide" data-who="Jorge Bocanegra" data-sec="Teoría">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<section class="slide">
 <h1>Un resorte aísla solo arriba de √2 · fn</h1>
 <p class="idea">Si f/fn sube, TR baja. Si ζ sube, el pico baja pero aísla un poco menos.</p>
 <div class="body"><div class="fit" data-vh="844"><iframe data-src="simulaciones.html?embed#etapa" title="Transmisibilidad de una etapa"></iframe></div></div>
 </section>
 
 <!-- 4 -->
-<section class="slide" data-who="Jorge Bocanegra" data-sec="Teoría">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<section class="slide">
 <h1>Modelo de dos masas con base excitada</h1>
 <div class="body split2">
 <div class="text">
@@ -118,32 +114,54 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </section>
 
 <!-- 5 -->
-<section class="slide" data-who="Jorge Bocanegra" data-sec="Teoría">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<section class="slide">
 <h1>A 5.5 Hz se mece el celular; a 25.7 Hz, la caja</h1>
 <p class="idea">Corrección de la primera presentación: el cable es el resorte blando, y si k baja, fn baja. Por eso el cable da el modo lento.</p>
 <div class="body"><div class="fit" data-vh="725"><iframe data-src="simulaciones.html?embed#modos" title="Los dos modos"></iframe></div></div>
 </section>
 
 <!-- 6 -->
-<section class="slide" data-who="Jorge Bocanegra" data-sec="Resultados">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<section class="slide">
 <h1>En ralentí llega 0.38 de la vibración; arriba de 30 Hz, casi nada</h1>
 <p class="idea">El precio es amplificar cerca de 5.5 Hz, en los baches.</p>
 <div class="body"><div class="fit" data-vh="899"><iframe data-src="simulaciones.html?embed#tr" title="Qué tanto aísla"></iframe></div></div>
 </section>
 
 <!-- 7 -->
-<section class="slide" data-who="Miguel Ángel Gonzales" data-sec="Resultados">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<section class="slide">
 <h1>El rígido amplifica; el nuestro reduce todo lo del motor</h1>
 <p class="idea">La misma vibración del manubrio pasa por los dos soportes.</p>
 <div class="body"><div class="fit" data-vh="953"><iframe data-src="simulaciones.html?embed#rigido" title="Rígido contra nuestro"></iframe></div></div>
 </section>
 
 <!-- 8 -->
-<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<section class="slide">
+<h1>Al frenar, sin guía el celular se ladea; con la guía se queda firme</h1>
+<div class="body split">
+<div class="text">
+<table>
+<thead><tr><th>Frenar a 0.5 g</th><th>Sin guía</th><th>Con guía</th></tr></thead>
+<tbody>
+<tr><td>Inclinación</td><td class="n bad">33°</td><td class="n good">4.9°</td></tr>
+<tr><td>Sube</td><td class="n bad">139 mm</td><td class="n good">21 mm</td></tr>
+<tr><td>Mecido</td><td class="n bad">0.64 Hz</td><td class="n good">3.3 Hz</td></tr>
+<tr><td>TR a 11.7 Hz</td><td class="n">0.36</td><td class="n">0.38</td></tr>
+</tbody></table>
+<div class="box"><span class="k">Solución</span>4 láminas de fleje en el piso 2: rígidas al giro, blandas hacia arriba.</div>
+</div>
+<iframe data-src="modelo3d.html?embed&nopanel#frenado" title="Animación: frenar a 0.5 g sin guía y con guía"></iframe>
+</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+<h1>Por qué se ladea: el cálculo del mecido</h1>
+<p class="idea">Al frenar (eje Y, adelante y atrás) la inercia hace girar el piso del celular sobre los cables.</p>
+<div class="body"><div class="fit" data-vh="690"><iframe data-src="simulaciones.html?embed#mecido" title="Mecido al frenar"></iframe></div></div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
 <h1>Placa base y abrazadera</h1>
 <div class="body split">
 <div class="text">
@@ -154,9 +172,8 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </div>
 </section>
 
-<!-- 9 -->
-<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<!-- 11 -->
+<section class="slide">
 <h1>Bujes de neopreno: primera etapa</h1>
 <div class="body split">
 <div class="text">
@@ -169,9 +186,8 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </div>
 </section>
 
-<!-- 10 -->
-<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<!-- 12 -->
+<section class="slide">
 <h1>Caja con lastre: la masa intermedia</h1>
 <div class="body split">
 <div class="text">
@@ -183,9 +199,8 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </div>
 </section>
 
-<!-- 11 -->
-<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<!-- 13 -->
+<section class="slide">
 <h1>Cables de acero: segunda etapa</h1>
 <div class="body split">
 <div class="text">
@@ -197,9 +212,8 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </div>
 </section>
 
-<!-- 12 -->
-<section class="slide" data-who="José Froylán Lara" data-sec="Las piezas">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<!-- 14 -->
+<section class="slide">
 <h1>Piso del celular</h1>
 <div class="body split">
 <div class="text">
@@ -211,37 +225,20 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </div>
 </section>
 
-<!-- 13 -->
-<section class="slide" data-who="Roberto Ramírez" data-sec="Un problema">
-<div class="eyebrow"><span></span><span class="who"></span></div>
-<h1>Con los cables solos, al frenar el celular se inclina hasta el límite</h1>
-<p class="idea">Al frenar (eje Y, adelante y atrás) la inercia hace girar el piso del celular sobre los cables.</p>
-<div class="body"><div class="fit" data-vh="653"><iframe data-src="simulaciones.html?embed#mecido" title="Mecido al frenar"></iframe></div></div>
-</section>
-
-<!-- 14 -->
-<section class="slide" data-who="Roberto Ramírez" data-sec="La solución">
-<div class="eyebrow"><span></span><span class="who"></span></div>
-<h1>4 láminas de fleje frenan el giro sin endurecer lo vertical</h1>
+<!-- 15 -->
+<section class="slide">
+<h1>Guía de láminas: frena el giro sin endurecer lo vertical</h1>
 <div class="body split">
 <div class="text">
 <div class="box"><span class="k">Función</span>Rígidas al giro (30 N·m/rad) y de lado, blandas hacia arriba (60 N/m). Solo en el piso 2: en los dos pisos, la vibración horizontal llegaría al celular.</div>
-<table>
-<thead><tr><th>Frenar a 0.5 g</th><th>Sin guía</th><th>Con guía</th></tr></thead>
-<tbody>
-<tr><td>Inclinación</td><td class="n bad">33°</td><td class="n good">4.9°</td></tr>
-<tr><td>Movimiento arriba</td><td class="n bad">139 mm</td><td class="n good">21 mm</td></tr>
-<tr><td>Mecido</td><td class="n bad">0.64 Hz</td><td class="n good">3.3 Hz</td></tr>
-<tr><td>TR a 11.7 Hz</td><td class="n">0.36</td><td class="n">0.38</td></tr>
-</tbody></table>
+<div class="tex">\[ k_{\theta 2} = k_2\,a^2 + k_{\theta,guía} = 475\,(0.050)^2 + 30 = 31.2\ \tfrac{\text{N·m}}{\text{rad}} \]</div>
 </div>
 <iframe data-src="modelo3d.html?embed&nopanel#guia" title="Guía de láminas en el modelo 3D"></iframe>
 </div>
 </section>
 
-<!-- 15 -->
-<section class="slide" data-who="Roberto Ramírez" data-sec="El prototipo">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<!-- 16 -->
+<section class="slide">
 <h1>Todas las piezas juntas</h1>
 <div class="body split">
 <div class="text">
@@ -252,17 +249,15 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </div>
 </section>
 
-<!-- 16 -->
-<section class="slide" data-who="Roberto Ramírez" data-sec="Cuarto parcial">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<!-- 17 -->
+<section class="slide">
 <h1>En el cuarto parcial medimos lo que hoy es estimado</h1>
 <p class="idea">En banco: k con pesos y ζ soltando el celular. En la moto: un ESP32 con un acelerómetro en el manubrio y otro en el celular. Siempre con el cordón de seguridad.</p>
 <div class="body"><div class="fit" data-vh="774"><iframe data-src="simulaciones.html?embed#libre" title="Prueba de soltar"></iframe></div></div>
 </section>
 
-<!-- 17 -->
-<section class="slide concl" data-who="Miguel Ángel Gonzales" data-sec="Conclusiones">
-<div class="eyebrow"><span></span><span class="who"></span></div>
+<!-- 18 -->
+<section class="slide concl">
 <h1>No atacamos una frecuencia: filtramos todas</h1>
 <div class="body split2">
 <div class="text"><ul>
@@ -291,7 +286,6 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <script>
 (function(){'use strict';
 var slides=[].slice.call(document.querySelectorAll('.slide')),cur=-1,deck=document.getElementById('deck'),vp=document.getElementById('viewport'),T=550,token=0;
-slides.forEach(function(s){var w=s.querySelector('.who');if(w)w.textContent='Expone · '+s.dataset.who;var e=s.querySelector('.eyebrow span');if(s.dataset.sec&&e)e.textContent=s.dataset.sec});
 function fit(){var r=vp.getBoundingClientRect(),k=Math.min(r.width/1920,r.height/1080);deck.style.transform='translate(-50%,-50%) scale('+k+')'}
 function srcOf(f){var d=f.dataset.src,i=d.indexOf('#');return d.slice(0,i)+'&theme=light'+d.slice(i)}
 function fitFrames(sl){[].forEach.call(sl.querySelectorAll('.fit'),function(b){var f=b.querySelector('iframe'),bw=b.clientWidth,bh=b.clientHeight,vh=+b.dataset.vh;if(!bw||!bh)return;
