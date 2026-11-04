@@ -1,0 +1,398 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+<title>Placa superior y porta-celular</title>
+<style>
+.o{fill:none;stroke:#15191d;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+.of{fill:#ffffff;stroke:#15191d;stroke-width:1.7;stroke-linejoin:round}
+.t{fill:none;stroke:#15191d;stroke-width:1}
+.h{fill:none;stroke:#15191d;stroke-width:0.9;stroke-dasharray:5 3}
+.c{fill:none;stroke:#6b7480;stroke-width:0.7;stroke-dasharray:14 3 2 3}
+.ph{fill:none;stroke:#7b8590;stroke-width:1;stroke-dasharray:7 4}
+.d{fill:none;stroke:#1f2d3a;stroke-width:0.8}
+.x{fill:none;stroke:#1f2d3a;stroke-width:0.6}
+.sec{fill:url(#rayado);stroke:#15191d;stroke-width:1.5}
+.rub{fill:#3a3f44;stroke:#15191d;stroke-width:1.3}
+.stl{fill:#c9d0d6;stroke:#15191d;stroke-width:1.3}
+text{font-family:'Century Gothic','Segoe UI',Arial,sans-serif;fill:#15191d}
+.dt{font-size:12.5px;fill:#1f2d3a}
+.nt{font-size:11.5px;fill:#36414c}
+.vt{font-size:12px;font-weight:700;letter-spacing:.4px;fill:#36414c}
+.hd{font-size:17px;font-weight:700}
+.sb{font-size:12px;fill:#36414c}
+.tb{font-size:10px;fill:#5b6672;letter-spacing:.5px}
+.tv{font-size:14px;font-weight:700}
+.tvs{font-size:12px;font-weight:600}
+</style>
+<defs>
+<marker id="fl" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,1.6 L10,5 L0,8.4 z" fill="#1f2d3a"/></marker>
+<pattern id="rayado" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><line x1="0" y1="0" x2="0" y2="6" stroke="#15191d" stroke-width="0.8"/></pattern>
+</defs>
+<rect x="0" y="0" width="1200" height="900" fill="#ffffff"/>
+<rect x="14" y="14" width="1172" height="872" fill="none" stroke="#15191d" stroke-width="2"/>
+<line x1="160.5" y1="14" x2="160.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="160.5" y1="886" x2="160.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="307.0" y1="14" x2="307.0" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="307.0" y1="886" x2="307.0" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="453.5" y1="14" x2="453.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="453.5" y1="886" x2="453.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="600.0" y1="14" x2="600.0" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="600.0" y1="886" x2="600.0" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="746.5" y1="14" x2="746.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="746.5" y1="886" x2="746.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="893.0" y1="14" x2="893.0" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="893.0" y1="886" x2="893.0" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="1039.5" y1="14" x2="1039.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="1039.5" y1="886" x2="1039.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="159.3" x2="21" y2="159.3" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="159.3" x2="1179" y2="159.3" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="304.7" x2="21" y2="304.7" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="304.7" x2="1179" y2="304.7" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="450.0" x2="21" y2="450.0" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="450.0" x2="1179" y2="450.0" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="595.3" x2="21" y2="595.3" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="595.3" x2="1179" y2="595.3" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="740.7" x2="21" y2="740.7" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="740.7" x2="1179" y2="740.7" stroke="#15191d" stroke-width="1"/>
+<text x="20.0" y="38.0" class="hd" text-anchor="start" >12  Placa superior con postes de guía</text>
+<rect x="20.0" y="45.0" width="126.0" height="19" rx="9.5" fill="#d4691f"/>
+<text x="83.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">IMPRESA · PETG</text>
+<text x="154.0" y="59.0" class="sb" text-anchor="start" >Cant. 1 · relleno 60 %, 4 perímetros · ≈ 47 g</text>
+<rect x="68.00" y="110.00" width="159.00" height="7.50" rx="0.00" class="o"/>
+<rect x="104.00" y="117.50" width="21.00" height="43.50" rx="0.00" class="o"/>
+<line x1="104.00" y1="152.00" x2="125.00" y2="152.00" class="t"/>
+<line x1="104.00" y1="128.00" x2="125.00" y2="128.00" class="t"/>
+<rect x="170.00" y="117.50" width="21.00" height="43.50" rx="0.00" class="o"/>
+<line x1="170.00" y1="152.00" x2="191.00" y2="152.00" class="t"/>
+<line x1="170.00" y1="128.00" x2="191.00" y2="128.00" class="t"/>
+<line x1="229.00" y1="117.50" x2="243.50" y2="117.50" class="x"/>
+<line x1="229.00" y1="110.00" x2="243.50" y2="110.00" class="x"/>
+<line x1="240.50" y1="117.50" x2="240.50" y2="110.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="236.5" y="113.8" class="dt" text-anchor="middle" transform="rotate(-90 236.5 113.8)">5</text>
+<line x1="102.00" y1="161.00" x2="84.50" y2="161.00" class="x"/>
+<line x1="102.00" y1="117.50" x2="84.50" y2="117.50" class="x"/>
+<line x1="87.50" y1="161.00" x2="87.50" y2="117.50" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="83.5" y="139.2" class="dt" text-anchor="middle" transform="rotate(-90 83.5 139.2)">29</text>
+<line x1="68.00" y1="108.00" x2="68.00" y2="93.50" class="x"/>
+<line x1="227.00" y1="108.00" x2="227.00" y2="93.50" class="x"/>
+<line x1="68.00" y1="96.50" x2="227.00" y2="96.50" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="147.5" y="92.5" class="dt" text-anchor="middle" >106</text>
+<text x="68.0" y="183.0" class="vt" text-anchor="start" >VISTA FRONTAL</text>
+<polygon points="227.00,234.50 226.74,232.56 226.00,230.75 224.80,229.20 223.25,228.00 221.44,227.26 219.50,227.00 75.50,227.00 73.56,227.26 71.75,228.00 70.20,229.20 69.00,230.75 68.26,232.56 68.00,234.50 68.00,399.50 68.26,401.44 69.00,403.25 70.20,404.80 71.75,406.00 73.56,406.74 75.50,407.00 219.50,407.00 221.44,406.74 223.25,406.00 224.80,404.80 226.00,403.25 226.74,401.44 227.00,399.50" class="o"/>
+<rect x="72.50" y="287.00" width="30.00" height="60.00" rx="0.00" class="o"/>
+<rect x="192.50" y="287.00" width="30.00" height="60.00" rx="0.00" class="o"/>
+<circle cx="93.50" cy="392.00" r="2.55" class="o"/>
+<line x1="84.95" y1="392.00" x2="102.05" y2="392.00" class="c"/>
+<line x1="93.50" y1="400.55" x2="93.50" y2="383.45" class="c"/>
+<circle cx="93.50" cy="242.00" r="2.55" class="o"/>
+<line x1="84.95" y1="242.00" x2="102.05" y2="242.00" class="c"/>
+<line x1="93.50" y1="250.55" x2="93.50" y2="233.45" class="c"/>
+<circle cx="201.50" cy="392.00" r="2.55" class="o"/>
+<line x1="192.95" y1="392.00" x2="210.05" y2="392.00" class="c"/>
+<line x1="201.50" y1="400.55" x2="201.50" y2="383.45" class="c"/>
+<circle cx="201.50" cy="242.00" r="2.55" class="o"/>
+<line x1="192.95" y1="242.00" x2="210.05" y2="242.00" class="c"/>
+<line x1="201.50" y1="250.55" x2="201.50" y2="233.45" class="c"/>
+<circle cx="117.50" cy="335.00" r="3.38" class="o"/>
+<line x1="108.12" y1="335.00" x2="126.88" y2="335.00" class="c"/>
+<line x1="117.50" y1="344.38" x2="117.50" y2="325.62" class="c"/>
+<circle cx="117.50" cy="299.00" r="3.38" class="o"/>
+<line x1="108.12" y1="299.00" x2="126.88" y2="299.00" class="c"/>
+<line x1="117.50" y1="308.38" x2="117.50" y2="289.62" class="c"/>
+<circle cx="177.50" cy="335.00" r="3.38" class="o"/>
+<line x1="168.12" y1="335.00" x2="186.88" y2="335.00" class="c"/>
+<line x1="177.50" y1="344.38" x2="177.50" y2="325.62" class="c"/>
+<circle cx="177.50" cy="299.00" r="3.38" class="o"/>
+<line x1="168.12" y1="299.00" x2="186.88" y2="299.00" class="c"/>
+<line x1="177.50" y1="308.38" x2="177.50" y2="289.62" class="c"/>
+<rect x="104.00" y="348.50" width="21.00" height="12.00" rx="0.00" class="h"/>
+<rect x="170.00" y="348.50" width="21.00" height="12.00" rx="0.00" class="h"/>
+<line x1="93.50" y1="240.00" x2="93.50" y2="209.00" class="x"/>
+<line x1="201.50" y1="240.00" x2="201.50" y2="209.00" class="x"/>
+<line x1="93.50" y1="212.00" x2="201.50" y2="212.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="147.5" y="208.0" class="dt" text-anchor="middle" >72</text>
+<line x1="117.50" y1="297.00" x2="117.50" y2="263.00" class="x"/>
+<line x1="177.50" y1="297.00" x2="177.50" y2="263.00" class="x"/>
+<line x1="117.50" y1="266.00" x2="177.50" y2="266.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="147.5" y="262.0" class="dt" text-anchor="middle" >40</text>
+<line x1="179.50" y1="335.00" x2="189.50" y2="335.00" class="x"/>
+<line x1="179.50" y1="299.00" x2="189.50" y2="299.00" class="x"/>
+<line x1="186.50" y1="335.00" x2="186.50" y2="299.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="182.5" y="317.0" class="dt" text-anchor="middle" transform="rotate(-90 182.5 317.0)">24</text>
+<line x1="91.50" y1="392.00" x2="48.50" y2="392.00" class="x"/>
+<line x1="91.50" y1="242.00" x2="48.50" y2="242.00" class="x"/>
+<line x1="51.50" y1="392.00" x2="51.50" y2="242.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="47.5" y="317.0" class="dt" text-anchor="middle" transform="rotate(-90 47.5 317.0)">100</text>
+<line x1="229.00" y1="407.00" x2="249.50" y2="407.00" class="x"/>
+<line x1="229.00" y1="227.00" x2="249.50" y2="227.00" class="x"/>
+<line x1="246.50" y1="407.00" x2="246.50" y2="227.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="242.5" y="317.0" class="dt" text-anchor="middle" transform="rotate(-90 242.5 317.0)">120</text>
+<text x="68.0" y="453.0" class="vt" text-anchor="start" >VISTA SUPERIOR</text>
+<rect x="293.00" y="110.00" width="180.00" height="7.50" rx="0.00" class="o"/>
+<rect x="414.50" y="117.50" width="12.00" height="43.50" rx="0.00" class="o"/>
+<rect x="408.50" y="151.40" width="6.00" height="1.20" rx="0.00" class="t"/>
+<rect x="408.50" y="127.40" width="6.00" height="1.20" rx="0.00" class="t"/>
+<line x1="293.00" y1="108.00" x2="293.00" y2="93.50" class="x"/>
+<line x1="473.00" y1="108.00" x2="473.00" y2="93.50" class="x"/>
+<line x1="293.00" y1="96.50" x2="473.00" y2="96.50" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="383.0" y="92.5" class="dt" text-anchor="middle" >120</text>
+<line x1="428.50" y1="152.00" x2="443.00" y2="152.00" class="x"/>
+<line x1="428.50" y1="117.50" x2="443.00" y2="117.50" class="x"/>
+<line x1="440.00" y1="152.00" x2="440.00" y2="117.50" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="436.0" y="134.8" class="dt" text-anchor="middle" transform="rotate(-90 436.0 134.8)">23</text>
+<line x1="428.50" y1="128.00" x2="458.00" y2="128.00" class="x"/>
+<line x1="428.50" y1="117.50" x2="458.00" y2="117.50" class="x"/>
+<line x1="455.00" y1="128.00" x2="455.00" y2="117.50" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="451.0" y="122.8" class="dt" text-anchor="middle" transform="rotate(-90 451.0 122.8)">7</text>
+<text x="293.0" y="183.0" class="vt" text-anchor="start" >VISTA LATERAL IZQ.</text>
+<text x="300.0" y="270.0" class="vt" text-anchor="start" >ISOMÉTRICA</text>
+<g><polygon points="351.24,381.85 363.01,388.65 363.01,360.49 351.24,353.70" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="363.01,388.65 369.73,384.76 369.73,356.61 363.01,360.49" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="351.24,353.70 363.01,360.49 369.73,356.61 357.96,349.82" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="388.23,403.21 400.00,410.00 400.00,381.85 388.23,375.06" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="400.00,410.00 406.73,406.12 406.73,377.97 400.00,381.85" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="388.23,375.06 400.00,381.85 406.73,377.97 394.96,371.17" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="341.15,339.14 374.78,319.72 374.78,314.87 341.15,334.28" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="338.63,332.83 341.15,334.28 374.78,314.87 372.26,313.41" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="338.63,337.68 341.15,339.14 341.15,334.28 338.63,332.83" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="372.26,313.41 461.37,364.86 495.00,345.45 405.88,294.00" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="413.20,307.93 413.48,307.72 413.68,307.49 413.78,307.23 413.78,306.97 413.68,306.72 413.48,306.48 413.20,306.28 412.85,306.11 412.44,306.00 412.00,305.94 411.54,305.94 411.10,306.00 410.69,306.11 410.34,306.28 410.06,306.48 409.86,306.72 409.76,306.97 409.76,307.23 409.86,307.49 410.06,307.72 410.34,307.93 410.69,308.09 411.10,308.20 411.54,308.26 412.00,308.26 412.44,308.20 412.85,308.09" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="473.73,342.87 474.01,342.67 474.21,342.44 474.31,342.18 474.31,341.92 474.21,341.66 474.01,341.43 473.73,341.22 473.38,341.06 472.97,340.95 472.53,340.89 472.07,340.89 471.63,340.95 471.23,341.06 470.87,341.22 470.59,341.43 470.39,341.66 470.29,341.92 470.29,342.18 470.39,342.44 470.59,342.67 470.87,342.87 471.23,343.04 471.63,343.15 472.07,343.21 472.53,343.21 472.97,343.15 473.38,343.04" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="372.26,318.27 461.37,369.72 461.37,364.86 372.26,313.41" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="461.37,369.72 495.00,350.30 495.00,345.45 461.37,364.86" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="357.96,343.99 408.41,373.11 442.04,353.70 391.59,324.58" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="374.99,346.05 375.36,345.78 375.62,345.47 375.76,345.13 375.76,344.79 375.62,344.45 375.36,344.14 374.99,343.87 374.52,343.65 373.98,343.50 373.40,343.43 372.80,343.43 372.21,343.50 371.67,343.65 371.21,343.87 370.83,344.14 370.57,344.45 370.44,344.79 370.44,345.13 370.57,345.47 370.83,345.78 371.21,346.05 371.67,346.27 372.21,346.42 372.80,346.50 373.40,346.50 373.98,346.42 374.52,346.27" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="395.17,334.40 395.54,334.13 395.80,333.82 395.93,333.49 395.93,333.14 395.80,332.80 395.54,332.49 395.17,332.22 394.70,332.01 394.16,331.85 393.57,331.78 392.97,331.78 392.39,331.85 391.85,332.01 391.38,332.22 391.01,332.49 390.75,332.80 390.62,333.14 390.62,333.49 390.75,333.82 391.01,334.13 391.38,334.40 391.85,334.62 392.39,334.77 392.97,334.85 393.57,334.85 394.16,334.77 394.70,334.62" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="408.62,365.47 408.99,365.20 409.25,364.89 409.38,364.55 409.38,364.20 409.25,363.87 408.99,363.56 408.62,363.29 408.15,363.07 407.61,362.92 407.03,362.84 406.43,362.84 405.84,362.92 405.30,363.07 404.83,363.29 404.46,363.56 404.20,363.87 404.07,364.20 404.07,364.55 404.20,364.89 404.46,365.20 404.83,365.47 405.30,365.69 405.84,365.84 406.43,365.91 407.03,365.91 407.61,365.84 408.15,365.69" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="428.79,353.82 429.17,353.55 429.43,353.24 429.56,352.90 429.56,352.56 429.43,352.22 429.17,351.91 428.79,351.64 428.33,351.42 427.79,351.27 427.20,351.19 426.60,351.19 426.02,351.27 425.48,351.42 425.01,351.64 424.64,351.91 424.38,352.22 424.24,352.56 424.24,352.90 424.38,353.24 424.64,353.55 425.01,353.82 425.48,354.04 426.02,354.19 426.60,354.26 427.20,354.26 427.79,354.19 428.33,354.04" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="357.96,348.85 408.41,377.97 408.41,373.11 357.96,343.99" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="408.41,377.97 442.04,358.55 442.04,353.70 408.41,373.11" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="305.00,352.24 394.12,403.69 427.74,384.28 338.63,332.83" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="329.13,356.47 329.41,356.26 329.61,356.03 329.71,355.77 329.71,355.51 329.61,355.25 329.41,355.02 329.13,354.82 328.77,354.65 328.37,354.54 327.93,354.48 327.47,354.48 327.03,354.54 326.62,354.65 326.27,354.82 325.99,355.02 325.79,355.25 325.69,355.51 325.69,355.77 325.79,356.03 325.99,356.26 326.27,356.47 326.62,356.63 327.03,356.74 327.47,356.80 327.93,356.80 328.37,356.74 328.77,356.63" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="389.66,391.41 389.94,391.21 390.14,390.97 390.24,390.72 390.24,390.46 390.14,390.20 389.94,389.97 389.66,389.76 389.31,389.60 388.90,389.49 388.46,389.43 388.00,389.43 387.56,389.49 387.15,389.60 386.80,389.76 386.52,389.97 386.32,390.20 386.22,390.46 386.22,390.72 386.32,390.97 386.52,391.21 386.80,391.41 387.15,391.58 387.56,391.69 388.00,391.75 388.46,391.75 388.90,391.69 389.31,391.58" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="305.00,357.10 394.12,408.55 394.12,403.69 305.00,352.24" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="394.12,408.55 427.74,389.13 427.74,384.28 394.12,403.69" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="427.74,389.13 461.37,369.72 461.37,364.86 427.74,384.28" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="425.22,382.82 427.74,384.28 461.37,364.86 458.85,363.41" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="425.22,387.68 427.74,389.13 427.74,384.28 425.22,382.82" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/></g>
+<text x="520.0" y="38.0" class="hd" text-anchor="start" >15  Respaldo</text>
+<rect x="520.0" y="45.0" width="126.0" height="19" rx="9.5" fill="#d4691f"/>
+<text x="583.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">IMPRESA · PETG</text>
+<text x="654.0" y="59.0" class="sb" text-anchor="start" >Cant. 1 · 84 × 120 × 4</text>
+<text x="520.0" y="76.0" class="sb" text-anchor="start" >lleva 4 cojines de EVA (18) y la banda de silicón</text>
+<polygon points="694.00,112.00 693.80,110.45 693.20,109.00 692.24,107.76 691.00,106.80 689.55,106.20 688.00,106.00 574.00,106.00 572.45,106.20 571.00,106.80 569.76,107.76 568.80,109.00 568.20,110.45 568.00,112.00 568.00,280.00 568.20,281.55 568.80,283.00 569.76,284.24 571.00,285.20 572.45,285.80 574.00,286.00 688.00,286.00 689.55,285.80 691.00,285.20 692.24,284.24 693.20,283.00 693.80,281.55 694.00,280.00" class="o"/>
+<path d="M644.50 184.38 L688.00 184.38 A3.38 3.38 0 0 0 688.00 177.62 L644.50 177.62 A3.38 3.38 0 0 0 644.50 184.38 Z" class="o"/>
+<line x1="635.12" y1="181.00" x2="697.38" y2="181.00" class="c"/>
+<line x1="644.50" y1="190.38" x2="644.50" y2="171.62" class="c"/>
+<line x1="688.00" y1="190.38" x2="688.00" y2="171.62" class="c"/>
+<path d="M574.00 184.38 L617.50 184.38 A3.38 3.38 0 0 0 617.50 177.62 L574.00 177.62 A3.38 3.38 0 0 0 574.00 184.38 Z" class="o"/>
+<line x1="564.62" y1="181.00" x2="626.88" y2="181.00" class="c"/>
+<line x1="574.00" y1="190.38" x2="574.00" y2="171.62" class="c"/>
+<line x1="617.50" y1="190.38" x2="617.50" y2="171.62" class="c"/>
+<circle cx="604.00" cy="263.50" r="3.38" class="o"/>
+<line x1="594.62" y1="263.50" x2="613.38" y2="263.50" class="c"/>
+<line x1="604.00" y1="272.88" x2="604.00" y2="254.12" class="c"/>
+<circle cx="604.00" cy="208.00" r="3.38" class="o"/>
+<line x1="594.62" y1="208.00" x2="613.38" y2="208.00" class="c"/>
+<line x1="604.00" y1="217.38" x2="604.00" y2="198.62" class="c"/>
+<circle cx="604.00" cy="274.00" r="2.55" class="o"/>
+<line x1="595.45" y1="274.00" x2="612.55" y2="274.00" class="c"/>
+<line x1="604.00" y1="282.55" x2="604.00" y2="265.45" class="c"/>
+<circle cx="658.00" cy="263.50" r="3.38" class="o"/>
+<line x1="648.62" y1="263.50" x2="667.38" y2="263.50" class="c"/>
+<line x1="658.00" y1="272.88" x2="658.00" y2="254.12" class="c"/>
+<circle cx="658.00" cy="208.00" r="3.38" class="o"/>
+<line x1="648.62" y1="208.00" x2="667.38" y2="208.00" class="c"/>
+<line x1="658.00" y1="217.38" x2="658.00" y2="198.62" class="c"/>
+<circle cx="658.00" cy="274.00" r="2.55" class="o"/>
+<line x1="649.45" y1="274.00" x2="666.55" y2="274.00" class="c"/>
+<line x1="658.00" y1="282.55" x2="658.00" y2="265.45" class="c"/>
+<rect x="583.00" y="247.00" width="24.00" height="24.00" rx="0.00" class="ph"/>
+<rect x="583.00" y="121.00" width="24.00" height="24.00" rx="0.00" class="ph"/>
+<rect x="655.00" y="247.00" width="24.00" height="24.00" rx="0.00" class="ph"/>
+<rect x="655.00" y="121.00" width="24.00" height="24.00" rx="0.00" class="ph"/>
+<line x1="568.00" y1="104.00" x2="568.00" y2="91.00" class="x"/>
+<line x1="694.00" y1="104.00" x2="694.00" y2="91.00" class="x"/>
+<line x1="568.00" y1="94.00" x2="694.00" y2="94.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="631.0" y="90.0" class="dt" text-anchor="middle" >84</text>
+<line x1="566.00" y1="286.00" x2="550.00" y2="286.00" class="x"/>
+<line x1="566.00" y1="106.00" x2="550.00" y2="106.00" class="x"/>
+<line x1="553.00" y1="286.00" x2="553.00" y2="106.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="549.0" y="196.0" class="dt" text-anchor="middle" transform="rotate(-90 549.0 196.0)">120</text>
+<line x1="696.00" y1="286.00" x2="709.00" y2="286.00" class="x"/>
+<line x1="696.00" y1="181.00" x2="709.00" y2="181.00" class="x"/>
+<line x1="706.00" y1="286.00" x2="706.00" y2="181.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="702.0" y="233.5" class="dt" text-anchor="middle" transform="rotate(-90 702.0 233.5)">70</text>
+<line x1="696.00" y1="286.00" x2="727.00" y2="286.00" class="x"/>
+<line x1="696.00" y1="208.00" x2="727.00" y2="208.00" class="x"/>
+<line x1="724.00" y1="286.00" x2="724.00" y2="208.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="720.0" y="247.0" class="dt" text-anchor="middle" transform="rotate(-90 720.0 247.0)">52</text>
+<line x1="644.50" y1="179.00" x2="644.50" y2="163.00" class="x"/>
+<line x1="688.00" y1="179.00" x2="688.00" y2="163.00" class="x"/>
+<line x1="644.50" y1="166.00" x2="688.00" y2="166.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="666.2" y="162.0" class="dt" text-anchor="middle" >29</text>
+<line x1="604.00" y1="265.50" x2="604.00" y2="310.00" class="x"/>
+<line x1="658.00" y1="265.50" x2="658.00" y2="310.00" class="x"/>
+<line x1="604.00" y1="307.00" x2="658.00" y2="307.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="631.0" y="303.0" class="dt" text-anchor="middle" >36</text>
+<text x="568.0" y="346.0" class="nt" text-anchor="start" >4× Ø4.5: escuadra · 2× Ø3.4: repisa</text>
+<text x="568.0" y="362.0" class="nt" text-anchor="start" >2 ranuras 4.5: mordazas · espesor 4</text>
+<text x="568.0" y="378.0" class="nt" text-anchor="start" >Punteado: cojines EVA 16 × 16 × 4</text>
+<text x="568.0" y="330.0" class="vt" text-anchor="start" >VISTA FRONTAL</text>
+<text x="570.0" y="480.0" class="vt" text-anchor="start" >ISOMÉTRICA</text>
+<g><polygon points="734.46,732.00 735.28,731.24 740.46,728.25 739.63,729.01" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="735.28,731.24 735.80,730.10 740.97,727.11 740.46,728.25" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="735.80,730.10 735.98,728.65 741.15,725.66 740.97,727.11" fill="#a06436" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="741.15,558.40 740.97,556.75 740.46,555.02 739.63,553.30 738.56,551.74 737.31,550.42 735.98,549.44 637.68,492.69 636.34,492.12 635.10,492.00 634.02,492.33 633.20,493.09 632.69,494.24 632.51,495.68 632.51,662.94 632.69,664.59 633.20,666.33 634.02,668.04 635.10,669.61 636.34,670.92 637.68,671.90 735.98,728.65 737.31,729.22 738.56,729.34 739.63,729.01 740.46,728.25 740.97,727.11 741.15,725.66" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="666.46,666.11 666.39,665.32 666.17,664.49 665.82,663.65 665.36,662.85 664.81,662.14 664.20,661.53 663.55,661.07 662.90,660.78 662.29,660.68 661.73,660.76 661.27,661.03 660.93,661.46 660.71,662.05 660.64,662.75 660.71,663.54 660.93,664.38 661.27,665.22 661.73,666.01 662.29,666.73 662.90,667.34 663.55,667.79 664.20,668.08 664.81,668.19 665.36,668.11 665.82,667.84 666.17,667.41 666.39,666.82" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="666.46,610.86 666.39,610.07 666.17,609.23 665.82,608.40 665.36,607.60 664.81,606.88 664.20,606.28 663.55,605.82 662.90,605.53 662.29,605.42 661.73,605.50 661.27,605.77 660.93,606.21 660.71,606.79 660.64,607.50 660.71,608.29 660.93,609.12 661.27,609.96 661.73,610.76 662.29,611.48 662.90,612.08 663.55,612.54 664.20,612.83 664.81,612.93 665.36,612.85 665.82,612.59 666.17,612.15 666.39,611.56" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="713.02,693.00 712.95,692.21 712.73,691.37 712.38,690.53 711.92,689.74 711.37,689.02 710.76,688.41 710.11,687.96 709.46,687.67 708.85,687.56 708.29,687.64 707.83,687.91 707.49,688.34 707.27,688.93 707.20,689.64 707.27,690.43 707.49,691.26 707.83,692.10 708.29,692.90 708.85,693.61 709.46,694.22 710.11,694.68 710.76,694.97 711.37,695.07 711.92,694.99 712.38,694.72 712.73,694.29 712.95,693.70" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="713.02,637.74 712.95,636.95 712.73,636.12 712.38,635.28 711.92,634.48 711.37,633.76 710.76,633.16 710.11,632.70 709.46,632.41 708.85,632.30 708.29,632.39 707.83,632.65 707.49,633.09 707.27,633.67 707.20,634.38 707.27,635.17 707.49,636.00 707.83,636.84 708.29,637.64 708.85,638.36 709.46,638.96 710.11,639.42 710.76,639.71 711.37,639.82 711.92,639.73 712.38,639.47 712.73,639.03 712.95,638.45" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="629.92,494.99 628.85,495.32 634.02,492.33 635.10,492.00" fill="#be7741" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="631.17,495.11 629.92,494.99 635.10,492.00 636.34,492.12" fill="#cf8246" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="632.51,495.68 631.17,495.11 636.34,492.12 637.68,492.69" fill="#dc8a4b" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="735.98,728.65 735.98,561.39 741.15,558.40 741.15,725.66" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="730.80,552.43 632.51,495.68 637.68,492.69 735.98,549.44" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="735.98,561.39 735.80,559.74 740.97,556.75 741.15,558.40" fill="#b6723e" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="732.14,553.41 730.80,552.43 735.98,549.44 737.31,550.42" fill="#e38e4d" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="735.80,559.74 735.28,558.00 740.46,555.02 740.97,556.75" fill="#c87d44" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="733.39,554.72 732.14,553.41 737.31,550.42 738.56,551.74" fill="#e58f4e" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="735.28,558.00 734.46,556.29 739.63,553.30 740.46,555.02" fill="#d78749" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="734.46,556.29 733.39,554.72 738.56,551.74 739.63,553.30" fill="#e18d4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/></g>
+<text x="830.0" y="38.0" class="hd" text-anchor="start" >16  Repisa con hueco USB</text>
+<rect x="830.0" y="45.0" width="126.0" height="19" rx="9.5" fill="#d4691f"/>
+<text x="893.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">IMPRESA · PETG</text>
+<text x="964.0" y="59.0" class="sb" text-anchor="start" >Cant. 1 · relleno 60 %</text>
+<rect x="878.00" y="120.00" width="150.00" height="36.00" rx="0.00" class="o"/>
+<line x1="878.00" y1="147.00" x2="1028.00" y2="147.00" class="t"/>
+<line x1="878.00" y1="138.00" x2="1028.00" y2="138.00" class="t"/>
+<circle cx="899.00" cy="132.00" r="5.10" class="o"/>
+<line x1="887.90" y1="132.00" x2="910.10" y2="132.00" class="c"/>
+<line x1="899.00" y1="143.10" x2="899.00" y2="120.90" class="c"/>
+<circle cx="1007.00" cy="132.00" r="5.10" class="o"/>
+<line x1="995.90" y1="132.00" x2="1018.10" y2="132.00" class="c"/>
+<line x1="1007.00" y1="143.10" x2="1007.00" y2="120.90" class="c"/>
+<line x1="878.00" y1="118.00" x2="878.00" y2="93.00" class="x"/>
+<line x1="1028.00" y1="118.00" x2="1028.00" y2="93.00" class="x"/>
+<line x1="878.00" y1="96.00" x2="1028.00" y2="96.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="953.0" y="92.0" class="dt" text-anchor="middle" >50</text>
+<line x1="899.00" y1="134.00" x2="899.00" y2="183.00" class="x"/>
+<line x1="1007.00" y1="134.00" x2="1007.00" y2="183.00" class="x"/>
+<line x1="899.00" y1="180.00" x2="1007.00" y2="180.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="953.0" y="176.0" class="dt" text-anchor="middle" >36</text>
+<text x="878.0" y="200.0" class="vt" text-anchor="start" >VISTA FRONTAL</text>
+<rect x="878.00" y="222.00" width="150.00" height="66.00" rx="0.00" class="o"/>
+<rect x="929.00" y="243.00" width="48.00" height="24.00" rx="0.00" class="o"/>
+<line x1="878.00" y1="279.00" x2="1028.00" y2="279.00" class="t"/>
+<line x1="878.00" y1="231.00" x2="1028.00" y2="231.00" class="t"/>
+<line x1="929.00" y1="269.00" x2="929.00" y2="309.00" class="x"/>
+<line x1="977.00" y1="269.00" x2="977.00" y2="309.00" class="x"/>
+<line x1="929.00" y1="306.00" x2="977.00" y2="306.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="953.0" y="302.0" class="dt" text-anchor="middle" >16</text>
+<line x1="979.00" y1="267.00" x2="1052.00" y2="267.00" class="x"/>
+<line x1="979.00" y1="243.00" x2="1052.00" y2="243.00" class="x"/>
+<line x1="1049.00" y1="267.00" x2="1049.00" y2="243.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="1045.0" y="255.0" class="dt" text-anchor="middle" transform="rotate(-90 1045.0 255.0)">8</text>
+<text x="953.0" y="259.0" class="dt" text-anchor="middle" >USB</text>
+<text x="878.0" y="314.0" class="vt" text-anchor="start" >VISTA SUPERIOR</text>
+<polygon points="1160.00,156.00 1094.00,156.00 1094.00,138.00 1103.00,138.00 1103.00,147.00 1151.00,147.00 1151.00,120.00 1160.00,120.00" class="o"/>
+<line x1="1094.00" y1="158.00" x2="1094.00" y2="183.00" class="x"/>
+<line x1="1160.00" y1="158.00" x2="1160.00" y2="183.00" class="x"/>
+<line x1="1094.00" y1="180.00" x2="1160.00" y2="180.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="1127.0" y="176.0" class="dt" text-anchor="middle" >22</text>
+<line x1="1162.00" y1="156.00" x2="1187.00" y2="156.00" class="x"/>
+<line x1="1162.00" y1="120.00" x2="1187.00" y2="120.00" class="x"/>
+<line x1="1184.00" y1="156.00" x2="1184.00" y2="120.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="1180.0" y="138.0" class="dt" text-anchor="middle" transform="rotate(-90 1180.0 138.0)">12</text>
+<line x1="1092.00" y1="156.00" x2="1067.00" y2="156.00" class="x"/>
+<line x1="1092.00" y1="138.00" x2="1067.00" y2="138.00" class="x"/>
+<line x1="1070.00" y1="156.00" x2="1070.00" y2="138.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="1066.0" y="147.0" class="dt" text-anchor="middle" transform="rotate(-90 1066.0 147.0)">6</text>
+<text x="1127.0" y="141.0" class="dt" text-anchor="middle" >esp. 3</text>
+<text x="1094.0" y="200.0" class="vt" text-anchor="start" >PERFIL</text>
+<text x="830.0" y="348.0" class="hd" text-anchor="start" >17  Mordaza con perilla M4</text>
+<rect x="830.0" y="355.0" width="126.0" height="19" rx="9.5" fill="#d4691f"/>
+<text x="893.0" y="369.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">IMPRESA · PETG</text>
+<text x="964.0" y="369.0" class="sb" text-anchor="start" >Cant. 2 (una y su espejo)</text>
+<text x="830.0" y="386.0" class="sb" text-anchor="start" >se desliza en la ranura del respaldo</text>
+<polygon points="878.00,501.00 971.00,501.00 971.00,426.00 944.00,426.00 944.00,435.00 962.00,435.00 962.00,492.00 878.00,492.00" class="o"/>
+<line x1="901.25" y1="501.00" x2="901.25" y2="492.00" class="h"/>
+<line x1="914.75" y1="501.00" x2="914.75" y2="492.00" class="h"/>
+<line x1="908.00" y1="510.00" x2="908.00" y2="483.00" class="c"/>
+<line x1="878.00" y1="503.00" x2="878.00" y2="534.00" class="x"/>
+<line x1="971.00" y1="503.00" x2="971.00" y2="534.00" class="x"/>
+<line x1="878.00" y1="531.00" x2="971.00" y2="531.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="924.5" y="527.0" class="dt" text-anchor="middle" >31</text>
+<line x1="973.00" y1="501.00" x2="1001.00" y2="501.00" class="x"/>
+<line x1="973.00" y1="426.00" x2="1001.00" y2="426.00" class="x"/>
+<line x1="998.00" y1="501.00" x2="998.00" y2="426.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="994.0" y="463.5" class="dt" text-anchor="middle" transform="rotate(-90 994.0 463.5)">25</text>
+<line x1="944.00" y1="424.00" x2="944.00" y2="402.00" class="x"/>
+<line x1="962.00" y1="424.00" x2="962.00" y2="402.00" class="x"/>
+<line x1="944.00" y1="405.00" x2="962.00" y2="405.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="953.0" y="401.0" class="dt" text-anchor="middle" >6</text>
+<line x1="876.00" y1="501.00" x2="857.00" y2="501.00" class="x"/>
+<line x1="876.00" y1="492.00" x2="857.00" y2="492.00" class="x"/>
+<line x1="860.00" y1="501.00" x2="860.00" y2="492.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="856.0" y="496.5" class="dt" text-anchor="middle" transform="rotate(-90 856.0 496.5)">3</text>
+<text x="908.0" y="478.0" class="dt" text-anchor="middle" >Ø4.5 · perilla M4</text>
+<text x="878.0" y="545.0" class="vt" text-anchor="start" >PLANTA (PERFIL)</text>
+<rect x="1037.00" y="426.00" width="120.00" height="75.00" rx="0.00" class="o"/>
+<line x1="1037.00" y1="424.00" x2="1037.00" y2="402.00" class="x"/>
+<line x1="1157.00" y1="424.00" x2="1157.00" y2="402.00" class="x"/>
+<line x1="1037.00" y1="405.00" x2="1157.00" y2="405.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="1097.0" y="401.0" class="dt" text-anchor="middle" >40</text>
+<text x="1037.0" y="545.0" class="vt" text-anchor="start" >LATERAL</text>
+<text x="20.0" y="478.0" class="hd" text-anchor="start" >14  Escuadra de 15°</text>
+<rect x="20.0" y="485.0" width="126.0" height="19" rx="9.5" fill="#d4691f"/>
+<text x="83.0" y="499.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">IMPRESA · PETG</text>
+<text x="154.0" y="499.0" class="sb" text-anchor="start" >Cant. 1 · relleno 60 %</text>
+<text x="20.0" y="516.0" class="sb" text-anchor="start" >imprimir de lado (sobre el perfil)</text>
+<rect x="68.00" y="659.00" width="84.00" height="6.00" rx="0.00" class="o"/>
+<rect x="68.00" y="551.00" width="84.00" height="108.00" rx="0.00" class="o"/>
+<circle cx="83.00" cy="636.50" r="3.38" class="o"/>
+<line x1="73.62" y1="636.50" x2="92.38" y2="636.50" class="c"/>
+<line x1="83.00" y1="645.88" x2="83.00" y2="627.12" class="c"/>
+<circle cx="137.00" cy="636.50" r="3.38" class="o"/>
+<line x1="127.62" y1="636.50" x2="146.38" y2="636.50" class="c"/>
+<line x1="137.00" y1="645.88" x2="137.00" y2="627.12" class="c"/>
+<circle cx="83.00" cy="581.00" r="3.38" class="o"/>
+<line x1="73.62" y1="581.00" x2="92.38" y2="581.00" class="c"/>
+<line x1="83.00" y1="590.38" x2="83.00" y2="571.62" class="c"/>
+<circle cx="137.00" cy="581.00" r="3.38" class="o"/>
+<line x1="127.62" y1="581.00" x2="146.38" y2="581.00" class="c"/>
+<line x1="137.00" y1="590.38" x2="137.00" y2="571.62" class="c"/>
+<line x1="71.75" y1="659.00" x2="71.75" y2="575.00" class="h"/>
+<line x1="76.25" y1="659.00" x2="76.25" y2="575.00" class="h"/>
+<line x1="143.75" y1="659.00" x2="143.75" y2="575.00" class="h"/>
+<line x1="148.25" y1="659.00" x2="148.25" y2="575.00" class="h"/>
+<line x1="68.00" y1="549.00" x2="68.00" y2="536.00" class="x"/>
+<line x1="152.00" y1="549.00" x2="152.00" y2="536.00" class="x"/>
+<line x1="68.00" y1="539.00" x2="152.00" y2="539.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="110.0" y="535.0" class="dt" text-anchor="middle" >56</text>
+<line x1="83.00" y1="579.00" x2="83.00" y2="560.00" class="x"/>
+<line x1="137.00" y1="579.00" x2="137.00" y2="560.00" class="x"/>
+<line x1="83.00" y1="563.00" x2="137.00" y2="563.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="110.0" y="559.0" class="dt" text-anchor="middle" >36</text>
+<line x1="154.00" y1="665.00" x2="167.00" y2="665.00" class="x"/>
+<line x1="154.00" y1="659.00" x2="167.00" y2="659.00" class="x"/>
+<line x1="164.00" y1="665.00" x2="164.00" y2="659.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="160.0" y="662.0" class="dt" text-anchor="middle" transform="rotate(-90 160.0 662.0)">4</text>
+<line x1="81.00" y1="636.50" x2="53.00" y2="636.50" class="x"/>
+<line x1="81.00" y1="581.00" x2="53.00" y2="581.00" class="x"/>
+<line x1="56.00" y1="636.50" x2="56.00" y2="581.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="52.0" y="608.8" class="dt" text-anchor="middle" transform="rotate(-90 52.0 608.8)">37</text>
+<line x1="66.00" y1="659.00" x2="53.00" y2="659.00" class="x"/>
+<line x1="66.00" y1="636.50" x2="53.00" y2="636.50" class="x"/>
+<line x1="56.00" y1="659.00" x2="56.00" y2="636.50" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="52.0" y="647.8" class="dt" text-anchor="middle" transform="rotate(-90 52.0 647.8)">15</text>
+<polyline points="139.92,638.19 164.17,652.19 328.87,652.19" class="d" marker-start="url(#fl)"/>
+<text x="167.2" y="648.2" class="dt" text-anchor="start" >4× Ø4.5 · respaldo (15)</text>
+<text x="68.0" y="687.0" class="vt" text-anchor="start" >VISTA FRONTAL</text>
+<rect x="245.00" y="659.00" width="48.00" height="6.00" rx="0.00" class="o"/>
+<polygon points="281.00,659.00 275.20,657.45 303.16,553.13 308.95,554.68" class="o"/>
+<polygon points="275.20,657.45 296.95,576.31 249.12,650.46" class="t"/>
+<line x1="247.62" y1="665.00" x2="247.62" y2="659.00" class="h"/>
+<line x1="254.38" y1="665.00" x2="254.38" y2="659.00" class="h"/>
+<line x1="283.62" y1="665.00" x2="283.62" y2="659.00" class="h"/>
+<line x1="290.38" y1="665.00" x2="290.38" y2="659.00" class="h"/>
+<line x1="245.00" y1="667.00" x2="245.00" y2="683.00" class="x"/>
+<line x1="293.00" y1="667.00" x2="293.00" y2="683.00" class="x"/>
+<line x1="245.00" y1="680.00" x2="293.00" y2="680.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="269.0" y="676.0" class="dt" text-anchor="middle" >32</text>
+<text x="267.5" y="605.0" class="dt" text-anchor="end" >15°</text>
+<line x1="281.00" y1="659.00" x2="281.00" y2="551.00" class="c"/>
+<line x1="243.00" y1="659.00" x2="224.00" y2="659.00" class="x"/>
+<line x1="243.00" y1="553.13" x2="224.00" y2="553.13" class="x"/>
+<line x1="227.00" y1="659.00" x2="227.00" y2="553.13" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="223.0" y="606.1" class="dt" text-anchor="middle" transform="rotate(-90 223.0 606.1)">70.6</text>
+<text x="245.0" y="699.0" class="nt" text-anchor="start" >Nervio 72 × 4</text>
+<text x="218.0" y="717.0" class="vt" text-anchor="start" >VISTA LATERAL IZQ.</text>
+<text x="330.0" y="530.0" class="vt" text-anchor="start" >ISOMÉTRICA</text>
+<g><polygon points="365.83,670.71 458.73,724.34 511.81,693.69 418.92,640.06" fill="#e08c4c" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="389.47,676.69 390.21,676.16 390.72,675.54 390.98,674.88 390.98,674.20 390.72,673.53 390.21,672.92 389.47,672.38 388.55,671.96 387.48,671.66 386.33,671.51 385.15,671.51 384.00,671.66 382.93,671.96 382.01,672.38 381.27,672.92 380.76,673.53 380.49,674.20 380.49,674.88 380.76,675.54 381.27,676.16 382.01,676.69 382.93,677.12 384.00,677.41 385.15,677.57 386.33,677.57 387.48,677.41 388.55,677.12" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="429.28,653.71 430.02,653.17 430.53,652.56 430.80,651.89 430.80,651.21 430.53,650.55 430.02,649.93 429.28,649.40 428.36,648.97 427.29,648.68 426.14,648.53 424.96,648.53 423.81,648.68 422.74,648.97 421.82,649.40 421.08,649.93 420.57,650.55 420.31,651.21 420.31,651.89 420.57,652.56 421.08,653.17 421.82,653.71 422.74,654.13 423.81,654.43 424.96,654.58 426.14,654.58 427.29,654.43 428.36,654.13" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="455.82,715.00 456.56,714.47 457.07,713.85 457.34,713.19 457.34,712.50 457.07,711.84 456.56,711.22 455.82,710.69 454.90,710.27 453.83,709.97 452.68,709.82 451.50,709.82 450.35,709.97 449.28,710.27 448.36,710.69 447.62,711.22 447.11,711.84 446.85,712.50 446.85,713.19 447.11,713.85 447.62,714.47 448.36,715.00 449.28,715.43 450.35,715.72 451.50,715.87 452.68,715.87 453.83,715.72 454.90,715.43" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="495.63,692.02 496.37,691.48 496.88,690.87 497.15,690.20 497.15,689.52 496.88,688.85 496.37,688.24 495.63,687.71 494.71,687.28 493.64,686.98 492.49,686.83 491.31,686.83 490.16,686.98 489.09,687.28 488.17,687.71 487.43,688.24 486.92,688.85 486.66,689.52 486.66,690.20 486.92,690.87 487.43,691.48 488.17,692.02 489.09,692.44 490.16,692.74 491.31,692.89 492.49,692.89 493.64,692.74 494.71,692.44" fill="#50321b" stroke="#15191d" stroke-width="0.7"/><polygon points="365.83,678.37 458.73,732.00 458.73,724.34 365.83,670.71" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="458.73,732.00 511.81,701.35 511.81,693.69 458.73,724.34" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="348.19,547.68 379.10,663.05 472.00,716.68 441.08,601.31" fill="#8f5930" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="472.00,716.68 478.41,710.99 447.49,595.63 441.08,601.31" fill="#ab6b3a" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="354.60,542.00 348.19,547.68 441.08,601.31 447.49,595.63" fill="#d28347" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/></g>
+<text x="30" y="780" class="vt">NOTAS</text>
+<text x="30" y="798" class="nt">1. Placa superior, escuadra y respaldo a 1:2; repisa y mordaza a 1:1.</text>
+<text x="30" y="814" class="nt">2. Placa superior: 4× Ø3.4 para las barras (11), 4× Ø4.5 para la escuadra, 2 ventanas de 20 × 40; punteado: postes.</text>
+<text x="30" y="830" class="nt">3. M4 × 12 para escuadra-placa y respaldo-escuadra; perillas M4 en las mordazas.</text>
+<text x="30" y="846" class="nt">4. Cojines de EVA (18) y banda de silicón alrededor del celular.</text>
+<rect x="620" y="762" width="566" height="124" fill="#fff" stroke="#15191d" stroke-width="2"/>
+<line x1="620.0" y1="804.0" x2="1186.0" y2="804.0" stroke="#15191d" stroke-width="1"/>
+<line x1="620.0" y1="840.0" x2="1186.0" y2="840.0" stroke="#15191d" stroke-width="1"/>
+<line x1="960.0" y1="762.0" x2="960.0" y2="886.0" stroke="#15191d" stroke-width="1"/>
+<line x1="1060.0" y1="762.0" x2="1060.0" y2="886.0" stroke="#15191d" stroke-width="1"/>
+<line x1="820.0" y1="804.0" x2="820.0" y2="840.0" stroke="#15191d" stroke-width="1"/>
+<text x="626.0" y="774.0" class="tb">NOMBRE</text>
+<text x="626.0" y="791.0" class="tv">Placa superior y porta-celular</text>
+<text x="966.0" y="774.0" class="tb">VERSIÓN</text>
+<text x="966.0" y="791.0" class="tvs">C · cables a 100</text>
+<text x="1066.0" y="774.0" class="tb">HOJA</text>
+<text x="1066.0" y="791.0" class="tv">7 de 7</text>
+<text x="626.0" y="816.0" class="tb">MATERIAL</text>
+<text x="626.0" y="833.0" class="tvs">Ver cada pieza</text>
+<text x="826.0" y="816.0" class="tb">FABRICACIÓN</text>
+<text x="826.0" y="833.0" class="tvs">Ver cada pieza</text>
+<text x="966.0" y="816.0" class="tb">CANT.</text>
+<text x="966.0" y="833.0" class="tvs">—</text>
+<text x="1066.0" y="816.0" class="tb">ESCALA</text>
+<text x="1066.0" y="833.0" class="tvs">1:2 y 1:1</text>
+<text x="626.0" y="854.0" class="tb">EQUIPO CAMARADAS · ING. MECATRÓNICA</text>
+<text x="626.0" y="874.0" class="tvs">Soporte antivibración · Vibraciones Mecánicas</text>
+<text x="966.0" y="852.0" class="tb">MASA</text>
+<text x="966.0" y="869.0" class="tvs">—</text>
+<text x="1066.0" y="852.0" class="tb">FECHA</text>
+<text x="1066.0" y="869.0" class="tvs">04/11/2026</text>
+<g stroke="#15191d" stroke-width="1.1" fill="none"><path d="M1136.0 821.0 l11 -5.5 v11 z"/><circle cx="1164.0" cy="821.0" r="5.5"/><circle cx="1164.0" cy="821.0" r="2.4"/></g>
+<text x="1153.0" y="838.0" class="tb" text-anchor="middle" style="font-size:8.5px">1er DIEDRO</text>
+</svg>

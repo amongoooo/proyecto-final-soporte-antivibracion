@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+<title>Bujes, tornillería y abrazadera</title>
+<style>
+.o{fill:none;stroke:#15191d;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+.of{fill:#ffffff;stroke:#15191d;stroke-width:1.7;stroke-linejoin:round}
+.t{fill:none;stroke:#15191d;stroke-width:1}
+.h{fill:none;stroke:#15191d;stroke-width:0.9;stroke-dasharray:5 3}
+.c{fill:none;stroke:#6b7480;stroke-width:0.7;stroke-dasharray:14 3 2 3}
+.ph{fill:none;stroke:#7b8590;stroke-width:1;stroke-dasharray:7 4}
+.d{fill:none;stroke:#1f2d3a;stroke-width:0.8}
+.x{fill:none;stroke:#1f2d3a;stroke-width:0.6}
+.sec{fill:url(#rayado);stroke:#15191d;stroke-width:1.5}
+.rub{fill:#3a3f44;stroke:#15191d;stroke-width:1.3}
+.stl{fill:#c9d0d6;stroke:#15191d;stroke-width:1.3}
+text{font-family:'Century Gothic','Segoe UI',Arial,sans-serif;fill:#15191d}
+.dt{font-size:12.5px;fill:#1f2d3a}
+.nt{font-size:11.5px;fill:#36414c}
+.vt{font-size:12px;font-weight:700;letter-spacing:.4px;fill:#36414c}
+.hd{font-size:17px;font-weight:700}
+.sb{font-size:12px;fill:#36414c}
+.tb{font-size:10px;fill:#5b6672;letter-spacing:.5px}
+.tv{font-size:14px;font-weight:700}
+.tvs{font-size:12px;font-weight:600}
+</style>
+<defs>
+<marker id="fl" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,1.6 L10,5 L0,8.4 z" fill="#1f2d3a"/></marker>
+<pattern id="rayado" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><line x1="0" y1="0" x2="0" y2="6" stroke="#15191d" stroke-width="0.8"/></pattern>
+</defs>
+<rect x="0" y="0" width="1200" height="900" fill="#ffffff"/>
+<rect x="14" y="14" width="1172" height="872" fill="none" stroke="#15191d" stroke-width="2"/>
+<line x1="160.5" y1="14" x2="160.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="160.5" y1="886" x2="160.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="307.0" y1="14" x2="307.0" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="307.0" y1="886" x2="307.0" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="453.5" y1="14" x2="453.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="453.5" y1="886" x2="453.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="600.0" y1="14" x2="600.0" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="600.0" y1="886" x2="600.0" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="746.5" y1="14" x2="746.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="746.5" y1="886" x2="746.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="893.0" y1="14" x2="893.0" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="893.0" y1="886" x2="893.0" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="1039.5" y1="14" x2="1039.5" y2="21" stroke="#15191d" stroke-width="1"/>
+<line x1="1039.5" y1="886" x2="1039.5" y2="879" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="159.3" x2="21" y2="159.3" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="159.3" x2="1179" y2="159.3" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="304.7" x2="21" y2="304.7" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="304.7" x2="1179" y2="304.7" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="450.0" x2="21" y2="450.0" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="450.0" x2="1179" y2="450.0" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="595.3" x2="21" y2="595.3" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="595.3" x2="1179" y2="595.3" stroke="#15191d" stroke-width="1"/>
+<line x1="14" y1="740.7" x2="21" y2="740.7" stroke="#15191d" stroke-width="1"/>
+<line x1="1186" y1="740.7" x2="1179" y2="740.7" stroke="#15191d" stroke-width="1"/>
+<text x="20.0" y="38.0" class="hd" text-anchor="start" >4  Buje de neopreno</text>
+<rect x="20.0" y="45.0" width="70.0" height="19" rx="9.5" fill="#2a6fb0"/>
+<text x="55.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">COMPRAR</text>
+<text x="98.0" y="59.0" class="sb" text-anchor="start" >Cant. 4</text>
+<text x="20.0" y="76.0" class="sb" text-anchor="start" >neopreno esponjoso, cortar de barra o tubo Ø16 × Ø5</text>
+<rect x="68.00" y="126.00" width="96.00" height="120.00" rx="0.00" class="o"/>
+<line x1="101.00" y1="246.00" x2="101.00" y2="126.00" class="h"/>
+<line x1="131.00" y1="246.00" x2="131.00" y2="126.00" class="h"/>
+<line x1="116.00" y1="264.00" x2="116.00" y2="108.00" class="c"/>
+<line x1="68.00" y1="124.00" x2="68.00" y2="87.00" class="x"/>
+<line x1="164.00" y1="124.00" x2="164.00" y2="87.00" class="x"/>
+<line x1="68.00" y1="90.00" x2="164.00" y2="90.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="116.0" y="86.0" class="dt" text-anchor="middle" >Ø16</text>
+<line x1="101.00" y1="248.00" x2="101.00" y2="279.00" class="x"/>
+<line x1="131.00" y1="248.00" x2="131.00" y2="279.00" class="x"/>
+<line x1="101.00" y1="276.00" x2="131.00" y2="276.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="116.0" y="272.0" class="dt" text-anchor="middle" >Ø5</text>
+<line x1="166.00" y1="246.00" x2="227.00" y2="246.00" class="x"/>
+<line x1="166.00" y1="126.00" x2="227.00" y2="126.00" class="x"/>
+<line x1="224.00" y1="246.00" x2="224.00" y2="126.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="220.0" y="186.0" class="dt" text-anchor="middle" transform="rotate(-90 220.0 186.0)">20</text>
+<text x="68.0" y="304.0" class="vt" text-anchor="start" >VISTA FRONTAL</text>
+<circle cx="116.00" cy="360.00" r="48.00" class="o"/>
+<line x1="59.00" y1="360.00" x2="173.00" y2="360.00" class="c"/>
+<line x1="116.00" y1="417.00" x2="116.00" y2="303.00" class="c"/>
+<circle cx="116.00" cy="360.00" r="15.00" class="o"/>
+<text x="68.0" y="434.0" class="vt" text-anchor="start" >VISTA SUPERIOR</text>
+<text x="260.0" y="450.0" class="vt" text-anchor="start" >ISOMÉTRICA</text>
+<g><polygon points="295.96,573.97 297.14,577.86 297.14,497.86 295.96,493.97" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="372.86,577.86 374.04,573.97 374.04,493.97 372.86,497.86" fill="#303438" stroke="#303438" stroke-width="0.6"/><polygon points="297.14,577.86 299.48,581.56 299.48,501.56 297.14,497.86" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="370.52,581.56 372.86,577.86 372.86,497.86 370.52,501.56" fill="#2f3337" stroke="#2f3337" stroke-width="0.6"/><polygon points="367.10,584.98 370.52,581.56 370.52,501.56 367.10,504.98" fill="#2d3135" stroke="#2d3135" stroke-width="0.6"/><polygon points="299.48,581.56 302.90,584.98 302.90,504.98 299.48,501.56" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="302.90,584.98 307.29,588.00 307.29,508.00 302.90,504.98" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="362.71,588.00 367.10,584.98 367.10,504.98 362.71,508.00" fill="#2c2f33" stroke="#2c2f33" stroke-width="0.6"/><polygon points="307.29,588.00 312.52,590.54 312.52,510.54 307.29,508.00" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="357.48,590.54 362.71,588.00 362.71,508.00 357.48,510.54" fill="#2a2d31" stroke="#2a2d31" stroke-width="0.6"/><polygon points="312.52,590.54 318.44,592.51 318.44,512.51 312.52,510.54" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="351.56,592.51 357.48,590.54 357.48,510.54 351.56,512.51" fill="#272b2e" stroke="#272b2e" stroke-width="0.6"/><polygon points="362.71,508.00 367.10,504.98 370.52,501.56 372.86,497.86 374.04,493.97 374.04,490.03 372.86,486.14 370.52,482.44 367.10,479.02 362.71,476.00 357.48,473.46 351.56,471.49 345.14,470.14 338.42,469.46 331.58,469.46 324.86,470.14 318.44,471.49 312.52,473.46 307.29,476.00 302.90,479.02 299.48,482.44 297.14,486.14 295.96,490.03 295.96,493.97 297.14,497.86 299.48,501.56 302.90,504.98 307.29,508.00 312.52,510.54 318.44,512.51 324.86,513.86 331.58,514.54 338.42,514.54 345.14,513.86 351.56,512.51 357.48,510.54" fill="#383d42" stroke="#15191d" stroke-width="0.9" stroke-linejoin="round"/><polygon points="343.66,497.00 345.37,495.76 346.56,494.34 347.17,492.79 347.17,491.21 346.56,489.66 345.37,488.24 343.66,487.00 341.52,486.01 339.05,485.33 336.37,484.97 333.63,484.97 330.95,485.33 328.48,486.01 326.34,487.00 324.63,488.24 323.44,489.66 322.83,491.21 322.83,492.79 323.44,494.34 324.63,495.76 326.34,497.00 328.48,497.99 330.95,498.67 333.63,499.03 336.37,499.03 339.05,498.67 341.52,497.99" fill="#141617" stroke="#15191d" stroke-width="0.7"/><polygon points="318.44,592.51 324.86,593.86 324.86,513.86 318.44,512.51" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="345.14,593.86 351.56,592.51 351.56,512.51 345.14,513.86" fill="#25282c" stroke="#25282c" stroke-width="0.6"/><polygon points="324.86,593.86 331.58,594.54 331.58,514.54 324.86,513.86" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="338.42,594.54 345.14,593.86 345.14,513.86 338.42,514.54" fill="#23272a" stroke="#23272a" stroke-width="0.6"/><polygon points="331.58,594.54 338.42,594.54 338.42,514.54 331.58,514.54" fill="#23272a" stroke="#23272a" stroke-width="0.6"/></g>
+<text x="470.0" y="38.0" class="hd" text-anchor="start" >5  Tornillo M4 × 50 cabeza baja</text>
+<rect x="470.0" y="45.0" width="70.0" height="19" rx="9.5" fill="#2a6fb0"/>
+<text x="505.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">COMPRAR</text>
+<text x="548.0" y="59.0" class="sb" text-anchor="start" >Cant. 4 · con arandela Ø12 × 1 y tuerca nyloc M4</text>
+<text x="470.0" y="76.0" class="sb" text-anchor="start" >inox A2</text>
+<rect x="521.60" y="119.50" width="8.40" height="21.00" rx="0.00" class="stl"/>
+<rect x="530.00" y="124.00" width="150.00" height="12.00" rx="0.00" class="stl"/>
+<line x1="590.00" y1="136.00" x2="592.10" y2="124.00" class="t"/>
+<line x1="593.00" y1="136.00" x2="595.10" y2="124.00" class="t"/>
+<line x1="596.00" y1="136.00" x2="598.10" y2="124.00" class="t"/>
+<line x1="599.00" y1="136.00" x2="601.10" y2="124.00" class="t"/>
+<line x1="602.00" y1="136.00" x2="604.10" y2="124.00" class="t"/>
+<line x1="605.00" y1="136.00" x2="607.10" y2="124.00" class="t"/>
+<line x1="608.00" y1="136.00" x2="610.10" y2="124.00" class="t"/>
+<line x1="611.00" y1="136.00" x2="613.10" y2="124.00" class="t"/>
+<line x1="614.00" y1="136.00" x2="616.10" y2="124.00" class="t"/>
+<line x1="617.00" y1="136.00" x2="619.10" y2="124.00" class="t"/>
+<line x1="620.00" y1="136.00" x2="622.10" y2="124.00" class="t"/>
+<line x1="623.00" y1="136.00" x2="625.10" y2="124.00" class="t"/>
+<line x1="626.00" y1="136.00" x2="628.10" y2="124.00" class="t"/>
+<line x1="629.00" y1="136.00" x2="631.10" y2="124.00" class="t"/>
+<line x1="632.00" y1="136.00" x2="634.10" y2="124.00" class="t"/>
+<line x1="635.00" y1="136.00" x2="637.10" y2="124.00" class="t"/>
+<line x1="638.00" y1="136.00" x2="640.10" y2="124.00" class="t"/>
+<line x1="641.00" y1="136.00" x2="643.10" y2="124.00" class="t"/>
+<line x1="644.00" y1="136.00" x2="646.10" y2="124.00" class="t"/>
+<line x1="647.00" y1="136.00" x2="649.10" y2="124.00" class="t"/>
+<line x1="650.00" y1="136.00" x2="652.10" y2="124.00" class="t"/>
+<line x1="653.00" y1="136.00" x2="655.10" y2="124.00" class="t"/>
+<line x1="656.00" y1="136.00" x2="658.10" y2="124.00" class="t"/>
+<line x1="659.00" y1="136.00" x2="661.10" y2="124.00" class="t"/>
+<line x1="662.00" y1="136.00" x2="664.10" y2="124.00" class="t"/>
+<line x1="665.00" y1="136.00" x2="667.10" y2="124.00" class="t"/>
+<line x1="668.00" y1="136.00" x2="670.10" y2="124.00" class="t"/>
+<line x1="671.00" y1="136.00" x2="673.10" y2="124.00" class="t"/>
+<line x1="674.00" y1="136.00" x2="676.10" y2="124.00" class="t"/>
+<line x1="677.00" y1="136.00" x2="679.10" y2="124.00" class="t"/>
+<line x1="530.00" y1="122.00" x2="530.00" y2="100.00" class="x"/>
+<line x1="680.00" y1="122.00" x2="680.00" y2="100.00" class="x"/>
+<line x1="530.00" y1="103.00" x2="680.00" y2="103.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="605.0" y="99.0" class="dt" text-anchor="middle" >50</text>
+<line x1="519.60" y1="140.50" x2="503.00" y2="140.50" class="x"/>
+<line x1="519.60" y1="119.50" x2="503.00" y2="119.50" class="x"/>
+<line x1="506.00" y1="140.50" x2="506.00" y2="119.50" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="502.0" y="130.0" class="dt" text-anchor="middle" transform="rotate(-90 502.0 130.0)">Ø7</text>
+<line x1="521.60" y1="142.50" x2="521.60" y2="160.00" class="x"/>
+<line x1="530.00" y1="142.50" x2="530.00" y2="160.00" class="x"/>
+<line x1="521.60" y1="157.00" x2="530.00" y2="157.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="525.8" y="153.0" class="dt" text-anchor="middle" >2.8</text>
+<text x="689.0" y="134.5" class="dt" text-anchor="start" >M4</text>
+<rect x="722.00" y="112.00" width="3.00" height="36.00" rx="0.00" class="stl"/>
+<rect x="734.00" y="119.50" width="15.00" height="21.00" rx="0.00" class="stl"/>
+<line x1="727.00" y1="148.00" x2="732.50" y2="148.00" class="x"/>
+<line x1="727.00" y1="112.00" x2="732.50" y2="112.00" class="x"/>
+<line x1="729.50" y1="148.00" x2="729.50" y2="112.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="725.5" y="130.0" class="dt" text-anchor="middle" transform="rotate(-90 725.5 130.0)"></text>
+<text x="719.0" y="168.0" class="nt" text-anchor="start" >Arandela Ø12 × 1</text>
+<text x="734.0" y="184.0" class="nt" text-anchor="start" >Nyloc M4</text>
+<text x="470.0" y="224.0" class="vt" text-anchor="start" >CORTE DE MONTAJE DE UN BUJE (SIN CARGA)</text>
+<rect x="500.00" y="394.00" width="180.00" height="24.00" rx="0.00" class="sec"/>
+<rect x="566.00" y="334.00" width="48.00" height="60.00" rx="0.00" class="rub"/>
+<rect x="500.00" y="304.00" width="180.00" height="30.00" rx="0.00" class="sec"/>
+<rect x="584.00" y="283.00" width="12.00" height="143.40" rx="0.00" class="stl"/>
+<rect x="579.50" y="418.00" width="21.00" height="16.80" rx="0.00" class="stl"/>
+<rect x="572.00" y="292.00" width="36.00" height="3.00" rx="0.00" class="stl"/>
+<rect x="579.50" y="277.00" width="21.00" height="15.00" rx="0.00" class="stl"/>
+<line x1="498.00" y1="394.00" x2="467.00" y2="394.00" class="x"/>
+<line x1="564.00" y1="334.00" x2="467.00" y2="334.00" class="x"/>
+<line x1="470.00" y1="394.00" x2="470.00" y2="334.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="466.0" y="364.0" class="dt" text-anchor="middle" transform="rotate(-90 466.0 364.0)">20</text>
+<line x1="498.00" y1="334.00" x2="467.00" y2="334.00" class="x"/>
+<line x1="498.00" y1="304.00" x2="467.00" y2="304.00" class="x"/>
+<line x1="470.00" y1="334.00" x2="470.00" y2="304.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="466.0" y="319.0" class="dt" text-anchor="middle" transform="rotate(-90 466.0 319.0)">10</text>
+<line x1="498.00" y1="418.00" x2="467.00" y2="418.00" class="x"/>
+<line x1="498.00" y1="394.00" x2="467.00" y2="394.00" class="x"/>
+<line x1="470.00" y1="418.00" x2="470.00" y2="394.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="466.0" y="406.0" class="dt" text-anchor="middle" transform="rotate(-90 466.0 406.0)">8</text>
+<line x1="610.00" y1="304.00" x2="647.00" y2="304.00" class="x"/>
+<line x1="610.00" y1="295.00" x2="647.00" y2="295.00" class="x"/>
+<line x1="644.00" y1="304.00" x2="644.00" y2="295.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="640.0" y="299.5" class="dt" text-anchor="middle" transform="rotate(-90 640.0 299.5)">3 libre</text>
+<text x="686.0" y="413.0" class="nt" text-anchor="start" >Placa base (1)</text>
+<text x="686.0" y="371.0" class="nt" text-anchor="start" >Buje (4)</text>
+<text x="686.0" y="326.0" class="nt" text-anchor="start" >Caja de m₁ (6), Ø8</text>
+<text x="686.0" y="290.0" class="nt" text-anchor="start" >Arandela + nyloc (5)</text>
+<text x="500.0" y="452.0" class="nt" text-anchor="start" >Los 3 mm libres son el tope de rebote.</text>
+<text x="880.0" y="38.0" class="hd" text-anchor="start" >3  Abrazadera en U M5</text>
+<rect x="880.0" y="45.0" width="70.0" height="19" rx="9.5" fill="#2a6fb0"/>
+<text x="915.0" y="59.0" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">COMPRAR</text>
+<text x="958.0" y="59.0" class="sb" text-anchor="start" >Cant. 1 · acero zincado</text>
+<text x="880.0" y="76.0" class="sb" text-anchor="start" >2 tuercas nyloc M5 y 2 arandelas</text>
+<polyline points="950.00,140.00 950.00,265.10 950.36,270.58 951.43,275.97 953.20,281.17 955.63,286.10 958.68,290.67 962.30,294.80 966.43,298.42 971.00,301.47 975.93,303.90 981.13,305.67 986.52,306.74 992.00,307.10 997.48,306.74 1002.87,305.67 1008.07,303.90 1013.00,301.47 1017.57,298.42 1021.70,294.80 1025.32,290.67 1028.37,286.10 1030.80,281.17 1032.57,275.97 1033.64,270.58 1034.00,265.10 1034.00,140.00" class="o"/>
+<polyline points="942.50,140.00 942.50,265.10 942.92,271.56 944.19,277.91 946.27,284.04 949.13,289.85 952.73,295.23 957.00,300.10 961.87,304.37 967.25,307.97 973.06,310.83 979.19,312.91 985.54,314.18 992.00,314.60 998.46,314.18 1004.81,312.91 1010.94,310.83 1016.75,307.97 1022.13,304.37 1027.00,300.10 1031.27,295.23 1034.87,289.85 1037.73,284.04 1039.81,277.91 1041.08,271.56 1041.50,265.10 1041.50,140.00" class="t"/>
+<polyline points="957.50,140.00 957.50,265.10 957.80,269.60 958.68,274.03 960.13,278.30 962.12,282.35 964.63,286.10 967.60,289.50 971.00,292.47 974.75,294.98 978.80,296.97 983.07,298.42 987.50,299.30 992.00,299.60 996.50,299.30 1000.93,298.42 1005.20,296.97 1009.25,294.98 1013.00,292.47 1016.40,289.50 1019.37,286.10 1021.88,282.35 1023.87,278.30 1025.32,274.03 1026.20,269.60 1026.50,265.10 1026.50,140.00" class="t"/>
+<circle cx="992.00" cy="265.10" r="33.30" class="ph"/>
+<line x1="952.70" y1="265.10" x2="1031.30" y2="265.10" class="c"/>
+<line x1="992.00" y1="304.40" x2="992.00" y2="225.80" class="c"/>
+<line x1="942.50" y1="176.00" x2="957.50" y2="173.60" class="t"/>
+<line x1="942.50" y1="171.50" x2="957.50" y2="169.10" class="t"/>
+<line x1="942.50" y1="167.00" x2="957.50" y2="164.60" class="t"/>
+<line x1="942.50" y1="162.50" x2="957.50" y2="160.10" class="t"/>
+<line x1="942.50" y1="158.00" x2="957.50" y2="155.60" class="t"/>
+<line x1="942.50" y1="153.50" x2="957.50" y2="151.10" class="t"/>
+<line x1="942.50" y1="149.00" x2="957.50" y2="146.60" class="t"/>
+<line x1="942.50" y1="144.50" x2="957.50" y2="142.10" class="t"/>
+<line x1="1026.50" y1="176.00" x2="1041.50" y2="173.60" class="t"/>
+<line x1="1026.50" y1="171.50" x2="1041.50" y2="169.10" class="t"/>
+<line x1="1026.50" y1="167.00" x2="1041.50" y2="164.60" class="t"/>
+<line x1="1026.50" y1="162.50" x2="1041.50" y2="160.10" class="t"/>
+<line x1="1026.50" y1="158.00" x2="1041.50" y2="155.60" class="t"/>
+<line x1="1026.50" y1="153.50" x2="1041.50" y2="151.10" class="t"/>
+<line x1="1026.50" y1="149.00" x2="1041.50" y2="146.60" class="t"/>
+<line x1="1026.50" y1="144.50" x2="1041.50" y2="142.10" class="t"/>
+<line x1="950.00" y1="138.00" x2="950.00" y2="113.00" class="x"/>
+<line x1="1034.00" y1="138.00" x2="1034.00" y2="113.00" class="x"/>
+<line x1="950.00" y1="116.00" x2="1034.00" y2="116.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="992.0" y="112.0" class="dt" text-anchor="middle" >28</text>
+<line x1="1043.50" y1="314.60" x2="1079.00" y2="314.60" class="x"/>
+<line x1="1043.50" y1="140.00" x2="1079.00" y2="140.00" class="x"/>
+<line x1="1076.00" y1="314.60" x2="1076.00" y2="140.00" class="d" marker-start="url(#fl)" marker-end="url(#fl)"/>
+<text x="1072.0" y="227.3" class="dt" text-anchor="middle" transform="rotate(-90 1072.0 227.3)">≥ 58</text>
+<text x="992.0" y="269.1" class="nt" text-anchor="middle" >Manubrio</text>
+<text x="902.0" y="344.0" class="nt" text-anchor="start" >Para tubo de 22 a 29 mm (7/8" a 1⅛")</text>
+<polyline points="942.50,170.00 924.50,170.00 904.70,170.00" class="d" marker-start="url(#fl)"/>
+<text x="921.5" y="166.0" class="dt" text-anchor="end" >M5</text>
+<text x="902.0" y="332.0" class="vt" text-anchor="start" ></text>
+<text x="30" y="780" class="vt">NOTAS</text>
+<text x="30" y="798" class="nt">1. Buje a 2:1; tornillo, corte de montaje y abrazadera a 1:1.</text>
+<text x="30" y="814" class="nt">2. No imprimir los bujes en TPU sólido: quedarían mucho más rígidos que k₁.</text>
+<text x="30" y="830" class="nt">3. Apretar el nyloc solo hasta asentar la arandela; el buje no debe quedar aplastado.</text>
+<rect x="620" y="762" width="566" height="124" fill="#fff" stroke="#15191d" stroke-width="2"/>
+<line x1="620.0" y1="804.0" x2="1186.0" y2="804.0" stroke="#15191d" stroke-width="1"/>
+<line x1="620.0" y1="840.0" x2="1186.0" y2="840.0" stroke="#15191d" stroke-width="1"/>
+<line x1="960.0" y1="762.0" x2="960.0" y2="886.0" stroke="#15191d" stroke-width="1"/>
+<line x1="1060.0" y1="762.0" x2="1060.0" y2="886.0" stroke="#15191d" stroke-width="1"/>
+<line x1="820.0" y1="804.0" x2="820.0" y2="840.0" stroke="#15191d" stroke-width="1"/>
+<text x="626.0" y="774.0" class="tb">NOMBRE</text>
+<text x="626.0" y="791.0" class="tv">Bujes, tornillería y abrazadera</text>
+<text x="966.0" y="774.0" class="tb">VERSIÓN</text>
+<text x="966.0" y="791.0" class="tvs">C · cables a 100</text>
+<text x="1066.0" y="774.0" class="tb">HOJA</text>
+<text x="1066.0" y="791.0" class="tv">3 de 7</text>
+<text x="626.0" y="816.0" class="tb">MATERIAL</text>
+<text x="626.0" y="833.0" class="tvs">Ver cada pieza</text>
+<text x="826.0" y="816.0" class="tb">FABRICACIÓN</text>
+<text x="826.0" y="833.0" class="tvs">Ver cada pieza</text>
+<text x="966.0" y="816.0" class="tb">CANT.</text>
+<text x="966.0" y="833.0" class="tvs">—</text>
+<text x="1066.0" y="816.0" class="tb">ESCALA</text>
+<text x="1066.0" y="833.0" class="tvs">2:1 y 1:1</text>
+<text x="626.0" y="854.0" class="tb">EQUIPO CAMARADAS · ING. MECATRÓNICA</text>
+<text x="626.0" y="874.0" class="tvs">Soporte antivibración · Vibraciones Mecánicas</text>
+<text x="966.0" y="852.0" class="tb">MASA</text>
+<text x="966.0" y="869.0" class="tvs">—</text>
+<text x="1066.0" y="852.0" class="tb">FECHA</text>
+<text x="1066.0" y="869.0" class="tvs">04/11/2026</text>
+<g stroke="#15191d" stroke-width="1.1" fill="none"><path d="M1136.0 821.0 l11 -5.5 v11 z"/><circle cx="1164.0" cy="821.0" r="5.5"/><circle cx="1164.0" cy="821.0" r="2.4"/></g>
+<text x="1153.0" y="838.0" class="tb" text-anchor="middle" style="font-size:8.5px">1er DIEDRO</text>
+</svg>

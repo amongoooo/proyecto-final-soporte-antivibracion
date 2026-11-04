@@ -6,6 +6,7 @@ Página de la presentación del tercer parcial de Vibraciones Mecánicas (Equipo
 - `presentacion.html`: las 17 láminas, con las simulaciones y el modelo 3D en vivo. Flechas para avanzar, F para pantalla completa y `#n` para abrir la lámina n.
 - `simulaciones.html`: simulaciones interactivas, una pestaña por lámina.
 - `modelo3d.html`: modelo 3D del prototipo. Vistas directas con `#base`, `#bujes`, `#caja`, `#solera`, `#cables`, `#sup`, `#porta`, `#guia`, `#explotado` y `#ensamble`.
+- `planos/`: planos de la versión C en SVG (conjunto, base, bujes, caja, cables, guia, porta), su galería `planos/index.html` y el PDF. Se regeneran con `python3 planos/gen/hojas.py`.
 - `vendor/`: MathJax 3.2.2 y three.js r128, para que todo funcione sin internet.
 
 ## Verla
