@@ -57,7 +57,8 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
 .embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(480px,30%)}
 /* En la presentación: solo lo que se lee de lejos */
-.embed .fine{display:none}.embed .card h3{font-size:28px}.embed .tex{font-size:21px}.embed .vals.mj{font-size:21px}.embed button{font-size:18px;padding:9px 12px}.embed .ctl,.embed label.range{font-size:19px}.embed label.range{grid-template-columns:110px 1fr 100px}.embed .ctl{grid-template-columns:110px 1fr}.embed output{font-size:18px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:12px}
+.embed .fine{display:none}
+html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-box}.embed .panel{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}.embed .viz{min-height:0}.embed .viz canvas,.embed .fig canvas{flex:1 1 0;height:0;min-height:60px}.embed .duo{flex:1;min-height:0}.embed .fig{min-height:0}.embed .side>.card:last-child{flex:1}.embed .card h3{font-size:28px}.embed .tex{font-size:21px}.embed .vals.mj{font-size:21px}.embed button{font-size:18px;padding:9px 12px}.embed .ctl,.embed label.range{font-size:19px}.embed label.range{grid-template-columns:110px 1fr 100px}.embed .ctl{grid-template-columns:110px 1fr}.embed output{font-size:18px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:12px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
 </style>
@@ -192,7 +193,7 @@ function sh(w){var r=(K1+K2-M1*w)/K2;return[1/r,1]} /* x1/x2 */
 var a=sh(w1),b=sh(w2);return{f1:Math.sqrt(w1)/PI2,f2:Math.sqrt(w2)/PI2,s1:[a[0],1],s2:[1,1/b[0]]}})();
 /* ===== Utilidades ===== */
 function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
-var FS=document.documentElement.classList.contains('embed')?1.4:1;function F(n){return Math.round(n*FS)}
+var EMB=document.documentElement.classList.contains('embed'),FS=EMB?1.4:1;if(EMB)[].forEach.call(document.querySelectorAll('canvas'),function(c){c.style.flexGrow=c.getAttribute('height')});function F(n){return Math.round(n*FS)}
 function fmt(x,d){return x.toLocaleString('es-MX',{minimumFractionDigits:d,maximumFractionDigits:d})}
 /* Valores en formato fórmula (MathJax), redibujados en vivo al mover los controles. */
 function fx(x,d){return fmt(x,d).replace(/,/g,'{,}')}
@@ -200,8 +201,10 @@ var TQ={},TQr=0;
 function texv(id,rows){TQ[id]='\\begin{aligned}'+rows.join('\\\\[2pt]')+'\\end{aligned}';if(!TQr){TQr=1;requestAnimationFrame(flushTex)}}
 function flushTex(){TQr=0;if(!window.MathJax||!MathJax.tex2svg){TQr=1;setTimeout(flushTex,150);return}
 Object.keys(TQ).forEach(function(id){var el=$(id);try{var n=MathJax.tex2svg(TQ[id],{display:true});el.innerHTML='';el.appendChild(n)}catch(e){el.textContent=TQ[id]}delete TQ[id]})}
-function setup(cv){var dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(200,cv.clientWidth),h=+cv.getAttribute('height');
-if(cv._w!==w||cv._d!==dpr){cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+'px';cv._w=w;cv._d=dpr}var c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);return{c:c,w:w,h:h}}
+/* En la presentación (embed) el alto lo reparte el CSS para llenar el recuadro; fuera de ella, el atributo height. */
+function setup(cv){var dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(200,cv.clientWidth);if(!cv._h0){cv._h0=+cv.getAttribute('height');if(EMB)cv.style.flexGrow=cv._h0}
+var h=EMB?Math.max(60,Math.round(cv.clientHeight)):cv._h0;
+if(cv._w!==w||cv._d!==dpr||cv._hh!==h){cv.width=w*dpr;cv.height=h*dpr;if(!EMB)cv.style.height=h+'px';cv._w=w;cv._d=dpr;cv._hh=h}var c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);return{c:c,w:w,h:h}}
 function axes(o){/* o:{c,w,h,x0,x1,y0,y1,xlog,ylog,xt,yt,xl,yl,pad} */
 var P=o.pad||{l:54,r:14,t:12,b:38},c=o.c,W=o.w-P.l-P.r,H=o.h-P.t-P.b;
 function X(v){return P.l+(o.xlog?(Math.log10(v)-Math.log10(o.x0))/(Math.log10(o.x1)-Math.log10(o.x0)):(v-o.x0)/(o.x1-o.x0))*W}
