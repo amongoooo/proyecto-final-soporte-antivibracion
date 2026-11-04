@@ -52,6 +52,18 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 .coverGrid{display:grid;grid-template-columns:1fr 760px;gap:40px;align-items:center;flex:1;min-height:0}
 .coverGrid iframe{height:100%}
 .tag{display:inline-block;align-self:flex-start;font:500 24px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--warn);border:2px solid currentColor;border-radius:6px;padding:8px 12px}
+/* Apartado de diseño: una sola ventana 3D fija que cambia de pieza; a la izquierda, piezas, función y plano */
+.dcol{display:flex;flex-direction:column;gap:26px;min-height:0;min-width:0}
+.parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.parts li{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:32px;background:var(--chip);border-radius:10px;padding:14px 20px}
+.pt{font:600 22px/1 var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--accent);border:2px solid currentColor;border-radius:6px;padding:8px 10px;white-space:nowrap}.pt.buy{color:var(--warn)}
+.fn{margin:0;font-size:32px;color:var(--muted)}
+.plano{flex:1;min-height:0;border:2px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.plano img{max-width:100%;max-height:100%;object-fit:contain}
+.plano.none img{display:none}.plano.none::after{content:'Plano en preparación';font:500 26px/1 var(--mono);color:var(--muted)}
+.slot3d{min-height:0;border-radius:8px;background:var(--bg)}
+#d3{position:absolute;border:0;border-radius:8px;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .45s ease;z-index:5}
+#d3.on{opacity:1;pointer-events:auto}
 /* Navegación: flechas pegadas a las esquinas inferiores y contador al centro, sobre la lámina */
 #bar{position:fixed;left:0;right:0;bottom:0;height:40px;pointer-events:none}
 #bar>*{pointer-events:auto;position:absolute;bottom:6px}
@@ -86,8 +98,8 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 
 <!-- 3 -->
 <section class="slide">
-<h1>Un resorte aísla solo arriba de √2 · fn</h1>
-<p class="idea">Si f/fn sube, TR baja. Si ζ sube, el pico baja pero aísla un poco menos.</p>
+<h1>Un resorte aísla solo arriba de \(\sqrt{2}\,f_n\)</h1>
+<p class="idea">Si \(f/f_n\) sube, \(TR\) baja. Si \(\zeta\) sube, el pico baja pero aísla un poco menos.</p>
 <div class="body"><div class="fit" data-vh="844"><iframe data-src="simulaciones.html?embed#etapa" title="Transmisibilidad de una etapa"></iframe></div></div>
 </section>
 
@@ -96,19 +108,19 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <h1>Modelo de dos masas con base excitada</h1>
 <div class="body split2">
 <div class="text">
-<p>La caja con lastre (m₁) va sobre 4 bujes (k₁, c₁). El piso del celular (m₂) va sobre 2 cables y la guía (k₂, c₂). El manubrio mueve la base con y(t).</p>
+<p>La caja con lastre \((m_1)\) va sobre 4 bujes \((k_1, c_1)\). El piso del celular \((m_2)\) va sobre 2 cables y la guía \((k_2, c_2)\). El manubrio mueve la base con \(y(t)\).</p>
 <div class="tex">\[ \begin{aligned} m_1\ddot{x}_1 &+ c_1(\dot{x}_1-\dot{y}) + k_1(x_1-y) \\ &- c_2(\dot{x}_2-\dot{x}_1) - k_2(x_2-x_1) = 0 \end{aligned} \]</div>
 <div class="tex">\[ m_2\ddot{x}_2 + c_2(\dot{x}_2-\dot{x}_1) + k_2(x_2-x_1) = 0 \]</div>
 </div>
 <table>
 <thead><tr><th>Variable</th><th>Valor</th><th>Pieza</th></tr></thead>
 <tbody>
-<tr><td>m₁</td><td class="n">0.308 kg</td><td>Caja de PETG con solera de acero</td></tr>
-<tr><td>k₁</td><td class="n">7 464 N/m</td><td>4 bujes de neopreno</td></tr>
-<tr><td>c₁</td><td class="n">55.4 N·s/m</td><td>Bujes (ζ₁ = 0.58)</td></tr>
-<tr><td>m₂</td><td class="n">0.417 kg</td><td>Base 168 g + celular 249 g</td></tr>
-<tr><td>k₂</td><td class="n">535 N/m</td><td>Cables 475 + guía 60</td></tr>
-<tr><td>c₂</td><td class="n">4.18 N·s/m</td><td>Cables (ζ₂ = 0.14)</td></tr>
+<tr><td>\(m_1\)</td><td class="n">0.308 kg</td><td>Caja de PETG con solera de acero</td></tr>
+<tr><td>\(k_1\)</td><td class="n">7 464 N/m</td><td>4 bujes de neopreno</td></tr>
+<tr><td>\(c_1\)</td><td class="n">55.4 N·s/m</td><td>Bujes \((\zeta_1 = 0.58)\)</td></tr>
+<tr><td>\(m_2\)</td><td class="n">0.417 kg</td><td>Base 168 g + celular 249 g</td></tr>
+<tr><td>\(k_2\)</td><td class="n">535 N/m</td><td>Cables 475 + guía 60</td></tr>
+<tr><td>\(c_2\)</td><td class="n">4.18 N·s/m</td><td>Cables \((\zeta_2 = 0.14)\)</td></tr>
 </tbody></table>
 </div>
 </section>
@@ -116,7 +128,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <!-- 5 -->
 <section class="slide">
 <h1>A 5.5 Hz se mece el celular; a 25.7 Hz, la caja</h1>
-<p class="idea">Corrección de la primera presentación: el cable es el resorte blando, y si k baja, fn baja. Por eso el cable da el modo lento.</p>
+<p class="idea">Corrección de la primera presentación: el cable es el resorte blando, y si \(k\) baja, \(f_n\) baja. Por eso el cable da el modo lento.</p>
 <div class="body"><div class="fit" data-vh="725"><iframe data-src="simulaciones.html?embed#modos" title="Los dos modos"></iframe></div></div>
 </section>
 
@@ -145,7 +157,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <tr><td>Inclinación</td><td class="n bad">33°</td><td class="n good">4.9°</td></tr>
 <tr><td>Sube</td><td class="n bad">139 mm</td><td class="n good">21 mm</td></tr>
 <tr><td>Mecido</td><td class="n bad">0.64 Hz</td><td class="n good">3.3 Hz</td></tr>
-<tr><td>TR a 11.7 Hz</td><td class="n">0.36</td><td class="n">0.38</td></tr>
+<tr><td>\(TR\) a 11.7 Hz</td><td class="n">0.36</td><td class="n">0.38</td></tr>
 </tbody></table>
 <div class="box"><span class="k">Solución</span>4 láminas de fleje en el piso 2: rígidas al giro, blandas hacia arriba.</div>
 </div>
@@ -161,98 +173,99 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </section>
 
 <!-- 10 -->
-<section class="slide">
+<section class="slide design" data-part="base">
 <h1>Placa base y abrazadera</h1>
 <div class="body split">
-<div class="text">
-<div class="box"><span class="k">Diseño</span>PETG de 132 × 120 × 8 mm, con 4 asientos para bujes en X = ±58 mm y Y = ±23.3 mm. Abrazadera en U M5 metálica.</div>
-<div class="box"><span class="k">Función</span>Es la única pieza unida rígido a la moto. Recibe el movimiento del manubrio y(t) y lo pasa a los bujes. Todo lo demás flota.</div>
+<div class="dcol">
+<ul class="parts"><li><span>Placa base 132 × 72 × 8 mm</span><span class="pt">Impresa</span></li><li><span>Bloque en V</span><span class="pt">Impresa</span></li><li><span>Abrazadera en U M5</span><span class="pt buy">Comprada</span></li></ul>
+<p class="fn">La única pieza fija a la moto: todo lo demás flota.</p>
+<div class="plano"><img src="planos/base.svg" alt="Plano: Placa base y abrazadera" onerror="this.parentNode.classList.add('none')"></div>
 </div>
-<iframe data-src="modelo3d.html?embed&nopanel#base" title="Placa base en el modelo 3D"></iframe>
+<div class="slot3d"></div>
 </div>
 </section>
 
 <!-- 11 -->
-<section class="slide">
+<section class="slide design" data-part="bujes">
 <h1>Bujes de neopreno: primera etapa</h1>
 <div class="body split">
-<div class="text">
-<div class="box"><span class="k">Diseño</span>4 bujes de neopreno esponjoso de Ø16 × Ø5 × 20 mm. Se compran.</div>
-<div class="box"><span class="k">Función</span>Filtran lo rápido del motor y amortiguan mucho (ζ₁ = 0.58). Si el buje es más largo, k₁ baja.</div>
-<div class="tex">\[ k=\frac{EA}{L}=\frac{(0.2\times10^{6})\,\tfrac{\pi}{4}(0.016^2-0.005^2)}{0.020}=1814\ \tfrac{\text{N}}{\text{m}} \]</div>
-<div class="tex">\[ \begin{aligned} k_1 &= 4(1814) = 7257\ \tfrac{\text{N}}{\text{m}} \;\rightarrow\; 7464\ \tfrac{\text{N}}{\text{m}} \\ c_1 &= 2(0.58)\sqrt{7464 \times 0.308} = 55.4\ \tfrac{\text{N·s}}{\text{m}} \end{aligned} \]</div>
+<div class="dcol">
+<ul class="parts"><li><span>4 bujes Ø16 × Ø5 × 20 mm</span><span class="pt buy">Comprados</span></li><li><span>4 tornillos M4 × 50 con nyloc</span><span class="pt buy">Comprados</span></li></ul>
+<p class="fn">Filtran lo rápido del motor y amortiguan mucho.</p>
+<div class="plano"><img src="planos/bujes.svg" alt="Plano: Bujes de neopreno: primera etapa" onerror="this.parentNode.classList.add('none')"></div>
 </div>
-<iframe data-src="modelo3d.html?embed&nopanel#bujes" title="Bujes en el modelo 3D"></iframe>
+<div class="slot3d"></div>
 </div>
 </section>
 
 <!-- 12 -->
-<section class="slide">
+<section class="slide design" data-part="caja">
 <h1>Caja con lastre: la masa intermedia</h1>
 <div class="body split">
-<div class="text">
-<div class="box"><span class="k">Diseño</span>Caja de PETG de 10 mm de alto con una solera de acero de 1½″ × ¼″ × 96 mm adentro (unos 182 g). m₁ ≈ 308 g.</div>
-<div class="box"><span class="k">Función</span>Es la masa que hace doble el filtro. Si m₁ sube, la frecuencia rápida baja y la etapa 1 aísla antes.</div>
-<div class="tex">\[ f=\frac{1}{2\pi}\sqrt{\frac{k_1}{m_1}}=\frac{1}{2\pi}\sqrt{\frac{7464}{0.308}}=24.8\ \text{Hz} \]</div>
+<div class="dcol">
+<ul class="parts"><li><span>Caja de \(m_1\), 132 × 72 × 10 mm</span><span class="pt">Impresa</span></li><li><span>Solera de acero 1½″ × ¼″ × 96 mm</span><span class="pt buy">Comprada</span></li></ul>
+<p class="fn">Es la masa del primer piso (\(m_1 \approx 308\) g).</p>
+<div class="plano"><img src="planos/caja.svg" alt="Plano: Caja con lastre: la masa intermedia" onerror="this.parentNode.classList.add('none')"></div>
 </div>
-<iframe data-src="modelo3d.html?embed&nopanel#caja" title="Caja con lastre en el modelo 3D"></iframe>
+<div class="slot3d"></div>
 </div>
 </section>
 
 <!-- 13 -->
-<section class="slide">
+<section class="slide design" data-part="cables">
 <h1>Cables de acero: segunda etapa</h1>
 <div class="body split">
-<div class="text">
-<div class="box"><span class="k">Diseño</span>2 cables inoxidables 7×7 de 1/32″, 6 vueltas, D = 39 mm, separados 100 mm.</div>
-<div class="box"><span class="k">Función</span>Son el resorte blando que da la frecuencia baja. El roce entre hilos amortigua (ζ₂ = 0.14). Si D sube, k₂ baja.</div>
-<div class="tex">\[ c_2=2\zeta_2\sqrt{k_2m_2}=2(0.14)\sqrt{535\times0.417}=4.18\ \tfrac{\text{N·s}}{\text{m}} \]</div>
+<div class="dcol">
+<ul class="parts"><li><span>2 cables inox 7×7 de 1/32″, 6 vueltas</span><span class="pt buy">Comprados</span></li><li><span>Barras inferiores y superiores</span><span class="pt">Impresas</span></li><li><span>Tope central</span><span class="pt">Impreso</span></li></ul>
+<p class="fn">El resorte blando que da la frecuencia baja.</p>
+<div class="plano"><img src="planos/cables.svg" alt="Plano: Cables de acero: segunda etapa" onerror="this.parentNode.classList.add('none')"></div>
 </div>
-<iframe data-src="modelo3d.html?embed&nopanel#cables" title="Cables en el modelo 3D"></iframe>
+<div class="slot3d"></div>
 </div>
 </section>
 
 <!-- 14 -->
-<section class="slide">
+<section class="slide design" data-part="porta">
 <h1>Piso del celular</h1>
 <div class="body split">
-<div class="text">
-<div class="box"><span class="k">Diseño</span>Barras de 10 × 10 mm, placa superior de 132 × 120 × 5 mm, escuadra de 15° y porta-celular con mordazas.</div>
-<div class="box"><span class="k">Función</span>Sostiene el celular. Todo lo que va arriba de los cables es m₂. Si m₂ sube, la frecuencia lenta baja.</div>
-<div class="tex">\[ m_2=0.168+0.249=0.417\ \text{kg} \]</div>
+<div class="dcol">
+<ul class="parts"><li><span>Placa superior 106 × 72 × 5 mm</span><span class="pt">Impresa</span></li><li><span>Porta-celular con escuadra de 15°</span><span class="pt">Impreso</span></li><li><span>Cordón de seguridad</span><span class="pt buy">Comprado</span></li></ul>
+<p class="fn">Sostiene el celular: todo lo de arriba de los cables es \(m_2\).</p>
+<div class="plano"><img src="planos/porta.svg" alt="Plano: Piso del celular" onerror="this.parentNode.classList.add('none')"></div>
 </div>
-<iframe data-src="modelo3d.html?embed&nopanel#porta" title="Porta-celular en el modelo 3D"></iframe>
+<div class="slot3d"></div>
 </div>
 </section>
 
 <!-- 15 -->
-<section class="slide">
-<h1>Guía de láminas: frena el giro sin endurecer lo vertical</h1>
+<section class="slide design" data-part="guia">
+<h1>Guía de láminas: frena el giro</h1>
 <div class="body split">
-<div class="text">
-<div class="box"><span class="k">Función</span>Rígidas al giro (30 N·m/rad) y de lado, blandas hacia arriba (60 N/m). Solo en el piso 2: en los dos pisos, la vibración horizontal llegaría al celular.</div>
-<div class="tex">\[ k_{\theta 2} = k_2\,a^2 + k_{\theta,guía} = 475\,(0.050)^2 + 30 = 31.2\ \tfrac{\text{N·m}}{\text{rad}} \]</div>
+<div class="dcol">
+<ul class="parts"><li><span>4 postes</span><span class="pt">Impresos</span></li><li><span>4 láminas de fleje de acero 14 × 50 mm</span><span class="pt buy">Compradas</span></li></ul>
+<p class="fn">Rígida al giro y de lado, blanda hacia arriba.</p>
+<div class="plano"><img src="planos/guia.svg" alt="Plano: Guía de láminas: frena el giro" onerror="this.parentNode.classList.add('none')"></div>
 </div>
-<iframe data-src="modelo3d.html?embed&nopanel#guia" title="Guía de láminas en el modelo 3D"></iframe>
+<div class="slot3d"></div>
 </div>
 </section>
 
 <!-- 16 -->
-<section class="slide">
+<section class="slide design" data-part="explotado">
 <h1>Todas las piezas juntas</h1>
 <div class="body split">
 <div class="text">
 <p>De abajo hacia arriba:</p>
 <ul><li>Placa base y abrazadera</li><li>4 bujes de neopreno</li><li>Caja con lastre de acero</li><li>Barras inferiores, cables y barras superiores</li><li>Placa superior y guía de láminas</li><li>Porta-celular y cordón de seguridad</li></ul>
 </div>
-<iframe data-src="modelo3d.html?embed&nopanel#explotado" title="Modelo 3D separado en piezas"></iframe>
+<div class="slot3d"></div>
 </div>
 </section>
 
 <!-- 17 -->
 <section class="slide">
 <h1>En el cuarto parcial medimos lo que hoy es estimado</h1>
-<p class="idea">En banco: k con pesos y ζ soltando el celular. En la moto: un ESP32 con un acelerómetro en el manubrio y otro en el celular. Siempre con el cordón de seguridad.</p>
+<p class="idea">En banco: \(k\) con pesos y \(\zeta\) soltando el celular. En la moto: un ESP32 con un acelerómetro en el manubrio y otro en el celular. Siempre con el cordón de seguridad.</p>
 <div class="body"><div class="fit" data-vh="774"><iframe data-src="simulaciones.html?embed#libre" title="Prueba de soltar"></iframe></div></div>
 </section>
 
@@ -262,16 +275,17 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 <div class="body split2">
 <div class="text"><ul>
 <li>La moto vibra en muchas frecuencias: <b>aislar</b> sirve, sintonizar no.</li>
-<li>Un aislador solo funciona arriba de <b>√2 · fn</b>.</li>
+<li>Un aislador solo funciona arriba de <b>\(\sqrt{2}\,f_n\)</b>.</li>
 <li>Dos etapas caen mucho más rápido que una: en ralentí llega <b>0.38</b>, a 60 Hz <b>1.5 %</b>.</li>
 <li>La <b>guía de láminas</b> evita que el celular se meza al frenar.</li>
 </ul></div>
-<div class="text"><div class="box"><span class="k">Siguiente paso</span>Imprimir, armar y medir k, ζ, fn y TR en el cuarto parcial.</div>
-<div class="box"><span class="k">Preguntas</span>¿Cable hecho o comprado? ¿Neopreno o Sorbothane? ¿Es aceptable TR ≈ 3.9 en baches?</div>
+<div class="text"><div class="box"><span class="k">Siguiente paso</span>Imprimir, armar y medir \(k\), \(\zeta\), \(f_n\) y \(TR\) en el cuarto parcial.</div>
+<div class="box"><span class="k">Preguntas</span>¿Cable hecho o comprado? ¿Neopreno o Sorbothane? ¿Es aceptable \(TR \approx 3.9\) en baches?</div>
 <span class="tag">Todos los resultados son simulados</span></div>
 </div>
 </section>
 
+<iframe id="d3" title="Modelo 3D del prototipo"></iframe>
 </div></div>
 
 <nav id="bar" aria-label="Navegación de la presentación">
@@ -292,13 +306,20 @@ function fitFrames(sl){[].forEach.call(sl.querySelectorAll('.fit'),function(b){v
 var sc=bh/vh,vw=Math.max(1200,Math.round(bw/sc));sc=Math.min(sc,bw/vw);f.style.width=vw+'px';f.style.height=vh+'px';f.style.left=Math.max(0,(bw-vw*sc)/2)+'px';f.style.top=Math.max(0,(bh-vh*sc)/2)+'px';f.style.transform='scale('+sc+')'})}
 function frames(sl){return [].slice.call(sl.querySelectorAll('iframe[data-src]'))}
 /* Avisa a las simulaciones que ya pueden arrancar; si el iframe aún carga, se avisa al terminar de cargar. */
-function start(sl){frames(sl).forEach(function(f){f.dataset.go='1';try{f.contentWindow.postMessage({deckStart:1},'*')}catch(e){}})}
+/* Ventana 3D compartida del apartado de diseño: no se recarga entre láminas, solo cambia la pieza que enfoca. */
+var d3=document.getElementById('d3'),d3go=false;
+function sync3d(sl){var part=sl.dataset.part;if(!part){d3.classList.remove('on');return}
+var slot=sl.querySelector('.slot3d');d3.style.left=slot.offsetLeft+'px';d3.style.top=slot.offsetTop+'px';d3.style.width=slot.offsetWidth+'px';d3.style.height=slot.offsetHeight+'px';
+if(!d3.getAttribute('src'))d3.setAttribute('src','modelo3d.html?embed&nopanel&theme=light#'+part);else try{d3.contentWindow.postMessage({view:part},'*')}catch(e){}
+d3.classList.add('on')}
+d3.addEventListener('load',function(){if(d3go)try{d3.contentWindow.postMessage({deckStart:1},'*')}catch(e){}});
+function start(sl){if(sl.dataset.part){d3go=true;try{d3.contentWindow.postMessage({deckStart:1},'*')}catch(e){}}frames(sl).forEach(function(f){f.dataset.go='1';try{f.contentWindow.postMessage({deckStart:1},'*')}catch(e){}})}
 function unload(sl){frames(sl).forEach(function(f){delete f.dataset.go;if(f.getAttribute('src'))f.removeAttribute('src')})}
 function place(sl,x,o,anim){sl.classList.toggle('anim',!!anim);sl.style.transform=x?'translateX('+x+'px)':'';sl.style.opacity=o}
 function go(i,instant){i=Math.max(0,Math.min(slides.length-1,i));if(i===cur)return;
 var dir=i>cur?1:-1,old=slides[cur],nu=slides[i],tk=++token;cur=i;
 slides.forEach(function(s){if(s!==old&&s!==nu){s.hidden=true;place(s,0,'',false);unload(s)}});
-nu.hidden=false;frames(nu).forEach(function(f){delete f.dataset.go;var u=srcOf(f);if(f.getAttribute('src')!==u)f.setAttribute('src',u)});fitFrames(nu);
+nu.hidden=false;frames(nu).forEach(function(f){delete f.dataset.go;var u=srcOf(f);if(f.getAttribute('src')!==u)f.setAttribute('src',u)});fitFrames(nu);sync3d(nu);
 document.getElementById('count').textContent=(i+1)+' / '+slides.length;
 try{history.replaceState(null,'','#'+(i+1))}catch(e){}
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,t=(instant||reduce)?0:T;
@@ -310,7 +331,7 @@ document.getElementById('prev').onclick=function(){go(cur-1)};document.getElemen
 document.addEventListener('keydown',function(e){if(e.target.closest&&e.target.closest('input,textarea,select'))return;
 if(['ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(cur+1)}else if(['ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur-1)}
 else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1)});
-window.addEventListener('resize',function(){fit();fitFrames(slides[cur])});
+window.addEventListener('resize',function(){fit();fitFrames(slides[cur]);sync3d(slides[cur])});
 window.addEventListener('message',function(e){if(e.data&&e.data.deckNav)go(cur+e.data.deckNav)});
 function fromHash(){var n=parseInt((location.hash||'').slice(1),10);if(!isNaN(n)&&n-1!==cur)go(n-1)}
 window.addEventListener('hashchange',fromHash);fit();var n0=parseInt((location.hash||'').slice(1),10);go(isNaN(n0)?0:n0-1);
