@@ -55,10 +55,10 @@ output{font:500 13px/1 var(--mono);text-align:right}
 .fine{margin:0;font-size:13px;color:var(--muted)}
 footer{color:var(--muted);font-size:13px;max-width:100ch}
 [role=tabpanel][hidden]{display:none!important}
-.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(480px,30%)}
+.embed header,.embed nav,.embed footer{display:none!important}.embed .wrap{max-width:none;padding:8px;gap:10px}.embed body{overflow:hidden}.embed .viz>h2,.embed .viz>.lead{display:none}.embed .panel{gap:12px;grid-template-columns:minmax(0,1fr) minmax(520px,34%)}
 /* En la presentación: solo lo que se lee de lejos */
-.embed .fine{display:none}
-html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-box}.embed .panel{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}.embed .viz{min-height:0}.embed .viz canvas,.embed .fig canvas{flex:1 1 0;height:0;min-height:60px}.embed .duo{flex:1;min-height:0}.embed .fig{min-height:0}.embed .side>.card:last-child{flex:1}.embed .card h3{font-size:28px}.embed .tex{font-size:21px}.embed .vals.mj{font-size:21px}.embed #vMec{font-size:18px}.embed button{font-size:18px;padding:9px 12px}.embed .ctl,.embed label.range{font-size:19px}.embed label.range{grid-template-columns:110px 1fr 100px}.embed .ctl{grid-template-columns:110px 1fr}.embed output{font-size:18px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:12px}
+.embed .fine{display:none}.embed .side>.card{gap:8px}.embed .nums>.num:nth-child(n+3){display:none}.embed .tex mjx-container[display="true"]{margin:.35em 0!important}
+html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-box}.embed .panel{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}.embed .viz{min-height:0}.embed .viz canvas,.embed .fig canvas{flex:1 1 0;height:0;min-height:60px}.embed .duo{flex:1;min-height:0}.embed .fig{min-height:0}.embed .side>.card:last-child{flex:1}.embed .card h3{font-size:28px}.embed .tex{font-size:25px}.embed .vals.mj{font-size:24px}.embed #vMec{font-size:20px}.embed button{font-size:22px;padding:9px 14px;min-height:46px}.embed .ctl,.embed label.range{font-size:22px}.embed label.range{grid-template-columns:130px 1fr 110px}.embed .ctl{grid-template-columns:130px 1fr}.embed output{font-size:21px}.embed input[type=range]{height:34px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:8px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
 </style>
@@ -147,9 +147,9 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <div class="key"><span><i style="background:var(--c2)"></i>Etapa 1, bujes</span><span><i style="background:var(--accent)"></i>Etapa 2, cables</span><span><i style="background:var(--warn)"></i>Topa</span></div></div>
 <div class="fig"><h4>Simulación con topes (cámara lenta)</h4><canvas id="cvTope" height="430" aria-label="El soporte oscilando con sus topes y el rastro de cada etapa"></canvas></div></div></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ U_1=|X_1-Y|\qquad U_2=|X_2-X_1| \]</div><div class="tex">\[ U_2=\left|\frac{X_2-X_1}{Y}\right|_{\omega}\,Y\;<\;\text{espacio}_2 \]</div><div class="vals mj" id="vTope"></div></div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ U_1=|X_1-Y|\qquad U_2=|X_2-X_1| \]</div><div class="vals mj" id="vTope"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="tf"><span>Frecuencia</span><input id="tf" type="range" min="1" max="30" step="0.1" value="5.6"><output id="tfv"></output></label>
-<label class="range" for="ty"><span>Amplitud Y</span><input id="ty" type="range" min="0.1" max="5" step="0.05" value="3"><output id="tyv"></output></label>
+<label class="range" for="ty"><span>Amplitud Y</span><input id="ty" type="range" min="0.1" max="40" step="0.1" value="30"><output id="tyv"></output></label>
 <div class="ctl"><span>Caso</span><div class="chips" id="tChips"></div></div><div class="nums" id="nTope"></div></div>
 </div>
 </section>
@@ -172,7 +172,7 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 <canvas id="cvRig16" height="330" aria-label="El piso del celular soltado, con su rastro"></canvas>
 <canvas id="cvLibre" height="300" aria-label="Vibración libre amortiguada con x1, x2 y Td"></canvas></div>
 <div class="side">
-<div class="card"><h3>Fórmula</h3><div class="tex">\[ \delta=\ln\frac{x_1}{x_2}\qquad \zeta=\frac{\delta}{\sqrt{4\pi^2+\delta^2}} \]</div><div class="tex">\[ f_n=\frac{1}{T_d\sqrt{1-\zeta^2}} \]</div>
+<div class="card"><h3>Fórmula</h3><div class="tex">\[ \delta=\ln\frac{x_1}{x_2}\qquad \zeta=\frac{\delta}{\sqrt{4\pi^2+\delta^2}} \]</div>
 <div class="vals mj" id="vLibre"></div></div>
 <div class="card"><h3>Controles</h3><label class="range" for="zz"><span>ζ real</span><input id="zz" type="range" min="0.02" max="0.4" step="0.01" value="0.14"><output id="zzv"></output></label>
 <label class="range" for="fnn"><span>fn real</span><input id="fnn" type="range" min="2" max="10" step="0.1" value="5.5"><output id="fnnv"></output></label>
@@ -255,7 +255,7 @@ $('rpm').addEventListener('input',function(e){S.rpm=+e.target.value;updRpm()});
 var updRpmChips=chips($('rpmChips'),[['Ralentí 1 404 rpm',1404],['Ciudad 3 000',3000],['Avenida 6 000',6000]],function(it){return S.rpm===it[1]},function(it){S.rpm=it[1];$('rpm').value=it[1];updRpm()});
 chips($('spOnda'),[['×0.02',.02],['×0.1',.1],['Tiempo real',1]],function(it){return S.spO===it[1]},function(it){S.spO=it[1]});
 function updRpm(){var fe=S.rpm/120;$('rpmv').textContent=S.rpm+' rpm';updRpmChips();
-texv('vOnda',['f_{exp}&=\\frac{rpm}{120}=\\frac{'+S.rpm+'}{120}='+fx(fe,1)+'\\ \\text{Hz}'].concat([1,2,3,4].map(function(n){return 'f_'+n+'&='+n+'\\,('+fx(fe,1)+')='+fx(n*fe,1)+'\\ \\text{Hz}'}),['&\\vdots','f_'+NH+'&='+NH+'\\,('+fx(fe,1)+')='+fx(NH*fe,0)+'\\ \\text{Hz}']));draw(0,true)}
+texv('vOnda',['f_{exp}&=\\frac{rpm}{120}=\\frac{'+S.rpm+'}{120}='+fx(fe,1)+'\\ \\text{Hz}'].concat([1,2,3].map(function(n){return 'f_'+n+'&='+n+'\\,('+fx(fe,1)+')='+fx(n*fe,1)+'\\ \\text{Hz}'}),['&\\vdots','f_'+NH+'&='+NH+'\\,('+fx(fe,1)+')='+fx(NH*fe,0)+'\\ \\text{Hz}']));draw(0,true)}
 function drawOnda(t){var fe=S.rpm/120,A=setup($('cvOnda')),c=A.c,sp=S.spO,amp=34,yc=A.h/2+8,cx=70,R=26,win=.25;
 var y0=amp*yOnda(t*sp,fe);
 c.strokeStyle=css('--muted');c.lineWidth=2;c.setLineDash([4,4]);c.beginPath();c.moveTo(cx,20);c.lineTo(cx,A.h-20);c.stroke();c.setLineDash([]);
@@ -364,12 +364,22 @@ chips($('escChips'),ESC.map(function(e){return[e[0]+(e[1]?' · '+e[1]+' rpm':' �
 function updE(){var R=RES[S.esc],e=ESC[S.esc];
 texv('vEsc',[(e[1]?'f_{exp}&=\\frac{'+e[1]+'}{120}='+fx(e[1]/120,1)+'\\ \\text{Hz},\\ n=1\\ldots6':'f&=5.6\\ \\text{Hz}\\ \\text{(bache)}'),'\\text{Nuestro: }\\frac{a_{cel}}{a_{man}}&='+fx(R.c,2)+'\\ \\Rightarrow\\ '+pctx(R.c),'\\text{Rígido: }\\frac{a_{cel}}{a_{man}}&='+fx(R.r,2)+'\\ \\Rightarrow\\ '+pctx(R.r)]);
 nums($('nEsc'),[[pct(R.r),'Soporte rígido',R.r>1?'warn':'good'],[pct(R.c),'Nuestro soporte',R.c>1?'warn':'good']]);draw(0,true)}
-function drawBar(){var A=setup($('cvBar')),c=A.c,P={l:150,r:70,t:10,b:30},W=A.w-P.l-P.r,rows=RES.length,rh=(A.h-P.t-P.b)/rows,lo=-100,hi=300;
-function X(v){return P.l+(v-lo)/(hi-lo)*W}
-c.font='500 '+F(12)+'px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';c.strokeStyle=css('--grid');[-100,0,100,200,300].forEach(function(v){c.beginPath();c.moveTo(X(v),P.t);c.lineTo(X(v),A.h-P.b);c.stroke();c.fillText((v>0?'+':'')+v+' %',X(v),A.h-P.b+16)});
-line(c,[[X(0),P.t],[X(0),A.h-P.b]],css('--ink'),1.5);
-RES.forEach(function(R,i){var y=P.t+i*rh,bh=Math.min(16,rh*.3);c.fillStyle=css(i===S.esc?'--ink':'--muted');c.font=(i===S.esc?'700 ':'500 ')+'15px '+css('--body');c.textAlign='left';c.fillText(R.n,4,y+rh/2+5);
-[[R.r,'--warn',-bh-2],[R.c,'--accent',2]].forEach(function(b){var v=Math.max(lo,Math.min(hi,(b[0]-1)*100));c.fillStyle=css(b[1]);var x0=X(0),x1=X(v);c.fillRect(Math.min(x0,x1),y+rh/2+b[2],Math.abs(x1-x0),bh);c.font='500 '+F(12)+'px '+css('--mono');c.textAlign=v>=0?'left':'right';c.fillText(pct(b[0]),x1+(v>=0?6:-6),y+rh/2+b[2]+bh-3)})})}
+/* Una sola gráfica: el escenario elegido. Las barras y la escala se animan hacia los valores de ese escenario. */
+var BA={r:0,c:0,hi:300};
+function drawBar(){var A=setup($('cvBar')),c=A.c,R=RES[S.esc],tr=(R.r-1)*100,tc=(R.c-1)*100,thi=Math.max(100,Math.ceil(Math.max(tr,tc)*1.15/50)*50),k=.12;
+BA.r+=(tr-BA.r)*k;BA.c+=(tc-BA.c)*k;BA.hi+=(thi-BA.hi)*k;
+var P={l:230,r:40,t:46,b:40},W=A.w-P.l-P.r,lo=-100,hi=BA.hi,X=function(v){return P.l+(v-lo)/(hi-lo)*W},step=hi>400?200:hi>200?100:50;
+c.fillStyle=css('--ink');c.font='700 '+F(20)+'px '+css('--display');c.textAlign='left';c.fillText(R.n+(R.rpm?' · '+R.rpm+' rpm':' · 5.6 Hz'),4,26);
+c.font='500 '+F(13)+'px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';c.strokeStyle=css('--grid');c.lineWidth=1;
+for(var v=lo;v<=hi+.1;v+=(v<0?100:step)){if(v<0&&v!==-100)continue;c.beginPath();c.moveTo(X(v),P.t-6);c.lineTo(X(v),A.h-P.b);c.stroke();c.fillText((v>0?'+':'')+Math.round(v)+' %',X(v),A.h-P.b+20)}
+line(c,[[X(0),P.t-6],[X(0),A.h-P.b]],css('--ink'),2);
+c.font='500 '+F(12)+'px '+css('--body');c.fillStyle=css('--muted');c.textAlign='right';c.fillText('← reduce',X(0)-8,P.t-12);c.textAlign='left';c.fillText('amplifica →',X(0)+8,P.t-12);
+var rh=(A.h-P.t-P.b)/2,bh=Math.min(rh*.55,70);
+[['Soporte rígido',BA.r,'--warn'],['Nuestro soporte',BA.c,'--accent']].forEach(function(b,i){var y=P.t+i*rh+(rh-bh)/2,x0=X(0),x1=X(Math.max(lo,b[1]));
+c.fillStyle=css('--ink');c.font='700 '+F(17)+'px '+css('--body');c.textAlign='left';c.fillText(b[0],4,y+bh/2+6);
+c.fillStyle=css(b[2]);c.fillRect(Math.min(x0,x1),y,Math.abs(x1-x0),bh);
+c.font='700 '+F(20)+'px '+css('--mono');var lab=(b[1]>0?'+':'')+Math.round(b[1])+' %';c.textAlign=b[1]>=0?'left':'right';
+var lx=x1+(b[1]>=0?8:-8);if(b[1]>=0&&lx+90>A.w){lx=x1-8;c.textAlign='right';c.fillStyle=css('--panel')}c.fillText(lab,lx,y+bh/2+7)})}
 function drawEsc(t){var e=ESC[S.esc],A=setup($('cvEsc')),c=A.c,fe=e[1]?e[1]/120:5.6,sl=.8/fe,td=t*sl,fv=.8;
 function sig(tt,fn){if(!e[1]){var s=fn(5.6);return s.m*Math.sin(PI2*5.6*tt+s.p)}var v=0;for(var n=1;n<=6;n++){var s=fn(n*fe);v+=s.m/n*Math.sin(PI2*n*fe*tt+PH[n-1]+s.p)}return v}
 var base=function(tt){return sig(tt,function(){return{m:1,p:0}})},rigS=function(tt){return sig(tt,function(f){return one(f,FNR,ZR)})},ourS=function(tt){return sig(tt,solve)};
@@ -441,8 +451,9 @@ c.fillStyle=css('--muted');c.font='500 '+F(14)+'px '+css('--body');c.textAlign='
 /* Espacios (mm) sobre la posición de reposo con carga. Etapa 1: 3 mm hasta la cabeza del tornillo (arriba) y ~9 mm hasta que el buje se aplasta (abajo, 50 % de 20 mm menos 0.95 mm de deflexión estática).
    Etapa 2: tope central con 18 mm libres menos 7.6 mm de deflexión estática de los cables = 10.4 mm (abajo); arriba solo el cordón, con holgura supuesta de 30 mm. */
 var GAP={u1up:3,u1dn:9,u2dn:10.4,u2up:30};
-var TC=[['Ralentí · 11.7 Hz · 0.37 mm',11.7,.37],['Ciudad · 25 Hz · 0.16 mm',25,.16],['Bache · 5.6 Hz · 3 mm',5.6,3]];
-S.tf=5.6;S.ty=3;
+/* Bache de Celaya: ~3 cm. 'Directo' es el peor caso (los 3 cm llegan a la resonancia de 5.6 Hz); 'por la suspensión' es el mismo bache filtrado por la suspensión del vehículo (~1.5 Hz). */
+var TC=[['Ralentí · 11.7 Hz',11.7,.37],['Ciudad · 25 Hz',25,.16],['Bache directo · 5.6 Hz',5.6,30],['Bache filtrado · 1.5 Hz',1.5,30]];
+S.tf=5.6;S.ty=30;
 function relH(f){var w=PI2*f,ar=K1+K2-M1*w*w,ai=w*(C1+C2),br=-K2,bi=-w*C2,dr=K2-M2*w*w,di=w*C2,fr=K1,fi=w*C1;
 /* [a b; b d][X1;X2]=[F;0] con complejos */
 var detr=ar*dr-ai*di-(br*br-bi*bi),deti=ar*di+ai*dr-2*br*bi,den=detr*detr+deti*deti;
@@ -455,16 +466,16 @@ $('tf').addEventListener('input',function(e){S.tf=+e.target.value;updT()});$('ty
 var TS={x1:0,v1:0,x2:0,v2:0,t:0,hist:[],last:null,max1:0,max2:0,hit:false};
 function resetTS(){TS.x1=TS.v1=TS.x2=TS.v2=TS.t=0;TS.hist=[];TS.last=null;TS.max1=TS.max2=0;TS.hit=false}
 function updT(){var H=relH(S.tf),U1=H.u1*S.ty,U2=H.u2*S.ty,t1=U1>Math.min(GAP.u1up,GAP.u1dn),t2=U2>GAP.u2dn;
-$('tfv').textContent=fmt(S.tf,1)+' Hz';$('tyv').textContent=fmt(S.ty,2)+' mm';updTC();
-texv('vTope',['U_1&='+fx(H.u1,3)+'\\,('+fx(S.ty,2)+')='+fx(U1,2)+'\\ \\text{mm}\\ '+(t1?'>':'<')+'\\ '+GAP.u1up+'\\ \\text{mm}','U_2&='+fx(H.u2,2)+'\\,('+fx(S.ty,2)+')='+fx(U2,1)+'\\ \\text{mm}\\ '+(t2?'>':'<')+'\\ '+fx(GAP.u2dn,1)+'\\ \\text{mm}','Y_{máx}&=\\frac{'+fx(GAP.u2dn,1)+'}{'+fx(u2pk,2)+'}='+fx(GAP.u2dn/u2pk,1)+'\\ \\text{mm}\\ \\text{a}\\ '+fx(u2pf,1)+'\\ \\text{Hz}']);
-nums($('nTope'),[[fmt(U1,2)+' mm','Etapa 1 · espacio 3 mm',t1?'warn':'good'],[fmt(U2,1)+' mm','Etapa 2 · espacio 10.4 mm',t2?'warn':'good'],[(t1||t2)?'Sí topa':'No topa','Según el cálculo lineal',(t1||t2)?'warn':'good'],[fmt(GAP.u2dn/u2pk,1)+' mm','Bache máximo sin topar','']]);
+$('tfv').textContent=fmt(S.tf,1)+' Hz';$('tyv').textContent=fmt(S.ty,S.ty<10?2:1)+' mm';updTC();
+var yd=S.ty<10?2:0;texv('vTope',['U_1&='+fx(H.u1,3)+'\\,('+fx(S.ty,yd)+')='+fx(U1,U1<10?2:0)+'\\ '+(t1?'>':'<')+'\\ '+GAP.u1up+'\\ \\text{mm}','U_2&='+fx(H.u2,2)+'\\,('+fx(S.ty,yd)+')='+fx(U2,U2<10?2:0)+'\\ '+(t2?'>':'<')+'\\ '+fx(GAP.u2dn,1)+'\\ \\text{mm}','Y_{máx}&=\\frac{'+fx(GAP.u2dn,1)+'}{'+fx(u2pk,2)+'}='+fx(GAP.u2dn/u2pk,1)+'\\ \\text{mm}\\ \\text{a}\\ '+fx(u2pf,1)+'\\ \\text{Hz}']);
+nums($('nTope'),[[(t1||t2)?'Sí topa':'No topa','Según el cálculo lineal',(t1||t2)?'warn':'good'],[fmt(U2,U2<10?1:0)+' mm','Etapa 2 · espacio 10.4 mm',t2?'warn':'good'],[fmt(U1,U1<10?2:0)+' mm','Etapa 1 · espacio 3 mm',t1?'warn':'good'],[fmt(GAP.u2dn/u2pk,1)+' mm','Bache máximo sin topar','']]);
 resetTS();drawTopBar()}
-function drawTopBar(){var A=setup($('cvTopBar')),c=A.c,n=TC.length,top=26,bot=A.h-30,lx=150,rx=A.w-16,xs=function(v){return lx+(rx-lx)*Math.min(v,1.5)/1.5};
+function drawTopBar(){var A=setup($('cvTopBar')),c=A.c,n=TC.length,top=26,bot=A.h-30,lx=190,rx=A.w-16,xs=function(v){return lx+(rx-lx)*Math.min(v,1.5)/1.5};
 c.font='500 '+F(12)+'px '+css('--mono');c.fillStyle=css('--muted');c.textAlign='center';[0,.5,1,1.5].forEach(function(v){var x=xs(v);line(c,[[x,top-6],[x,bot]],css('--grid'),1);c.fillText(Math.round(v*100)+' %',x,bot+16)});
 line(c,[[xs(1),top-14],[xs(1),bot]],css('--warn'),2,[6,4]);c.fillStyle=css('--warn');c.textAlign='left';c.fillText('Tope (100 %)',xs(1)+6,top-4);
 var bh=(bot-top)/n;TC.forEach(function(it,i){var H=relH(it[1]),p1=H.u1*it[2]/GAP.u1up,p2=H.u2*it[2]/GAP.u2dn,y=top+i*bh+bh*.18,h=bh*.28;
-c.fillStyle=css('--ink');c.font='600 '+F(13)+'px '+css('--body');c.textAlign='right';c.fillText(it[0].split(' · ')[0],lx-10,y+h+4);
-[[p1,'--c2'],[p2,'--accent']].forEach(function(q,k){var yy=y+k*(h+4);c.fillStyle=css(q[0]>1?'--warn':q[1]);c.fillRect(xs(0),yy,Math.max(2,xs(q[0])-xs(0)),h);c.fillStyle=css('--ink');c.textAlign='left';c.font='500 '+F(12)+'px '+css('--mono');c.fillText(Math.round(q[0]*100)+' %',Math.min(xs(q[0])+6,rx-52),yy+h-3)})})}
+c.fillStyle=css('--ink');c.font='600 '+F(13)+'px '+css('--body');c.textAlign='right';var nm=it[0].split(' · ')[0];c.fillText(nm,lx-10,y+h+4);
+[[p1,'--c2'],[p2,'--accent']].forEach(function(q,k){var yy=y+k*(h+4);c.fillStyle=css(q[0]>1?'--warn':q[1]);c.fillRect(xs(0),yy,Math.max(2,xs(q[0])-xs(0)),h);c.fillStyle=css(q[0]>1.3?'--panel':'--ink');c.textAlign='left';c.font='600 '+F(13)+'px '+css('--mono');c.fillText(Math.round(q[0]*100)+' %'+(q[0]>1.5?' ▶':''),Math.min(xs(q[0])+6,rx-72),yy+h-3)})})}
 function stepTS(dt){var w=PI2*S.tf,Y=S.ty/1000,y=Y*Math.sin(w*TS.t),yd=Y*w*Math.cos(w*TS.t),kc=2e5,cc=150,u1=TS.x1-y,ud1=TS.v1-yd,u2=TS.x2-TS.x1,ud2=TS.v2-TS.v1,F1=0,F2=0,h=false;
 if(u1>GAP.u1up/1000){F1=-kc*(u1-GAP.u1up/1000)-cc*ud1;h=true}else if(u1<-GAP.u1dn/1000){F1=-kc*(u1+GAP.u1dn/1000)-cc*ud1;h=true}
 if(u2<-GAP.u2dn/1000){F2=-kc*(u2+GAP.u2dn/1000)-cc*ud2;h=true}else if(u2>GAP.u2up/1000){F2=-kc*(u2-GAP.u2up/1000)-cc*ud2;h=true}
@@ -475,10 +486,10 @@ var hit=false,nst=Math.ceil(adv/5e-5);for(var i=0;i<nst;i++)if(stepTS(adv/nst))h
 var y=S.ty*Math.sin(PI2*S.tf*TS.t),u1=TS.x1*1000-y,u2=(TS.x2-TS.x1)*1000;if(TS.t>.6){TS.max1=Math.max(TS.max1,Math.abs(u1));TS.max2=Math.max(TS.max2,Math.abs(u2));if(hit)TS.hit=true}
 if(adv>0)TS.hist.unshift([TS.t,u1,u2,hit]);var Tw=Math.max(3/S.tf,.4);while(TS.hist.length>2&&TS.hist[0][0]-TS.hist[TS.hist.length-1][0]>Tw)TS.hist.pop();
 /* Diagrama: escala 3 px por mm, topes en rojo */
-var sc=3.2,gy=A.h-40,bw=Math.min(120,A.w*.22),x=16+bw/2+14,m1c=gy-120,m2c=gy-260,ink=css('--ink');
+var sc=Math.min(3.2,45/Math.max(S.ty,1)),gy=A.h-40,bw=Math.min(120,A.w*.22),x=16+bw/2+14,m1c=gy-120,m2c=gy-260,ink=css('--ink');
 var R=rig(c,{x:x,w:bw,gy:gy,yb:y*sc,m1:{yc:m1c,d:(u1+y)*sc},m2:{yc:m2c,d:(u2+u1+y)*sc,lab:'m₂ celular'}});
 c.strokeStyle=css('--warn');c.lineWidth=3;[[m1c-15-GAP.u1up*sc,'tornillo'],[m2c+22+(GAP.u2dn)*sc-y*0,'tope']].forEach(function(q,k){var yy=k?m2c+22+GAP.u2dn*sc-(u1+y)*sc:m1c-15-GAP.u1up*sc-y*sc;c.beginPath();c.moveTo(x-bw/2-10,yy);c.lineTo(x-bw/2+6,yy);c.moveTo(x+bw/2-6,yy);c.lineTo(x+bw/2+10,yy);c.stroke()});
-var xs=R.r+16,xe=A.w-10,lane=function(top,bot,lim,vals,col,lab,lo,hi,amp){var mid=(top+bot)/2,rng=Math.max(lo,amp)*1.25,Ys=function(v){return mid-v/rng*(bot-top)/2};
+var xs=R.r+16,xe=A.w-10,lane=function(top,bot,lim,vals,col,lab,lo,hi,amp){var mid=(top+bot)/2,rng=Math.max(lo,Math.min(amp,hi))*1.25,Ys=function(v){return mid-v/rng*(bot-top)/2};
 line(c,[[xs,mid],[xe,mid]],css('--line'),1,[3,5]);c.fillStyle=css('--warn');c.font='500 '+F(12)+'px '+css('--mono');c.textAlign='right';
 [[hi,'+'+fmt(hi,1)],[-lo,'−'+fmt(lo,1)]].forEach(function(q){if(Math.abs(q[0])<=rng){line(c,[[xs,Ys(q[0])],[xe,Ys(q[0])]],css('--warn'),1.5,[6,4]);c.fillText('tope '+q[1]+' mm',xe,Ys(q[0])+(q[0]>0?-5:14))}});
 c.save();c.strokeStyle=col;c.lineWidth=2.6;c.beginPath();var t0=TS.hist.length?TS.hist[0][0]:0;TS.hist.forEach(function(hp,i){var xx=xs+(t0-hp[0])/Tw*(xe-xs),yy=Ys(Math.max(-rng,Math.min(rng,vals(hp))));i?c.lineTo(xx,yy):c.moveTo(xx,yy)});c.stroke();c.restore();
