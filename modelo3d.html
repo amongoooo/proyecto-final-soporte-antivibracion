@@ -64,7 +64,7 @@ html,body{height:auto}
 .panel{border-left:0;border-top:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 }
 </style>
-<script>try{if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
+<script>try{var tm=location.search.match(/theme=(dark|light)/);if(tm)document.documentElement.setAttribute("data-theme",tm[1]);if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
 <div class="app">
 <main class="stage">
 <div id="view" aria-label="Modelo 3D del soporte. Arrastra para girar y usa la rueda o dos dedos para acercar."></div>
@@ -392,7 +392,7 @@ function fromHash(){var h=(location.hash||'').slice(1);if(!h)return;
 S.compare=false;S.mode='stop';
 orb.tth=VIEWS.iso[0];orb.tph=VIEWS.iso[1];
 if(P[h]){S.ex=.25;select(h);setTimeout(function(){var bx=new T.Box3();meshes.forEach(function(m){if(m.userData.part===h)bx.expandByObject(m)});if(bx.isEmpty())return;
-var c=bx.getCenter(new T.Vector3()),z=bx.getSize(new T.Vector3()),d=Math.max(z.x,z.y,z.z);orb.ty=c.y-exS*150;orb.tr=Math.max(140,d*3.4)-exS*620},700)}
+var c=bx.getCenter(new T.Vector3()),z=bx.getSize(new T.Vector3()),d=Math.max(z.x,z.y,z.z);orb.ty=c.y-exS*150;orb.tr=Math.max(420,d*5.5)-exS*620},700)}
 else if(h==='explotado'){S.ex=1;select(null);orb.ty=170;orb.tr=900}else if(h==='ensamble'){S.ex=0;select(null);orb.ty=92;orb.tr=760}else return;
 $('explode').value=S.ex;refresh()}
 window.addEventListener('hashchange',fromHash);fromHash();
