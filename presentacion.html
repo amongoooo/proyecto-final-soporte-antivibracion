@@ -44,7 +44,7 @@ th{font:600 22px/1.2 var(--body);color:var(--muted)}
 td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
 td.bad{color:var(--warn)}td.good{color:var(--accent)}
 .foot{font-size:28px;color:var(--muted)}
-.concl .text{font-size:50px;justify-content:space-evenly}.concl .box{font-size:42px;padding:32px 36px}.concl .box .k{font-size:24px}.concl .body{align-content:stretch}.concl .text ul{gap:30px}
+.concl .text{font-size:38px;justify-content:space-evenly}.concl .box{font-size:42px;padding:32px 36px}.concl .box .k{font-size:24px}.concl .body{align-content:stretch}.concl .text ul{gap:30px}
 /* Portada */
 .cover{justify-content:center;gap:28px}
 .cover h1{font-size:120px;max-width:13ch}.crew{margin:0;font:700 72px/1 var(--display);color:var(--accent);letter-spacing:.5px}
@@ -271,25 +271,21 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 </section>
 
 <!-- 18 -->
-<section class="slide">
-<h1>En el cuarto parcial medimos lo que hoy es estimado</h1>
-<p class="idea">En banco: \(k\) con pesos y \(\zeta\) soltando el celular. En la moto: un ESP32 con un acelerómetro en el manubrio y otro en el celular. Siempre con el cordón de seguridad.</p>
-<div class="body"><div class="fit" data-vh="774"><iframe data-src="simulaciones.html?embed#libre" title="Prueba de soltar"></iframe></div></div>
-</section>
-
-<!-- 19 -->
 <section class="slide concl">
-<h1>No atacamos una frecuencia: filtramos todas</h1>
+<h1>Conclusiones</h1>
 <div class="body split2">
 <div class="text"><ul>
-<li>La moto vibra en muchas frecuencias: <b>aislar</b> sirve, sintonizar no.</li>
-<li>Un aislador solo funciona arriba de <b>\(\sqrt{2}\,f_n\)</b>.</li>
-<li>Dos etapas caen mucho más rápido que una: en ralentí llega <b>0.38</b>, a 60 Hz <b>1.5 %</b>.</li>
-<li>La <b>guía de láminas</b> evita que el celular se meza al frenar.</li>
+<li>La moto vibra en muchas frecuencias a la vez: por eso <b>aislamos</b> en lugar de sintonizar.</li>
+<li>Un aislador solo reduce arriba de <b>\(\sqrt{2}\,f_n\)</b>: con \(f_n = 5.5\) Hz, el ralentí ya queda aislado.</li>
+<li>Dos etapas cortan mucho más que una: a 60 Hz llega solo el <b>1.5 %</b>.</li>
+<li>La <b>guía de láminas</b> evita que el celular se ladee al frenar.</li>
+<li>En un bache de 3 cm el soporte topa: los <b>topes de goma</b> amortiguan el golpe.</li>
 </ul></div>
-<div class="text"><div class="box"><span class="k">Siguiente paso</span>Imprimir, armar y medir \(k\), \(\zeta\), \(f_n\) y \(TR\) en el cuarto parcial.</div>
-<div class="box"><span class="k">Preguntas</span>¿Cable hecho o comprado? ¿Neopreno o Sorbothane? ¿Es aceptable \(TR \approx 3.9\) en baches?</div>
-<span class="tag">Todos los resultados son simulados</span></div>
+<div class="text">
+<div class="box"><span class="k">Ralentí · 11.7 Hz</span>\(TR = 0.38\): llega 62 % menos vibración</div>
+<div class="box"><span class="k">Contra un soporte rígido</span>+65 % con el rígido, −68 % con el nuestro</div>
+<div class="box"><span class="k">Al frenar a 0.5 g</span>De 33° de ladeo a 4.9° con la guía</div>
+</div>
 </div>
 </section>
 
