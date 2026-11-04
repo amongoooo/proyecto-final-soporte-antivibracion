@@ -10,14 +10,15 @@
 /* Lámina de 1920 × 1080 escalada a la ventana. Arriba la sección y quién expone; el título; abajo el contenido o la simulación en vivo. */
 :root{--bg:#e6ebee;--slide:#f6f8f8;--ink:#172027;--muted:#52606a;--line:#cdd5da;--accent:#0b6f66;--accent-ink:#f4faf8;--warn:#b04a12;--chip:#e7ecee;--c2:#4f6f8f;
 --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;--body:'Barlow',Arial,sans-serif;--mono:'JetBrains Mono','Courier New',monospace;color-scheme:light}
-:root[data-theme="dark"]{--bg:#0d1216;--slide:#1a2228;--ink:#e8eef0;--muted:#a0b0b9;--line:#303c44;--accent:#58c9b8;--accent-ink:#08221f;--warn:#f0985f;--chip:#27323a;--c2:#8fb0d6;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.4 var(--body);overflow:hidden}
-#viewport{position:absolute;inset:0 0 56px 0}
+body{background:var(--slide);color:var(--ink);font:400 16px/1.4 var(--body);overflow:hidden}
+#viewport{position:absolute;inset:0;overflow:hidden}
 #deck{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center}
-.slide{position:absolute;inset:0;background:var(--slide);border-radius:10px;padding:56px 72px 48px;display:flex;flex-direction:column;gap:22px;box-shadow:0 10px 40px rgba(0,0,0,.12)}
+.slide{position:absolute;inset:0;background:var(--slide);padding:56px 72px 64px;display:flex;flex-direction:column;gap:22px;will-change:transform,opacity}
 .slide[hidden]{display:none}
+/* Transición: la lámina nueva entra deslizándose y aparece; la anterior sale hacia el otro lado. */
+.slide.anim{transition:transform .55s cubic-bezier(.22,.61,.36,1),opacity .55s ease}
 .eyebrow{display:flex;justify-content:space-between;align-items:center;font:500 22px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
 .eyebrow .who{color:var(--muted);border:2px solid var(--line);border-radius:30px;padding:10px 18px;letter-spacing:1px}
 h1{margin:0;font:700 76px/1.02 var(--display);text-wrap:balance}
@@ -49,14 +50,14 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 .coverGrid{display:grid;grid-template-columns:1fr 760px;gap:40px;align-items:center;flex:1;min-height:0}
 .coverGrid iframe{height:100%}
 .tag{display:inline-block;font:500 20px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--warn);border:2px solid currentColor;border-radius:6px;padding:8px 12px}
-/* Barra de navegación */
-#bar{position:fixed;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 max(16px,env(safe-area-inset-left,0px))}
-#bar button,#bar a{font:500 15px/1 var(--body);color:var(--ink);background:var(--chip);border:1px solid transparent;border-radius:6px;padding:10px 14px;cursor:pointer;text-decoration:none}
-#bar button:hover,#bar a:hover{border-color:var(--muted)}
-#count{font:500 15px/1 var(--mono);min-width:72px;text-align:center}
+/* Navegación: flechas pegadas a las esquinas inferiores y contador al centro, sobre la lámina */
+#bar{position:fixed;left:0;right:0;bottom:0;height:40px;pointer-events:none}
+#bar>*{pointer-events:auto;position:absolute;bottom:6px}
+#bar button,#bar a{font:500 14px/1 var(--body);color:var(--muted);background:transparent;border:1px solid transparent;border-radius:6px;padding:7px 10px;cursor:pointer;text-decoration:none;opacity:.7;transition:opacity .2s}
+#bar button:hover,#bar a:hover{opacity:1;border-color:var(--line);color:var(--ink)}
+#prev{left:4px}#next{right:4px}#home{left:50%;transform:translateX(calc(-100% - 46px))}
+#count{left:50%;transform:translateX(-50%);font:500 14px/1 var(--mono);color:var(--muted);padding:7px 0}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-:fullscreen #viewport{inset:0}
-:fullscreen #bar{opacity:0;transition:opacity .2s}:fullscreen #bar:hover{opacity:1}
 </style>
 </head>
 <body>
@@ -281,38 +282,43 @@ c₁ = 2(0.58)√(7464 × 0.308) = 55.4 N·s/m</div>
 </div></div>
 
 <nav id="bar" aria-label="Navegación de la presentación">
-<a href="index.html">Inicio</a>
 <button id="prev" type="button" aria-label="Lámina anterior">←</button>
+<a id="home" href="index.html">Inicio</a>
 <span id="count" aria-live="polite"></span>
 <button id="next" type="button" aria-label="Lámina siguiente">→</button>
-<button id="fs" type="button">Pantalla completa</button>
-<button id="theme" type="button">Modo oscuro</button>
 </nav>
 
 <script>window.MathJax={tex:{packages:{'[+]':['ams']}},svg:{fontCache:'global'}};</script>
 <script src="vendor/mathjax/tex-svg.js" async></script>
 <script>
 (function(){'use strict';
-var slides=[].slice.call(document.querySelectorAll('.slide')),cur=0,deck=document.getElementById('deck'),vp=document.getElementById('viewport');
-slides.forEach(function(s,i){var w=s.querySelector('.who');if(w)w.textContent='Expone · '+s.dataset.who;var e=s.querySelector('.eyebrow span');if(s.dataset.sec&&e)e.textContent=(i+1)+' · '+s.dataset.sec});
-function fit(){var r=vp.getBoundingClientRect(),k=Math.min(r.width/1920,r.height/1080)*.97;deck.style.transform='translate(-50%,-50%) scale('+k+')'}
-var theme='light';try{if(localStorage.getItem('pres-theme')==='dark')theme='dark'}catch(e){}
-function applyTheme(){document.documentElement.setAttribute('data-theme',theme);document.getElementById('theme').textContent=theme==='dark'?'Modo claro':'Modo oscuro'}
-function srcOf(f){var d=f.dataset.src,i=d.indexOf('#');return d.slice(0,i)+'&theme='+theme+d.slice(i)}
-function fitFrames(){var sl=slides[cur];[].forEach.call(sl.querySelectorAll('.fit'),function(b){var f=b.querySelector('iframe'),bw=b.clientWidth,bh=b.clientHeight,vh=+b.dataset.vh;if(!bw||!bh)return;
+var slides=[].slice.call(document.querySelectorAll('.slide')),cur=-1,deck=document.getElementById('deck'),vp=document.getElementById('viewport'),T=550,token=0;
+slides.forEach(function(s){var w=s.querySelector('.who');if(w)w.textContent='Expone · '+s.dataset.who;var e=s.querySelector('.eyebrow span');if(s.dataset.sec&&e)e.textContent=s.dataset.sec});
+function fit(){var r=vp.getBoundingClientRect(),k=Math.min(r.width/1920,r.height/1080);deck.style.transform='translate(-50%,-50%) scale('+k+')'}
+function srcOf(f){var d=f.dataset.src,i=d.indexOf('#');return d.slice(0,i)+'&theme=light'+d.slice(i)}
+function fitFrames(sl){[].forEach.call(sl.querySelectorAll('.fit'),function(b){var f=b.querySelector('iframe'),bw=b.clientWidth,bh=b.clientHeight,vh=+b.dataset.vh;if(!bw||!bh)return;
 var sc=Math.min(1,bh/vh),vw=Math.max(1200,Math.round(bw/sc));sc=Math.min(sc,bw/vw);f.style.width=vw+'px';f.style.height=vh+'px';f.style.left=Math.max(0,(bw-vw*sc)/2)+'px';f.style.top=Math.max(0,(bh-vh*sc)/2)+'px';f.style.transform='scale('+sc+')'})}
-function go(i){i=Math.max(0,Math.min(slides.length-1,i));cur=i;
-slides.forEach(function(s,j){s.hidden=j!==i;[].forEach.call(s.querySelectorAll('iframe[data-src]'),function(f){if(j===i){var u=srcOf(f);if(f.getAttribute('src')!==u)f.setAttribute('src',u)}else if(f.getAttribute('src'))f.removeAttribute('src')})});
-fitFrames();
+function frames(sl){return [].slice.call(sl.querySelectorAll('iframe[data-src]'))}
+/* Avisa a las simulaciones que ya pueden arrancar; si el iframe aún carga, se avisa al terminar de cargar. */
+function start(sl){frames(sl).forEach(function(f){f.dataset.go='1';try{f.contentWindow.postMessage({deckStart:1},'*')}catch(e){}})}
+function unload(sl){frames(sl).forEach(function(f){delete f.dataset.go;if(f.getAttribute('src'))f.removeAttribute('src')})}
+function place(sl,x,o,anim){sl.classList.toggle('anim',!!anim);sl.style.transform=x?'translateX('+x+'px)':'';sl.style.opacity=o}
+function go(i,instant){i=Math.max(0,Math.min(slides.length-1,i));if(i===cur)return;
+var dir=i>cur?1:-1,old=slides[cur],nu=slides[i],tk=++token;cur=i;
+slides.forEach(function(s){if(s!==old&&s!==nu){s.hidden=true;place(s,0,'',false);unload(s)}});
+nu.hidden=false;frames(nu).forEach(function(f){delete f.dataset.go;var u=srcOf(f);if(f.getAttribute('src')!==u)f.setAttribute('src',u)});fitFrames(nu);
 document.getElementById('count').textContent=(i+1)+' / '+slides.length;
-try{history.replaceState(null,'','#'+(i+1))}catch(e){}}
+try{history.replaceState(null,'','#'+(i+1))}catch(e){}
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,t=(instant||reduce)?0:T;
+if(!old||!t){if(old){old.hidden=true;place(old,0,'',false);unload(old)}place(nu,0,'',false);if(!old&&!t){nu.style.opacity=0;void nu.offsetWidth;place(nu,0,1,true);t=T}setTimeout(function(){if(tk===token)start(nu)},t);return}
+place(nu,dir*160,0,false);void nu.offsetWidth;place(nu,0,1,true);place(old,-dir*160,0,true);
+setTimeout(function(){if(tk!==token)return;old.hidden=true;place(old,0,'',false);unload(old);start(nu)},T)}
+frames(document).forEach(function(f){f.addEventListener('load',function(){if(f.dataset.go)try{f.contentWindow.postMessage({deckStart:1},'*')}catch(e){}})});
 document.getElementById('prev').onclick=function(){go(cur-1)};document.getElementById('next').onclick=function(){go(cur+1)};
-document.getElementById('fs').onclick=function(){var d=document.documentElement;try{if(document.fullscreenElement)document.exitFullscreen();else d.requestFullscreen().catch(function(){})}catch(e){}};
 document.addEventListener('keydown',function(e){if(e.target.closest&&e.target.closest('input,textarea,select'))return;
 if(['ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();go(cur+1)}else if(['ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();go(cur-1)}
-else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);else if(e.key==='f'||e.key==='F')document.getElementById('fs').click()});
-window.addEventListener('resize',function(){fit();fitFrames()});
-document.getElementById('theme').onclick=function(){theme=theme==='dark'?'light':'dark';try{localStorage.setItem('pres-theme',theme)}catch(e){}applyTheme();go(cur)};applyTheme();
+else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1)});
+window.addEventListener('resize',function(){fit();fitFrames(slides[cur])});
 window.addEventListener('message',function(e){if(e.data&&e.data.deckNav)go(cur+e.data.deckNav)});
 function fromHash(){var n=parseInt((location.hash||'').slice(1),10);if(!isNaN(n)&&n-1!==cur)go(n-1)}
 window.addEventListener('hashchange',fromHash);fit();var n0=parseInt((location.hash||'').slice(1),10);go(isNaN(n0)?0:n0-1);
