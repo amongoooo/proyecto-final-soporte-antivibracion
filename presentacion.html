@@ -306,7 +306,7 @@ td.bad{color:var(--warn)}td.good{color:var(--accent)}
 var slides=[].slice.call(document.querySelectorAll('.slide')),cur=-1,deck=document.getElementById('deck'),vp=document.getElementById('viewport'),T=550,token=0;
 function fit(){var r=vp.getBoundingClientRect(),k=Math.min(r.width/1920,r.height/1080);deck.style.transform='translate(-50%,-50%) scale('+k+')'}
 /* VER cambia en cada versión publicada: obliga al navegador a bajar las simulaciones nuevas en vez de usar las guardadas. */
-var VER='20261104g';
+var VER='20261105a';
 function srcOf(f){var d=f.dataset.src,i=d.indexOf('#');return d.slice(0,i)+'&theme=light&v='+VER+d.slice(i)}
 function fitFrames(sl){[].forEach.call(sl.querySelectorAll('.fit'),function(b){var f=b.querySelector('iframe'),bw=b.clientWidth,bh=b.clientHeight,vh=+b.dataset.vh;if(!bw||!bh)return;
 var sc=bh/vh,vw=Math.max(1200,Math.round(bw/sc));sc=Math.min(sc,bw/vw);f.style.width=vw+'px';f.style.height=vh+'px';f.style.left=Math.max(0,(bw-vw*sc)/2)+'px';f.style.top=Math.max(0,(bh-vh*sc)/2)+'px';f.style.transform='scale('+sc+')'})}
