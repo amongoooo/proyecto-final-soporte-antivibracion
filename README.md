@@ -7,6 +7,7 @@ Página de la presentación del tercer parcial de Vibraciones Mecánicas (Equipo
 - `simulaciones.html`: simulaciones interactivas, una pestaña por lámina.
 - `modelo3d.html`: modelo 3D del prototipo. Vistas directas con `#base`, `#bujes`, `#caja`, `#solera`, `#cables`, `#sup`, `#porta`, `#guia`, `#explotado` y `#ensamble`.
 - `planos/`: planos de la versión C en SVG (conjunto, base, bujes, caja, cables, guia, porta), su galería `planos/index.html` y el PDF. Se regeneran con `python3 planos/gen/hojas.py`.
+- `planos/dxf/`: los mismos planos en DXF para AutoCAD, un archivo por pieza (y todos juntos en `planos-version-C-dxf.zip`). En mm y a tamaño real; capas CONTORNO, OCULTAS, EJES, REFERENCIA, COTAS y TEXTO. Se generan con el mismo comando si está instalado `ezdxf` (`pip install ezdxf`).
 - `vendor/`: MathJax 3.2.2 y three.js r128, para que todo funcione sin internet.
 
 ## Verla

@@ -2,10 +2,15 @@
 
 Uso:  python3 planos/gen/hojas.py
 Hojas: 1 conjunto, 2 base, 3 bujes, 4 caja, 5 cables, 6 guia, 7 porta.
+
+Si está instalado ezdxf (pip install ezdxf), también escribe un DXF por
+pieza en planos/dxf/, en mm y a tamaño real, para abrirlo en AutoCAD.
 """
 import os, sys
+from contextlib import contextmanager
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dibujo import Sheet
+from dibujo import Sheet, PX_MM, escala_txt
+from dxfout import DXF, ezdxf
 import piezas as P
 import conjunto as C
 
@@ -17,6 +22,14 @@ HOJAS = []
 def hoja(fn):
     HOJAS.append(fn)
     return fn
+
+
+@contextmanager
+def pz(sh, nombre, titulo, s):
+    """Todo lo que se dibuje dentro va también a planos/dxf/<nombre>.dxf."""
+    with DXF.pieza(nombre, titulo, s, PX_MM, "Hoja %d de %d" % (sh.hoja, TOTAL),
+                   escala_txt(s), sh.notas):
+        yield
 
 
 def save(sh, name):
@@ -34,12 +47,13 @@ def conjunto():
     sh.text(30, 44, "Soporte antivibración de 2 etapas · versión C", "hd")
     sh.text(30, 64, "Cables a 100 mm y guía de láminas en el piso 2", "sb")
     s = 1.5
-    V = C.frontal(sh, 150, 470, s)
-    sh.text(50, 600, "VISTA FRONTAL", "vt")
-    C.iso_conjunto(sh, (630, 530, 550, 225))
-    L = C.lateral(sh, 420, 470, s)
-    sh.text(310, 600, "VISTA LATERAL IZQ.", "vt")
-    C.tabla(sh, 626, 40)
+    with pz(sh, "01-conjunto", "Conjunto y lista de piezas", s):
+        V = C.frontal(sh, 150, 470, s)
+        sh.text(50, 600, "VISTA FRONTAL", "vt")
+        C.iso_conjunto(sh, (630, 530, 550, 225))
+        L = C.lateral(sh, 420, 470, s)
+        sh.text(310, 600, "VISTA LATERAL IZQ.", "vt")
+        C.tabla(sh, 626, 40)
     save(sh, "conjunto.svg")
 
 
@@ -49,8 +63,10 @@ def base():
         "Bujes en X = ±58, Y = ±23.3 (versión C, placas de 120 mm de fondo).",
         "Las ranuras de la abrazadera no cambian con la versión: 28 mm entre ejes.",
         "Apretar la abrazadera poco a poco: el PETG cede con el tiempo."])
-    P.placa_base(sh, 20, 20, 3, lat=False, isob=(520, 470, 360, 270))
-    P.bloque_v(sh, 560, 20, 3, isob=(890, 290, 280, 220))
+    with pz(sh, "02-placa-base", "Pieza 1 · Placa base", 3):
+        P.placa_base(sh, 20, 20, 3, lat=False, isob=(520, 470, 360, 270))
+    with pz(sh, "02-bloque-v", "Pieza 2 · Bloque en V", 3):
+        P.bloque_v(sh, 560, 20, 3, isob=(890, 290, 280, 220))
     save(sh, "base.svg")
 
 
@@ -60,10 +76,14 @@ def bujes():
         "Buje a 2:1; tornillo, corte de montaje y abrazadera a 1:1.",
         "No imprimir los bujes en TPU sólido: quedarían mucho más rígidos que k₁.",
         "Apretar el nyloc solo hasta asentar la arandela; el buje no debe quedar aplastado."])
-    P.buje(sh, 20, 20, 6, isob=(260, 440, 150, 170))
-    P.tornillo(sh, 470, 20, 3)
-    P.montaje_buje(sh, 470, 210, 3)
-    P.abrazadera(sh, 880, 20, 3)
+    with pz(sh, "03-buje", "Pieza 4 · Buje de neopreno", 6):
+        P.buje(sh, 20, 20, 6, isob=(260, 440, 150, 170))
+    with pz(sh, "03-tornillo", "Pieza 5 · Tornillo M4 × 50", 3):
+        P.tornillo(sh, 470, 20, 3)
+    with pz(sh, "03-montaje-buje", "Corte de montaje del buje", 3):
+        P.montaje_buje(sh, 470, 210, 3)
+    with pz(sh, "03-abrazadera", "Pieza 3 · Abrazadera en U M5", 3):
+        P.abrazadera(sh, 880, 20, 3)
     save(sh, "bujes.svg")
 
 
@@ -73,9 +93,12 @@ def caja():
         "Caja y tope a 1:1; lastre a 1:2.",
         "Los postes se imprimen junto con la caja. Ranuras de 0.8 mm para las láminas (hoja 6).",
         "Lastre pegado con epóxico; el tornillo M4 central sujeta caja, lastre y tope."])
-    P.caja(sh, 20, 20, 3, isob=(540, 300, 320, 260))
-    P.solera(sh, 870, 20, 1.5, isob=(890, 300, 280, 110))
-    P.tope(sh, 870, 440, 3, isob=(1070, 540, 100, 170))
+    with pz(sh, "04-caja", "Pieza 6 · Caja de m1 con 2 postes", 3):
+        P.caja(sh, 20, 20, 3, isob=(540, 300, 320, 260))
+    with pz(sh, "04-lastre", "Pieza 7 · Lastre (solera)", 1.5):
+        P.solera(sh, 870, 20, 1.5, isob=(890, 300, 280, 110))
+    with pz(sh, "04-tope", "Pieza 8 · Tope central", 3):
+        P.tope(sh, 870, 440, 3, isob=(1070, 540, 100, 170))
     save(sh, "caja.svg")
 
 
@@ -85,10 +108,13 @@ def cables():
         "Huecos de Ø1.2 repasados con broca después de imprimir.",
         "Los huecos de la barra superior van desfasados medio paso (9 mm) de los de la inferior.",
         "Cable: 6 vueltas de D = 39 entre barras; amarrar el cordón (19) a la barra superior."])
-    P.barra(sh, 20, 20, 3, sup=False, iso=False)
-    P.barra(sh, 470, 20, 3, sup=True, iso=False)
+    with pz(sh, "05-barra-inferior", "Pieza 9 · Barra inferior", 3):
+        P.barra(sh, 20, 20, 3, sup=False, iso=False)
+    with pz(sh, "05-barra-superior", "Pieza 11 · Barra superior", 3):
+        P.barra(sh, 470, 20, 3, sup=True, iso=False)
     P.barra_isos(sh, (870, 340, 300, 130), (870, 480, 300, 130))
-    P.cable(sh, 20, 370, 3)
+    with pz(sh, "05-cable", "Pieza 10 · Cable helicoidal", 3):
+        P.cable(sh, 20, 370, 3)
     save(sh, "cables.svg")
 
 
@@ -98,9 +124,12 @@ def guia():
         "Lámina a 2:1; guía montada a 1:1; detalle A a 3:1.",
         "Propuesta: probar primero en la mesa. Pegar las láminas con epóxico en las ranuras.",
         "Supuesto sin medir: 30 N·m/rad al giro, 20 000 N/m horizontal y 60 N/m vertical."])
-    P.lamina(sh, 20, 20, 6)
-    P.guia_conjunto(sh, 20, 380, 3)
-    P.ranura_detalle(sh, 520, 380, 9)
+    with pz(sh, "06-lamina", "Pieza 13 · Lámina de fleje", 6):
+        P.lamina(sh, 20, 20, 6)
+    with pz(sh, "06-guia-montada", "Guía de láminas montada", 3):
+        P.guia_conjunto(sh, 20, 380, 3)
+    with pz(sh, "06-detalle-ranura", "Detalle A · ranura de la lámina", 9):
+        P.ranura_detalle(sh, 520, 380, 9)
     P.guia_iso(sh, (770, 370, 400, 380))
     save(sh, "guia.svg")
 
@@ -112,15 +141,27 @@ def porta():
         "Placa superior: 4× Ø3.4 para las barras (11), 4× Ø4.5 para la escuadra, 2 ventanas de 20 × 40; punteado: postes.",
         "M4 × 12 para escuadra-placa y respaldo-escuadra; perillas M4 en las mordazas.",
         "Cojines de EVA (18) y banda de silicón alrededor del celular."])
-    P.placa_sup(sh, 20, 20, 1.5, isob=(300, 260, 200, 170))
-    P.respaldo(sh, 520, 20, 1.5, isob=(570, 470, 230, 270))
-    P.repisa(sh, 830, 20, 3, iso=False)
-    P.mordaza(sh, 830, 330, 3, iso=False)
-    P.escuadra(sh, 20, 460, 1.5, isob=(330, 520, 200, 220))
+    with pz(sh, "07-placa-superior", "Pieza 12 · Placa superior", 1.5):
+        P.placa_sup(sh, 20, 20, 1.5, isob=(300, 260, 200, 170))
+    with pz(sh, "07-respaldo", "Pieza 15 · Respaldo", 1.5):
+        P.respaldo(sh, 520, 20, 1.5, isob=(570, 470, 230, 270))
+    with pz(sh, "07-repisa", "Pieza 16 · Repisa", 3):
+        P.repisa(sh, 830, 20, 3, iso=False)
+    with pz(sh, "07-mordaza", "Pieza 17 · Mordaza", 3):
+        P.mordaza(sh, 830, 330, 3, iso=False)
+    with pz(sh, "07-escuadra", "Pieza 14 · Escuadra de 15°", 1.5):
+        P.escuadra(sh, 20, 460, 1.5, isob=(330, 520, 200, 220))
     save(sh, "porta.svg")
 
 
 if __name__ == "__main__":
+    if ezdxf:
+        DXF.dir = os.path.join(OUT, "dxf")
+        os.makedirs(DXF.dir, exist_ok=True)
+    else:
+        print("aviso: sin ezdxf no se generan los DXF (pip install ezdxf)")
     for fn in HOJAS:
         fn()
     print("ok:", ", ".join(fn.__name__ for fn in HOJAS))
+    if DXF.archivos:
+        print("dxf:", len(DXF.archivos), "archivos en planos/dxf/")

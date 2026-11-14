@@ -5,6 +5,8 @@ s = 3 es escala 1:1, s = 1.5 es 1:2 y s = 6 es 2:1.
 """
 import math
 
+from dxfout import DXF
+
 W, H = 1200, 900
 PX_MM = 3.0
 FONT = "'Century Gothic','Segoe UI',Arial,sans-serif"
@@ -71,6 +73,7 @@ class Sheet:
         self.el.append(s)
 
     def text(self, x, y, t, cls="nt", anchor="start", extra=""):
+        DXF.text(x, y, t, cls, anchor)
         self.add('<text x="%.1f" y="%.1f" class="%s" text-anchor="%s" %s>%s</text>' % (x, y, cls, anchor, extra, esc(t)))
 
     def badge(self, x, y, fab):
@@ -78,6 +81,7 @@ class Sheet:
         key = fab.upper().replace("POR IMPRIMIR", "IMPRESA").replace("POR COMPRAR", "COMPRAR").split()[0]
         c = col.get(key, "#6b7480")
         w = 14 + 8.0 * len(fab)
+        DXF.text(x, y, "[%s]" % fab.upper(), "tb", "start", 11)
         self.add('<rect x="%.1f" y="%.1f" width="%.1f" height="19" rx="9.5" fill="%s"/>' % (x, y - 14, w, c))
         self.add('<text x="%.1f" y="%.1f" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.6px" text-anchor="middle">%s</text>' % (x + w / 2, y, esc(fab.upper())))
         return w
@@ -191,19 +195,23 @@ class View:
         return " ".join("%.2f,%.2f" % self.P(u, v) for u, v in pts)
 
     def poly(self, pts, cls="o", close=True):
+        DXF.poly(self, pts, cls, close)
         tag = "polygon" if close else "polyline"
         self.sh.add('<%s points="%s" class="%s"/>' % (tag, self.pts(pts), cls))
 
     def line(self, a, b, cls="o"):
+        DXF.line(self, a, b, cls)
         (x1, y1), (x2, y2) = self.P(*a), self.P(*b)
         self.sh.add('<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" class="%s"/>' % (x1, y1, x2, y2, cls))
 
     def rect(self, u0, v0, u1, v1, cls="o", r=0):
+        DXF.rect(self, u0, v0, u1, v1, cls, r)
         x0, y0 = self.P(min(u0, u1), max(v0, v1))
         w, h = abs(u1 - u0) * self.s, abs(v1 - v0) * self.s
         self.sh.add('<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" rx="%.2f" class="%s"/>' % (x0, y0, w, h, r * self.s, cls))
 
     def circ(self, cu, cv, d, cls="o", cm=True):
+        DXF.circ(self, cu, cv, d, cls)
         x, y = self.P(cu, cv)
         self.sh.add('<circle cx="%.2f" cy="%.2f" r="%.2f" class="%s"/>' % (x, y, d / 2 * self.s, cls))
         if cm:
@@ -213,6 +221,7 @@ class View:
 
     def slot(self, a, b, w, cls="o", cm=True):
         """Ranura redondeada entre los centros a y b."""
+        DXF.slot(self, a, b, w, cls)
         (x1, y1), (x2, y2) = self.P(*a), self.P(*b)
         r = w / 2 * self.s
         ang = math.atan2(y2 - y1, x2 - x1)
@@ -240,6 +249,11 @@ class View:
 
     def dimh(self, u1, u2, vb1, vb2, vd, txt=None, tside=1):
         """Cota horizontal entre u1 y u2; extensiones desde vb1 / vb2 hasta vd."""
+        DXF.dimh(self, u1, u2, vb1, vb2, vd, txt if txt is not None else f(abs(u2 - u1)))
+        with DXF.silencio():
+            self._dimh(u1, u2, vb1, vb2, vd, txt)
+
+    def _dimh(self, u1, u2, vb1, vb2, vd, txt):
         g = 2 / self.s
         ov = 3 / self.s * (1 if vd > max(vb1, vb2) else -1)
         for u, vb in ((u1, vb1), (u2, vb2)):
@@ -251,6 +265,11 @@ class View:
         self.sh.text(x, y - 4, t, "dt", "middle")
 
     def dimv(self, v1, v2, ub1, ub2, ud, txt=None):
+        DXF.dimv(self, v1, v2, ub1, ub2, ud, txt if txt is not None else f(abs(v2 - v1)))
+        with DXF.silencio():
+            self._dimv(v1, v2, ub1, ub2, ud, txt)
+
+    def _dimv(self, v1, v2, ub1, ub2, ud, txt):
         g = 2 / self.s
         ov = 3 / self.s * (1 if ud > max(ub1, ub2) else -1)
         for v, ub in ((v1, ub1), (v2, ub2)):
@@ -271,6 +290,7 @@ class View:
         right = math.cos(a) >= 0 if side is None else side > 0
         tw = 6.9 * len(txt) + 6
         x2 = x1 + (tw if right else -tw)
+        DXF.leader([(x0, y0), (x1, y1), (x2, y1)])
         self.sh.add('<polyline points="%.2f,%.2f %.2f,%.2f %.2f,%.2f" class="d" marker-start="url(#fl)"/>' % (x0, y0, x1, y1, x2, y1))
         self.sh.text((x1 + 3) if right else (x1 - 3), y1 - 4, txt, "dt", "start" if right else "end")
 
@@ -381,6 +401,11 @@ class Iso:
         return x - y + z
 
     def render(self, sh, bx, by, bw, bh, smax=3.0, label="ISOMÉTRICA"):
+        # el isométrico sombreado es una ilustración, no va al DXF
+        with DXF.silencio():
+            self._render(sh, bx, by, bw, bh, smax, label)
+
+    def _render(self, sh, bx, by, bw, bh, smax, label):
         vis = []
         V = (1, -1, 1)
         for pts, n, col, smooth, dec, key in self.faces:
