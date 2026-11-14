@@ -1,6 +1,7 @@
 """Hoja de conjunto de la versión C: vistas armadas, alturas y lista de piezas."""
 import math
 from dibujo import View, rr_pts, f, esc, INK
+from dxfout import DXF
 
 PHONE_H, PHONE_W, PHONE_T = 170, 84, 11  # Galaxy S26 Ultra con funda (referencia)
 TILT = math.radians(15)
@@ -32,6 +33,11 @@ BOM = [
 def tabla(sh, x, y):
     cols = [(0, "#"), (30, "PIEZA"), (252, "CANT."), (294, "FABRICACIÓN"), (402, "MATERIAL"), (524, "HOJA")]
     w, rh = 556, 22
+    DXF.rect_px(x, y, w, rh * (len(BOM) + 1))
+    for i in range(len(BOM)):
+        DXF.line_px((x, y + rh * (i + 1)), (x + w, y + rh * (i + 1)))
+    for cx, _ in cols[1:]:
+        DXF.line_px((x + cx, y), (x + cx, y + rh * (len(BOM) + 1)))
     sh.add('<rect x="%.1f" y="%.1f" width="%d" height="%d" fill="#eef1f4" stroke="%s" stroke-width="1.2"/>' % (x, y, w, rh, INK))
     for cx, t in cols:
         sh.text(x + cx + 6, y + 15, t, "tb")
@@ -41,6 +47,7 @@ def tabla(sh, x, y):
         for (cx, _), v in zip(cols, r):
             if v in ("Por imprimir", "Por comprar"):
                 c = "#d4691f" if v == "Por imprimir" else "#2a6fb0"
+                DXF.text(x + cx + 6, yy + 15.5, v.upper(), "nt", "start")
                 sh.add('<text x="%.1f" y="%.1f" style="font-size:12px;font-weight:700;fill:%s">%s</text>' % (x + cx + 6, yy + 15.5, c, v.upper()))
             else:
                 sh.text(x + cx + 6, yy + 15.5, v, "nt")
