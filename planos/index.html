@@ -1,22 +1,55 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Planos versión C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;500;600&family=DM+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../estilo/vidrio.css">
 <style>
-:root{--bg:#f4f6f8;--fg:#15191d;--mut:#55606b;--card:#fff;--line:#d5dbe1}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 'Segoe UI',Arial,sans-serif}
-header{padding:28px 32px 8px}h1{margin:0 0 4px;font-size:26px}p{margin:0;color:var(--mut)}
-main{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:22px;padding:22px 32px 40px}
-a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;color:inherit;text-decoration:none}
-a.card:hover{border-color:#8a96a3}a.card img{display:block;width:100%;aspect-ratio:4/3;background:#fff}
-a.card span{display:block;padding:10px 14px;font-weight:600;border-top:1px solid var(--line)}
+:root{--bg:#eef1f4;--panel:#fff;--ink:#10121c;--muted:#4b5563;--line:#d6dbe1;--accent:#c96a1f;--accent-ink:#fff;
+  --titulo:'Bricolage Grotesque','Figtree',system-ui,sans-serif;--texto:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;--dato:'DM Mono',ui-monospace,Menlo,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1116;--panel:#161c22;--ink:#eef2f5;--muted:#a3afb9;--line:#2a333b;--accent:#f0a062;--accent-ink:#2a1505;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1116;--panel:#161c22;--ink:#eef2f5;--muted:#a3afb9;--line:#2a333b;--accent:#f0a062;--accent-ink:#2a1505;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--texto);overflow-x:hidden}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:14px}
+.wrap{max-width:1200px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:22px}
+.top{position:sticky;top:calc(10px + env(safe-area-inset-top,0px));z-index:5;display:flex;align-items:center;gap:10px;border-radius:999px;padding:6px}
+.atras{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;color:var(--ink);text-decoration:none;transition:transform .35s var(--spring)}
+.atras:active{transform:scale(.92)}
+.top b{font:800 18px/1 var(--titulo);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+h1{margin:10px 0 0;font:800 clamp(34px,7vw,56px)/1 var(--titulo);letter-spacing:-.02em}
+.lead{margin:0;color:var(--muted);max-width:60ch}
+.desc{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;font:600 15px/1 var(--texto);text-decoration:none;color:var(--ink);transition:transform .35s var(--spring)}
+.btn:active{transform:scale(.95)}
+.btn.prim{background:var(--accent);color:var(--accent-ink);box-shadow:inset 0 1.5px 0 rgb(255 255 255/.45),0 6px 18px color-mix(in srgb,var(--accent) 40%,transparent)}
+.btn svg{width:18px;height:18px}
+main{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
+a.card{display:flex;flex-direction:column;border-radius:24px;padding:8px;color:inherit;text-decoration:none;transition:transform .45s var(--spring)}
+@media (hover:hover){a.card:hover{transform:translateY(-4px)}}
+a.card:active{transform:scale(.98)}
+a.card img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border-radius:17px;border:1px solid var(--line)}
+a.card span{display:flex;align-items:center;gap:10px;padding:12px 8px 6px;font-weight:600}
+a.card i{font:500 13px/1 var(--dato);font-style:normal;color:var(--accent-ink);background:var(--accent);border-radius:9px;min-width:28px;height:28px;display:grid;place-items:center;flex:none}
+.sube{animation:sube .6s cubic-bezier(.22,.61,.36,1) both}@keyframes sube{from{opacity:0;transform:translateY(16px)}}
+@media (prefers-reduced-motion:reduce){.sube{animation:none}}
 </style></head><body>
-<header><h1>Planos de la versión C</h1><p>Soporte antivibración de 2 etapas · Equipo Camaradas · cotas en mm, primer diedro. <a href="planos-version-C.pdf">Descargar PDF</a> · <a href="dxf/planos-version-C-dxf.zip">Descargar DXF (AutoCAD)</a> · <a href="../index.html">Volver</a></p></header>
+<div class="fondo-color" aria-hidden="true" style="--accent:#e98537"></div>
+<div class="wrap">
+<header class="top vidrio"><a class="atras" href="../index.html" aria-label="Volver a la portada"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a><b>Soporte antivibración</b></header>
+<h1>Planos de la versión C</h1>
+<p class="lead">Soporte antivibración de 2 etapas · Equipo Camaradas · cotas en mm, primer diedro. Toca una hoja para verla completa.</p>
+<div class="desc">
+<a class="btn prim" href="planos-version-C.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Descargar PDF</a>
+<a class="btn vidrio" href="dxf/planos-version-C-dxf.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Descargar DXF (AutoCAD)</a>
+</div>
 <main>
-<a class="card" href="conjunto.svg"><img src="conjunto.svg" alt="Conjunto"><span>1 · Conjunto y lista de piezas</span></a>
-<a class="card" href="base.svg"><img src="base.svg" alt="Placa base"><span>2 · Placa base y bloque en V</span></a>
-<a class="card" href="bujes.svg"><img src="bujes.svg" alt="Bujes"><span>3 · Bujes, tornillería y abrazadera</span></a>
-<a class="card" href="caja.svg"><img src="caja.svg" alt="Caja"><span>4 · Caja de m₁, lastre y tope</span></a>
-<a class="card" href="cables.svg"><img src="cables.svg" alt="Barras y cables"><span>5 · Barras y cables</span></a>
-<a class="card" href="guia.svg"><img src="guia.svg" alt="Guía"><span>6 · Guía de láminas</span></a>
-<a class="card" href="porta.svg"><img src="porta.svg" alt="Porta-celular"><span>7 · Placa superior y porta-celular</span></a>
-</main></body></html>
+<a class="card vidrio sube" href="conjunto.svg"><img src="conjunto.svg" alt="Conjunto"><span><i>1</i>Conjunto y lista de piezas</span></a>
+<a class="card vidrio sube" style="animation-delay:.04s" href="base.svg"><img src="base.svg" alt="Placa base" loading="lazy"><span><i>2</i>Placa base y bloque en V</span></a>
+<a class="card vidrio sube" style="animation-delay:.08s" href="bujes.svg"><img src="bujes.svg" alt="Bujes" loading="lazy"><span><i>3</i>Bujes, tornillería y abrazadera</span></a>
+<a class="card vidrio sube" style="animation-delay:.12s" href="caja.svg"><img src="caja.svg" alt="Caja" loading="lazy"><span><i>4</i>Caja de m₁, lastre y tope</span></a>
+<a class="card vidrio sube" style="animation-delay:.16s" href="cables.svg"><img src="cables.svg" alt="Barras y cables" loading="lazy"><span><i>5</i>Barras y cables</span></a>
+<a class="card vidrio sube" style="animation-delay:.2s" href="guia.svg"><img src="guia.svg" alt="Guía" loading="lazy"><span><i>6</i>Guía de láminas</span></a>
+<a class="card vidrio sube" style="animation-delay:.24s" href="porta.svg"><img src="porta.svg" alt="Porta-celular" loading="lazy"><span><i>7</i>Placa superior y porta-celular</span></a>
+</main></div></body></html>
