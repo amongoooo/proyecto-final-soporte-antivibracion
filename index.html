@@ -2,31 +2,275 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Soporte antivibración</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500&display=swap">
+<meta name="description" content="Soporte antivibración en dos etapas para celular en moto. Vibraciones Mecánicas · Equipo Camaradas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="estilo/vidrio.css">
 <style>
-:root{--bg:#e6ebee;--panel:#f6f8f8;--ink:#172027;--muted:#52606a;--line:#cdd5da;--accent:#0b6f66;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#12181d;--panel:#1a2228;--ink:#e8eef0;--muted:#a0b0b9;--line:#303c44;--accent:#58c9b8;color-scheme:dark}}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 'Barlow',Arial,sans-serif}
-main{max-width:760px;margin:0 auto;padding:48px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:20px}
-h1{margin:0;font:700 44px/1 'Barlow Condensed','Arial Narrow',sans-serif}
-p{margin:0;color:var(--muted)}
-.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;color:var(--ink);text-decoration:none}
-a.card:hover{border-color:var(--accent)}
-.card a{color:var(--accent)}
-.card > a{text-decoration:none}
-.card b{display:block;font:700 22px/1.2 'Barlow Condensed','Arial Narrow',sans-serif;color:var(--accent)}
+/* Portada: fondo de color con vidrio encima (como la app de Teoría Musical). Arriba la idea y una demo en vivo
+   (el motor mueve el manubrio y se ve cuánto llega al celular); abajo, tarjetas para entrar a cada parte. */
+:root{--bg:#eef1f4;--panel:#ffffff;--ink:#10121c;--muted:#4b5563;--line:#d6dbe1;--chip:#e9edf1;
+  --accent:#0b7a70;--accent-ink:#ffffff;--man:#8a8f98;--caja:#3388de;--cel:#0b9a8c;--warn:#c4521a;
+  --c-pres:#0b9a8c;--c-sim:#3388de;--c-3d:#7c4dff;--c-plan:#e98537;
+  --titulo:'Bricolage Grotesque','Figtree',system-ui,sans-serif;--texto:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;--dato:'DM Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1116;--panel:#161c22;--ink:#eef2f5;--muted:#a3afb9;--line:#2a333b;--chip:#222a31;
+  --accent:#4fd1bf;--accent-ink:#06201d;--man:#9aa3ad;--caja:#6aaef0;--cel:#4fd1bf;--warn:#f59a62;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1116;--panel:#161c22;--ink:#eef2f5;--muted:#a3afb9;--line:#2a333b;--chip:#222a31;
+  --accent:#4fd1bf;--accent-ink:#06201d;--man:#9aa3ad;--caja:#6aaef0;--cel:#4fd1bf;--warn:#f59a62;color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--texto);min-height:100vh;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:12px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+
+/* Barra de arriba: una píldora de vidrio que flota */
+.top{position:sticky;top:calc(10px + env(safe-area-inset-top,0px));z-index:10;margin-top:calc(10px + env(safe-area-inset-top,0px));
+  display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:999px;padding:6px 6px 6px 14px}
+.marca{display:flex;align-items:center;gap:10px;font:800 17px/1 var(--titulo);text-decoration:none;min-width:0}
+.marca span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo{width:30px;height:30px;flex:none;border-radius:9px;background:var(--accent);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgb(255 255 255/.4)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;
+  font:600 15px/1 var(--texto);text-decoration:none;white-space:nowrap;border:1px solid transparent;cursor:pointer;
+  transition:transform .35s var(--spring),box-shadow .25s}
+.btn:active{transform:scale(.95)}
+.btn.prim{background:var(--accent);color:var(--accent-ink);box-shadow:inset 0 1.5px 0 rgb(255 255 255/.45),inset 0 -1px 0 rgb(0 0 0/.12),0 6px 18px color-mix(in srgb,var(--accent) 40%,transparent)}
+.btn.glass{background:var(--glass-bg);border-color:var(--glass-brd);box-shadow:var(--glass-shadow);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%)}
+
+/* Portada */
+.hero{display:flex;flex-direction:column;gap:16px;padding-top:28px}
+.eyebrow{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 14px 7px 10px;font:500 13px/1 var(--dato);letter-spacing:.4px;text-transform:uppercase;color:var(--muted)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent);animation:latido 1.6s ease-in-out infinite}
+@keyframes latido{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 0%,transparent)}}
+h1{margin:0;font:800 clamp(40px,9vw,76px)/.98 var(--titulo);letter-spacing:-.02em;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(100deg,var(--c-pres),var(--c-sim) 55%,var(--c-3d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:0;font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:56ch;text-wrap:pretty}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+
+/* Demo en vivo */
+.demo{border-radius:28px;padding:18px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px}
+.lanes{position:relative;min-width:0;border-radius:20px;background:color-mix(in srgb,var(--panel) 70%,transparent);border:1px solid var(--line);overflow:hidden}
+#cv{display:block;width:100%;height:300px}
+.side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.big{border-radius:20px;padding:16px;background:color-mix(in srgb,var(--cel) 12%,transparent);border:1px solid color-mix(in srgb,var(--cel) 30%,transparent)}
+.big .k{font:500 12px/1 var(--dato);letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.big b{display:block;font:800 54px/1 var(--titulo);color:var(--cel);font-variant-numeric:tabular-nums;margin:8px 0 4px;transition:color .3s}
+.big b.mal{color:var(--warn)}
+.big span{font-size:14px;color:var(--muted)}
+.ctl{display:flex;flex-direction:column;gap:6px}
+.ctl .fila{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:15px}
+.ctl output{font:500 14px/1 var(--dato);color:var(--accent);font-variant-numeric:tabular-nums}
+.seg{font:600 14px/1 var(--texto)}
+.seg>button{min-height:40px;padding:0 14px;cursor:pointer;font:inherit;flex:1 0 auto!important}
+.ley{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.ley i{display:inline-block;width:16px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+
+/* Números clave */
+.datos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.dato{border-radius:22px;padding:16px}
+.dato b{display:block;font:800 30px/1 var(--titulo);font-variant-numeric:tabular-nums}
+.dato b small{font:500 15px/1 var(--dato);color:var(--muted);margin-left:4px}
+.dato span{display:block;margin-top:6px;font-size:14px;color:var(--muted);line-height:1.3}
+
+/* Tarjetas para entrar */
+h2{margin:8px 0 0;font:800 28px/1.1 var(--titulo);letter-spacing:-.01em}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{--c:var(--accent);position:relative;display:flex;flex-direction:column;gap:12px;border-radius:26px;padding:18px;text-decoration:none;color:var(--ink);overflow:hidden;
+  transition:transform .45s var(--spring),box-shadow .3s}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 100% 0%,color-mix(in srgb,var(--c) 22%,transparent),transparent 60%);pointer-events:none}
+@media (hover:hover){a.card:hover,.card.hov:hover{transform:translateY(-4px)}}
+a.card:active{transform:scale(.98)}
+.card .ic{position:relative;width:52px;height:52px;border-radius:16px;background:var(--c);display:grid;place-items:center;color:#fff;
+  box-shadow:inset 0 1.5px 0 rgb(255 255 255/.45),0 8px 20px color-mix(in srgb,var(--c) 40%,transparent)}
+.card .ic svg{width:28px;height:28px}
+.card h3{position:relative;margin:0;font:800 24px/1.1 var(--titulo)}
+.card p{position:relative;margin:0;color:var(--muted);font-size:15.5px}
+.card .ir{position:absolute;right:18px;top:22px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);transition:transform .45s var(--spring)}
+@media (hover:hover){.card:hover .ir{transform:translateX(4px)}}
+.card .meta{position:relative;font:500 13px/1 var(--dato);color:var(--c);letter-spacing:.3px;text-transform:uppercase}
+.card.pres{--c:var(--c-pres)}.card.sim{--c:var(--c-sim)}.card.m3d{--c:var(--c-3d)}.card.plan{--c:var(--c-plan)}
+.thumb{position:relative;border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:16/8}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.vistas{position:relative;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:2px 18px 4px;scroll-snap-type:x proximity}
+.vistas::-webkit-scrollbar{display:none}
+.vistas a{flex:none;scroll-snap-align:start;min-height:38px;display:inline-flex;align-items:center;padding:0 14px;border-radius:999px;font:600 14px/1 var(--texto);text-decoration:none;
+  background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--ink);border:1px solid color-mix(in srgb,var(--c) 28%,transparent);transition:transform .3s var(--spring),background .2s}
+.vistas a:active{transform:scale(.94)}
+@media (hover:hover){.vistas a:hover{background:color-mix(in srgb,var(--c) 22%,transparent)}}
+.stretch{position:absolute;inset:0;z-index:0}
+
+/* Descargas y pie */
+.descargas{display:flex;flex-wrap:wrap;gap:10px}
+.descargas a{gap:10px}
+.descargas svg{width:18px;height:18px;color:var(--accent)}
+footer{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;color:var(--muted);font-size:14px}
+.tag{font:500 12px/1 var(--dato);letter-spacing:.4px;text-transform:uppercase;color:var(--warn);border:1px solid currentColor;border-radius:999px;padding:7px 11px}
+
+/* Aparecer al cargar */
+.sube{animation:sube .7s var(--ease) both}
+@keyframes sube{from{opacity:0;transform:translateY(18px)}}
+@media (prefers-reduced-motion:reduce){.sube{animation:none}.eyebrow i{animation:none}}
+
+@media (max-width:820px){
+  .demo{grid-template-columns:minmax(0,1fr);padding:14px;border-radius:24px}
+  #cv{height:240px}
+  .datos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cards{grid-template-columns:minmax(0,1fr)}
+  .top .btn{padding:0 14px}
+}
+@media (max-width:400px){.top .btn span{display:none}.big b{font-size:46px}}
 </style>
 </head>
 <body>
-<main>
-<h1>Soporte antivibración en dos etapas</h1>
-<p>Vibraciones Mecánicas · Equipo Camaradas · Ingeniería Mecatrónica. Tercer parcial: el prototipo que construiremos y cómo funciona.</p>
-<a class="card" href="presentacion.html"><b>Presentación · 17 láminas</b>Con las simulaciones y el modelo 3D en vivo. Usa las flechas del teclado y F para pantalla completa.</a>
-<a class="card" href="simulaciones.html"><b>Simulaciones</b>Una pestaña por lámina: onda del manubrio, transmisibilidad, modos, rígido contra nuestro soporte, mecido y prueba de soltar.</a>
-<a class="card" href="planos/index.html"><b>Planos de la versión C</b>7 hojas estilo SolidWorks: conjunto y cada pieza con sus cotas, si es impresa o comprada, y vista isométrica. También en PDF.</a>
-<div class="card"><a href="modelo3d.html"><b>Modelo 3D del prototipo</b></a>Gíralo, sepáralo en piezas y pruébalo frenando. Vistas directas: <span class="links"><a href="modelo3d.html#base">placa base</a> · <a href="modelo3d.html#bujes">bujes</a> · <a href="modelo3d.html#caja">caja</a> · <a href="modelo3d.html#solera">lastre</a> · <a href="modelo3d.html#cables">cables</a> · <a href="modelo3d.html#sup">placa superior</a> · <a href="modelo3d.html#porta">porta-celular</a> · <a href="modelo3d.html#guia">guía de láminas</a> · <a href="modelo3d.html#explotado">explotado</a> · <a href="modelo3d.html#ensamble">ensamble</a></span></div>
-</main>
+<div class="fondo-color" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="top vidrio">
+  <a class="marca" href="#" aria-label="Soporte antivibración, inicio">
+    <span class="logo" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16M4 20h16M8 4l-3 4 6 2-6 2 6 2-3 4M16 4v16"/></svg></span>
+    <span>Soporte antivibración</span>
+  </a>
+  <a class="btn prim" href="presentacion.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><span>Presentación</span></a>
+</header>
+
+<section class="hero">
+  <span class="eyebrow vidrio sube"><i></i>Vibraciones Mecánicas · Tercer parcial</span>
+  <h1 class="sube" style="animation-delay:.05s">Soporte antivibración <em>en dos etapas</em></h1>
+  <p class="lead sube" style="animation-delay:.1s">El celular va en la moto sin que el motor lo sacuda: dos pisos con resortes filtran la vibración del manubrio. Equipo Camaradas · Ingeniería Mecatrónica.</p>
+</section>
+
+<section class="demo vidrio sube" style="animation-delay:.15s" aria-label="Demo: cuánto llega al celular">
+  <div class="lanes"><canvas id="cv" aria-label="La vibración del manubrio, de la caja y del celular en el tiempo"></canvas></div>
+  <div class="side">
+    <div class="big"><span class="k">Llega al celular</span><b id="pct">—</b><span id="pctTxt">de la vibración del manubrio</span></div>
+    <div class="ctl">
+      <label class="fila" for="rpm">Motor <output id="rpmv">1 404 rpm</output></label>
+      <input id="rpm" type="range" min="1000" max="7200" step="20" value="1404" aria-describedby="rpmv">
+    </div>
+    <div class="seg vidrio" id="presets" role="group" aria-label="Régimen del motor">
+      <button type="button" data-rpm="1404">Ralentí</button><button type="button" data-rpm="3000">Ciudad</button><button type="button" data-rpm="6000">Avenida</button>
+    </div>
+    <div class="ley"><span><i style="background:var(--man)"></i>Manubrio</span><span><i style="background:var(--caja)"></i>Caja</span><span><i style="background:var(--cel)"></i>Celular</span></div>
+  </div>
+</section>
+
+<section class="datos" aria-label="Números clave">
+  <div class="dato vidrio sube" style="animation-delay:.2s"><b>2</b><span>etapas: bujes de hule y cables de acero</span></div>
+  <div class="dato vidrio sube" style="animation-delay:.24s"><b id="f1">5.5<small>Hz</small></b><span>modo lento: casi solo se mece el celular</span></div>
+  <div class="dato vidrio sube" style="animation-delay:.28s"><b id="f2">25.7<small>Hz</small></b><span>modo rápido: se mueve la caja</span></div>
+  <div class="dato vidrio sube" style="animation-delay:.32s"><b>290<small>g</small></b><span>de PETG impreso en total</span></div>
+</section>
+
+<h2>Explora el proyecto</h2>
+<section class="cards">
+  <a class="card pres vidrio" href="presentacion.html">
+    <span class="ir" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8M10 8l4 2-4 2z"/></svg></span>
+    <span class="meta">18 láminas</span>
+    <h3>Presentación</h3>
+    <p>Con las simulaciones y el modelo 3D en vivo. Flechas para avanzar y F para pantalla completa.</p>
+  </a>
+  <a class="card sim vidrio" href="simulaciones.html">
+    <span class="ir" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-6 4-6 6 0s4 6 6 0 4-6 6 0 2 3 2 3"/></svg></span>
+    <span class="meta">8 simulaciones</span>
+    <h3>Simulaciones</h3>
+    <p>Onda del manubrio, transmisibilidad, modos, rígido contra nuestro soporte, topes, mecido y prueba de soltar.</p>
+  </a>
+  <div class="card m3d vidrio hov">
+    <a class="stretch" href="modelo3d.html" aria-label="Abrir el modelo 3D"></a>
+    <span class="ir" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></span>
+    <span class="meta">Gíralo y sepáralo</span>
+    <h3>Modelo 3D</h3>
+    <p>Gíralo, sepáralo en piezas y pruébalo frenando. Entra directo a una pieza:</p>
+    <nav class="vistas" aria-label="Vistas del modelo 3D">
+      <a href="modelo3d.html#ensamble">Ensamble</a><a href="modelo3d.html#explotado">Explotado</a><a href="modelo3d.html#base">Placa base</a><a href="modelo3d.html#bujes">Bujes</a><a href="modelo3d.html#caja">Caja</a><a href="modelo3d.html#solera">Lastre</a><a href="modelo3d.html#cables">Cables</a><a href="modelo3d.html#sup">Placa superior</a><a href="modelo3d.html#porta">Porta-celular</a><a href="modelo3d.html#guia">Guía de láminas</a>
+    </nav>
+  </div>
+  <a class="card plan vidrio" href="planos/index.html">
+    <span class="ir" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17L17 3l4 4L7 21H3z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></svg></span>
+    <span class="meta">7 hojas · PDF y DXF</span>
+    <h3>Planos de la versión C</h3>
+    <p>Conjunto y cada pieza con sus cotas, si es impresa o comprada, y vista isométrica.</p>
+    <span class="thumb"><img src="planos/conjunto.svg" alt="" loading="lazy"></span>
+  </a>
+</section>
+
+<h2>Descargas</h2>
+<section class="descargas">
+  <a class="btn glass" href="presentacion.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Presentación en PDF</a>
+  <a class="btn glass" href="planos/planos-version-C.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Planos en PDF</a>
+  <a class="btn glass" href="planos/dxf/planos-version-C-dxf.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Planos DXF (AutoCAD)</a>
+</section>
+
+<footer><span class="tag">Valores estimados · sin medir</span><span>Se medirán en el cuarto parcial.</span></footer>
+</div>
+
+<script src="estilo/vidrio.js"></script>
+<script>
+(function(){'use strict';
+/* Modelo vertical de 2 masas con base excitada (el mismo de simulaciones.html). */
+var M1=.308,M2=.417,K1=7464,C1=55.4,K2=535,C2=4.18,PI2=2*Math.PI;
+function solve(f){var w=PI2*f,ar=K1+K2-M1*w*w,ai=w*(C1+C2),br=-K2,bi=-w*C2,dr=K2-M2*w*w,di=w*C2,rr=K1,ri=w*C1;
+  var adr=ar*dr-ai*di,adi=ar*di+ai*dr,bbr=br*br-bi*bi,bbi=2*br*bi,Dr=adr-bbr,Di=adi-bbi,Dm=Dr*Dr+Di*Di;
+  var nr=-(br*rr-bi*ri),ni=-(br*ri+bi*rr),xr=(nr*Dr+ni*Di)/Dm,xi=(ni*Dr-nr*Di)/Dm;
+  var a1r=rr*dr-ri*di,a1i=rr*di+ri*dr,yr=(a1r*Dr+a1i*Di)/Dm,yi=(a1i*Dr-a1r*Di)/Dm;
+  return{m2:Math.hypot(xr,xi),p2:Math.atan2(xi,xr),m1:Math.hypot(yr,yi),p1:Math.atan2(yi,yr)}}
+(function(){var tr=(K1+K2)/M1+K2/M2,det=K1*K2/(M1*M2),s=Math.sqrt(tr*tr-4*det);
+  function fx(v){return v.toFixed(1)+'<small>Hz</small>'}
+  document.getElementById('f1').innerHTML=fx(Math.sqrt((tr-s)/2)/PI2);document.getElementById('f2').innerHTML=fx(Math.sqrt((tr+s)/2)/PI2)})();
+
+var NH=8,PH=[0,.9,2.1,.4,1.7,2.8,1.1,.3],H=[],rpm=1404,fe=rpm/120;
+function calc(){fe=rpm/120;H=[];var s0=0,s2=0;
+  for(var n=1;n<=NH;n++){var r=solve(n*fe),a=1/n;H.push({a:a,r:r});s0+=a*a;s2+=Math.pow(a*r.m2,2)}
+  var ratio=Math.sqrt(s2/s0),p=Math.round(ratio*100),el=document.getElementById('pct');
+  el.textContent=p+' %';el.classList.toggle('mal',ratio>1);
+  document.getElementById('pctTxt').textContent=ratio>1?'¡amplifica! más de lo que llega al manubrio':'de la vibración del manubrio ('+(p-100)+' %)';
+  document.getElementById('rpmv').textContent=rpm.toLocaleString('es-MX').replace(',', ' ')+' rpm';
+  [].forEach.call(document.querySelectorAll('#presets button'),function(b){b.setAttribute('aria-pressed',+b.dataset.rpm===rpm)})}
+var R=document.getElementById('rpm');
+R.addEventListener('input',function(){rpm=+R.value;calc();if(still)draw()});
+[].forEach.call(document.querySelectorAll('#presets button'),function(b){b.onclick=function(){animateTo(+b.dataset.rpm)}});
+/* Al tocar un régimen, el slider viaja hasta él con un resorte. */
+var anim=null;function animateTo(v){var from=rpm,t0=performance.now(),D=650;cancelAnimationFrame(anim);
+  (function step(now){var u=Math.min(1,(now-t0)/D),e=1-Math.pow(1-u,3)*Math.cos(u*2.2);rpm=Math.round(from+(v-from)*Math.min(e,1.04));if(u>=1)rpm=v;
+    R.value=rpm;calc();if(still)draw();if(u<1)anim=requestAnimationFrame(step)})(t0)}
+
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d'),W=0,Hh=0,still=window.matchMedia('(prefers-reduced-motion: reduce)').matches,T=0,last=0;
+function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function size(){var d=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;Hh=cv.clientHeight;cv.width=W*d;cv.height=Hh*d;ctx.setTransform(d,0,0,d,0,0)}
+function val(t,k){var s=0;for(var n=1;n<=NH;n++){var h=H[n-1],m=k===0?1:k===1?h.r.m1:h.r.m2,p=k===0?0:k===1?h.r.p1:h.r.p2;s+=h.a*m*Math.sin(PI2*n*fe*t+PH[n-1]+p)}return s}
+function draw(){ctx.clearRect(0,0,W,Hh);
+  var cols=[css('--man'),css('--caja'),css('--cel')],names=['Manubrio','Caja','Celular'],lane=Hh/3,amp=lane*.2,
+      slow=rate(),span=3*slow,x0=14,x1=W-34,ink=css('--muted'),grid=css('--line');
+  ctx.font='500 12px '+css('--dato').split(',')[0]+',monospace';
+  for(var k=0;k<3;k++){var cy=lane*k+lane/2+7;
+    ctx.strokeStyle=grid;ctx.lineWidth=1;ctx.setLineDash([3,5]);ctx.beginPath();ctx.moveTo(x0,cy);ctx.lineTo(x1,cy);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=ink;ctx.textAlign='left';ctx.fillText(names[k],x0,lane*k+16);
+    ctx.strokeStyle=cols[k];ctx.lineWidth=2.4;ctx.lineJoin='round';ctx.beginPath();
+    var N=Math.max(160,Math.round(x1-x0)),yEnd=0;
+    for(var i=0;i<=N;i++){var u=i/N,t=T-span*(1-u),y=Math.max(-1.6,Math.min(1.6,val(t,k)));var X=x0+u*(x1-x0),Y=cy-y*amp;i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);yEnd=Y}
+    ctx.stroke();
+    /* la masa: una bolita que rebota al final del rastro */
+    var g=ctx.createRadialGradient(x1-2,yEnd-3,1,x1,yEnd,10);g.addColorStop(0,'#fff');g.addColorStop(.35,cols[k]);g.addColorStop(1,cols[k]);
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x1+8,yEnd,9,0,PI2);ctx.fill();
+    ctx.strokeStyle=cols[k];ctx.globalAlpha=.25;ctx.lineWidth=6;ctx.stroke();ctx.globalAlpha=1}
+  /* velocidad de la animación: cámara lenta para que se vea la forma de la onda */
+  ctx.fillStyle=ink;ctx.textAlign='right';ctx.fillText('cámara lenta ×'+slow.toFixed(2),W-12,Hh-10)}
+/* Cámara lenta: a más rpm, la onda se ve más rápida y más apretada, pero sin volverse un borrón. */
+function rate(){return 1.4*Math.sqrt(fe/11.7)/fe}
+function loop(now){var dt=Math.min(.05,(now-(last||now))/1000);last=now;T+=dt*rate();draw();requestAnimationFrame(loop)}
+size();calc();
+if(still)draw();else requestAnimationFrame(loop);
+window.addEventListener('resize',function(){size();draw()});
+matchMedia('(prefers-color-scheme: dark)').addEventListener&&matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+})();
+</script>
 </body>
 </html>

@@ -10,6 +10,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="estilo/vidrio.css">
 <style>
 /* Layout: banco de pruebas. Arriba, pestañas por lámina; abajo, la gráfica grande a la izquierda y la ficha (fórmula, controles, números) a la derecha. Mismo lenguaje visual que el modelo 3D. */
 :root{--bg:#e6ebee;--panel:#f6f8f8;--ink:#172027;--muted:#52606a;--line:#cdd5da;--accent:#0b6f66;--accent-ink:#f4faf8;--warn:#b04a12;--chip:#e7ecee;--c2:#4f6f8f;--c3:#8a6a1e;--grid:#d5dce0;
@@ -61,15 +62,25 @@ footer{color:var(--muted);font-size:13px;max-width:100ch}
 html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-box}.embed .panel{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}.embed .viz{min-height:0}.embed .viz canvas,.embed .fig canvas{flex:1 1 0;height:0;min-height:60px}.embed .duo{flex:1;min-height:0}.embed .fig{min-height:0}.embed .side>.card:last-child{flex:1}.embed .card h3{font-size:28px}.embed .tex{font-size:25px}.embed .vals.mj{font-size:24px}.embed #vMec{font-size:20px}.embed button{font-size:22px;padding:9px 14px;min-height:46px}.embed .ctl,.embed label.range{font-size:22px}.embed label.range{grid-template-columns:130px 1fr 110px}.embed .ctl{grid-template-columns:130px 1fr}.embed output{font-size:21px}.embed input[type=range]{height:34px}.embed .num b{font-size:32px}.embed .num span{font-size:17px}.embed .key{font-size:18px}.embed .key i{width:24px;height:4px}.embed .fig h4{font-size:20px}.embed .side{gap:8px}
 @media (max-width:900px){.panel{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
 @media (max-width:440px){label.range{grid-template-columns:76px 1fr 64px}}
+/* Vidrio (estilo/vidrio.css): fuera de la presentación, fondo de color y tarjetas de vidrio; las pestañas son un control segmentado. */
+html:not(.embed) .viz,html:not(.embed) .card{background:var(--glass-strong);border:1px solid var(--glass-brd);box-shadow:var(--glass-shadow);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);border-radius:22px;padding:16px}
+html:not(.embed) .vals{border-radius:12px}
+html:not(.embed) nav.seg>button{min-height:42px;padding:0 14px}
+html:not(.embed) body{background:var(--bg)}
+.embed .fondo-color{display:none}
+.volver{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px 0 8px;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:600;margin-bottom:10px;transition:transform .35s var(--spring)}
+.volver:active{transform:scale(.95)}
+@media (max-width:900px){html:not(.embed) .viz,html:not(.embed) .card{padding:12px}}
 </style>
 
 <script>try{var tm=location.search.match(/theme=(dark|light)/);if(tm)document.documentElement.setAttribute("data-theme",tm[1]);if(/[?&]embed/.test(location.search)){document.documentElement.classList.add("embed");if(/nopanel/.test(location.search))document.documentElement.classList.add("nopanel")}}catch(e){}document.addEventListener("keydown",function(e){if(!document.documentElement.classList.contains("embed"))return;if(e.target.closest&&e.target.closest("input,select,textarea"))return;var k={ArrowRight:1,PageDown:1,ArrowLeft:-1,PageUp:-1}[e.key];if(k){e.preventDefault();try{parent.postMessage({deckNav:k},"*")}catch(x){}}});</script>
+<div class="fondo-color" aria-hidden="true"></div>
 <div class="wrap">
 <header>
-<div><h1>Simulaciones del soporte</h1><p class="sub">Versión C: cables a 100 mm y guía de láminas. Cada pestaña es una lámina de la presentación. Mueve los controles para verlo en vivo.</p></div>
+<div><a class="volver vidrio" href="index.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Portada</a><h1>Simulaciones del soporte</h1><p class="sub">Versión C: cables a 100 mm y guía de láminas. Cada pestaña es una lámina de la presentación. Mueve los controles para verlo en vivo.</p></div>
 <span class="tag">Valores estimados · sin medir</span>
 </header>
-<nav id="tabs" role="tablist" aria-label="Simulaciones por lámina"></nav>
+<nav id="tabs" class="seg vidrio" role="tablist" aria-label="Simulaciones por lámina"></nav>
 
 <!-- L2 -->
 <section class="panel" role="tabpanel" id="p-onda" data-name="Onda del manubrio" data-l="L2">
@@ -186,6 +197,7 @@ html.embed,.embed body{height:100%}.embed .wrap{height:100%;box-sizing:border-bo
 window.MathJax={tex:{packages:{'[+]':['ams']}},svg:{fontCache:'global'},startup:{typeset:true}};
 </script>
 <script src="vendor/mathjax/tex-svg.js" async></script>
+<script src="estilo/vidrio.js" defer></script>
 <script>
 (function(){'use strict';
 var $=function(i){return document.getElementById(i)},PI2=2*Math.PI,g=9.81;
